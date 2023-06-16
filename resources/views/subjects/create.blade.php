@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <label for="name" class="col-form-label">{{ __('Materia') }}</label>
-                                <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control" placeholder="{{ __('Nombre de Materia') }}">
+                                <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control" placeholder="{{ __('Nombre de Materia') }}" required autofocus>
             
                                 @error('name')
                                     <span style="color: red;">{{ $message }} </span><br/>

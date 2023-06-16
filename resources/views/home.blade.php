@@ -20,7 +20,7 @@
 <body class="gradiend">
     <div class="grid-inicio">
         <!-- barra de navegacion lateral -->
-        <div class="nav-lateral bg-black">
+        <div class="nav-lateral">
             <div class="img-logo-nav">
                 <img src="" alt="logo">
             </div>
@@ -53,7 +53,22 @@
                         <a href="{{ route('teachers.create') }}">{{ __('Crear') }}</a>
                     </li>
                 </ul>
-            </div>
+            </div><br>
+            <!-- hace referencia a Students-->
+            <a class="nav-item" data-bs-toggle="collapse" href="#Students" aria-expanded="false" aria-controls="Students">
+                {{ __('Studiantes') }}
+            </a>
+            <!-- esta es la referencia de Teachers-->
+            <div class="collapse" id="Students">
+                <ul>
+                    <li>
+                        <a href="{{ route('students.index') }}">{{ __('Listado') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('students.create') }}">{{ __('Crear') }}</a>
+                    </li>
+                </ul>
+            </div><br>
         </div>
         <!-- barra de navegacion principal -->
         <div class="nav-principal container d-flex justify-content-end">

@@ -8,7 +8,7 @@
             <div class="form">
                 <div class="card p-4">
                     <div class="card-header">
-                        <h2 class="text-center">Crear Materia</h2>
+                        <h2 class="text-center">Crear Profesor</h2>
                     </div>
                     <div class="card-body">
                         <div class="row">
