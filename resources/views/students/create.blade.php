@@ -11,6 +11,15 @@
                     <!-- nombres, apellidos y tipo de estudiantes-->
                     <div class="card-body text-center">
                         <div class="row">
+                            <div class="col-sm-12">
+                                <label for="year_id" class="form-label">Año a Cursar</label><br>
+                                @foreach ($years as $year)
+                                    <span class="text-uppercase">{{ $year->year }}</span>
+                                    <input type="radio" name="year_id" id="year_id" class="form-check-input" value={{ $year->id }}>
+                                @endforeach
+                            </div>
+                        </div><br>
+                        <div class="row">
                             <div class="col-sm-3">
                                 <label for="lastnames" class="col-form-label">{{ __('Apellidos') }}</label>
                                 <input type="text" name="lastnames" id="lastnames" value="{{ old('lastnames') }}" class="form-control" placeholder="{{ __('Apellidos') }}" required autofocus>

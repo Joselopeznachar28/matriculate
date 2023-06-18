@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\YearSchool;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PDF;
@@ -15,12 +16,14 @@ class StudentController extends Controller
     }
 
     public function create(){
-        return view('students.create');
+        $years = YearSchool::all();
+        return view('students.create',compact('years'));
     }
 
     public function store(Request $request){
 
         $student = Student::create([
+            'year_id'               =>  $request->year_id,
             'names'                 =>  $request->names,
             'lastnames'             =>  $request->lastnames,
             'type_student'          =>  $request->type_student,
@@ -78,6 +81,7 @@ class StudentController extends Controller
     public function update(Request $request, $id){
 
         $student = Student::where('id', '=', $id)->update([
+            'year_id'               =>  $request->year_id,
             'names'                 =>  $request->names,
             'lastnames'             =>  $request->lastnames,
             'type_student'          =>  $request->type_student,

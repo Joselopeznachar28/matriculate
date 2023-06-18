@@ -17,7 +17,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body class="gradiend">
+<body>
     <div class="grid-inicio">
         <!-- barra de navegacion lateral -->
         <div class="nav-lateral">
@@ -56,7 +56,7 @@
             </div><br>
             <!-- hace referencia a Students-->
             <a class="nav-item" data-bs-toggle="collapse" href="#Students" aria-expanded="false" aria-controls="Students">
-                {{ __('Studiantes') }}
+                {{ __('Estudiantes') }}
             </a>
             <!-- esta es la referencia de Teachers-->
             <div class="collapse" id="Students">
@@ -66,6 +66,21 @@
                     </li>
                     <li>
                         <a href="{{ route('students.create') }}">{{ __('Crear') }}</a>
+                    </li>
+                </ul>
+            </div><br>
+            <!-- hace referencia a sections-->
+            <a class="nav-item" data-bs-toggle="collapse" href="#sections" aria-expanded="false" aria-controls="sections">
+                {{ __('Secciones') }}
+            </a>
+            <!-- esta es la referencia de Teachers-->
+            <div class="collapse" id="sections">
+                <ul>
+                    <li>
+                        <a href="{{ route('sections.index') }}">{{ __('Listado') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('sections.create') }}">{{ __('Crear') }}</a>
                     </li>
                 </ul>
             </div><br>

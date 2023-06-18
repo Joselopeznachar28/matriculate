@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SubjectTeacher extends Model
+class Section extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'subject_id',
-        'teacher_id',
+        'letter',
     ];
+
+    public function subjects(){
+        return  $this->belongsToMany(Subject::class,'section_subjects','section_id','subject_id');
+    }
 
 }

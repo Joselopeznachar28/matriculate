@@ -56,6 +56,9 @@ return new class extends Migration
             $table->date('inscription_date');
             $table->text('registration_made_by');
             $table->text('observation')->nullable();
+
+            $table->foreignId('year_id')->constrained('year_schools')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

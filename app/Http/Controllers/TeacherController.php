@@ -24,9 +24,9 @@ class TeacherController extends Controller
             'name' => $request->name,
         ]);
 
-        foreach ($request->subject_id as  $subject) {
+        foreach ($request->subject_id as $subject) {
             if(!empty($subject)){
-               $subject_id = $teacher->subjects()->attach($subject);
+               $teacher->subjects()->attach($subject);
             }
         }
         

@@ -10,6 +10,7 @@ class Student extends Model
     use HasFactory;
 
     protected $fillable = [
+        'year_id',
         'inscription_number',
         'type_student',
         'names',
@@ -54,4 +55,8 @@ class Student extends Model
         'registration_made_by',
         'observation',
     ];
+
+    public function year(){
+        return $this->belongsTo(YearSchool::class);
+    }
 }

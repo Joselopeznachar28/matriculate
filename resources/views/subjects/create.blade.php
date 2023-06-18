@@ -21,6 +21,19 @@
                                 @enderror
             
                             </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label for="year_id" class="form-label">Años a Impartir la materia</label><br>
+                                @foreach ($years as $year)
+                                <div class="row w-100">
+                                    <div class="form-switch d-flex justify-content-evenly column-gap-1">
+                                        <p>{{ $year->year }}</p>
+                                        <input type="checkbox" name="year_id[]" id="year_id" class="form-check-input" value={{ $year->id }}>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer">

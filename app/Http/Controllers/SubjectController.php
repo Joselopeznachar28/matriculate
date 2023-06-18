@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subject;
+use App\Models\YearSchool;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -13,13 +14,22 @@ class SubjectController extends Controller
     }
 
     public function create(){
-        return view('subjects.create');
+        $years = YearSchool::all();
+        return view('subjects.create', compact('years'));
     }
 
     public function store(Request $request){
-        $subject = new Subject();
-        $subject->name = $request->name;
-        $subject->save();
+        // dd($request->all());
+        $subject = Subject::create([
+            'name' => $request->name,
+        ]);
+
+        foreach ($request->year_id as $year) {
+            if (!empty($year)) {
+                $subject->years()->attach($year);
+            }
+        }
+
         return redirect()->route('subjets.index');
     }
 
