@@ -56,7 +56,39 @@ label{
 
 .nav-lateral{
     text-align: center;
-    padding: 5rem;
+    padding: 2rem;
+    margin-top: 0;
+    padding-top: 0 !important;
+}
+
+.nav-lateral a{
+    color: #000;
+    font-size:1rem!important ;
+    font-weight: bold;
+}
+
+.nav-lateral a:hover,
+.nav-lateral ul li:hover{
+    transition: .3s ease;
+    color: #ffffff !important;
+    background: blue;
+    border-radius: .8rem;
+    font-size:1.5rem!important ;
+    font-weight: bold;
+}
+
+.nav-lateral a,
+.collapse ul {
+    text-decoration: none !important;
+}
+
+ul{
+    list-style: none;
+}
+
+.img-logo-nav img{
+    width: 100%;
+    height: 100%;
 }
 
 .btn-submit{
@@ -76,4 +108,10 @@ label{
     left: 30%;
     top: 15%;
     min-width: 25%;
+}
+
+.display-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
 }
