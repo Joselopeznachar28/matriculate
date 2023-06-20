@@ -75,7 +75,8 @@ class StudentController extends Controller
 
     public function edit($id){
         $student = Student::find($id);
-        return view('students.edit',compact('student'));
+        $years = YearSchool::all();
+        return view('students.edit',compact('student','years'));
     }
 
     public function update(Request $request, $id){

@@ -14,12 +14,12 @@ class TeacherController extends Controller
     }
 
     public function create(){
-        $subjects = Subject::all();
+        $subjects = Subject::with('sections')->get();
         return view('teachers.create',compact('subjects'));
     }
 
     public function store(Request $request){
-        // dd($request->all());
+        dd($request->all());
         $teacher = Teacher::create([
             'name' => $request->name,
         ]);

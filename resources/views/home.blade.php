@@ -20,9 +20,9 @@
 <body>
     <div class="grid-inicio">
         <!-- barra de navegacion lateral -->
-        <div class="nav-lateral">
+        <div class="nav-lateral d-grid">
             <div class="img-logo-nav">
-                <img src="" alt="logo">
+                <img src="{{ asset('img/logo.png') }}" alt="logo">
             </div>
             <!-- hace referencia a Materias -->
             <a class="nav-item" data-bs-toggle="collapse" href="#Materias" aria-expanded="false" aria-controls="Materias">
@@ -38,37 +38,7 @@
                         <a href="{{ route('subjets.create') }}">{{ __('Crear') }}</a>
                     </li>
                 </ul>
-            </div><br>
-            <!-- hace referencia a Teachers-->
-            <a class="nav-item" data-bs-toggle="collapse" href="#Teachers" aria-expanded="false" aria-controls="Teachers">
-                {{ __('Profesores') }}
-            </a>
-            <!-- esta es la referencia de Teachers-->
-            <div class="collapse" id="Teachers">
-                <ul>
-                    <li>
-                        <a href="{{ route('teachers.index') }}">{{ __('Listado') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('teachers.create') }}">{{ __('Crear') }}</a>
-                    </li>
-                </ul>
-            </div><br>
-            <!-- hace referencia a Students-->
-            <a class="nav-item" data-bs-toggle="collapse" href="#Students" aria-expanded="false" aria-controls="Students">
-                {{ __('Estudiantes') }}
-            </a>
-            <!-- esta es la referencia de Teachers-->
-            <div class="collapse" id="Students">
-                <ul>
-                    <li>
-                        <a href="{{ route('students.index') }}">{{ __('Listado') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('students.create') }}">{{ __('Crear') }}</a>
-                    </li>
-                </ul>
-            </div><br>
+            </div>
             <!-- hace referencia a sections-->
             <a class="nav-item" data-bs-toggle="collapse" href="#sections" aria-expanded="false" aria-controls="sections">
                 {{ __('Secciones') }}
@@ -83,7 +53,37 @@
                         <a href="{{ route('sections.create') }}">{{ __('Crear') }}</a>
                     </li>
                 </ul>
-            </div><br>
+            </div>
+            <!-- hace referencia a Teachers-->
+            <a class="nav-item" data-bs-toggle="collapse" href="#Teachers" aria-expanded="false" aria-controls="Teachers">
+                {{ __('Profesores') }}
+            </a>
+            <!-- esta es la referencia de Teachers-->
+            <div class="collapse" id="Teachers">
+                <ul>
+                    <li>
+                        <a href="{{ route('teachers.index') }}">{{ __('Listado') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('teachers.create') }}">{{ __('Crear') }}</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- hace referencia a Students-->
+            <a class="nav-item" data-bs-toggle="collapse" href="#Students" aria-expanded="false" aria-controls="Students">
+                {{ __('Estudiantes') }}
+            </a>
+            <!-- esta es la referencia de Teachers-->
+            <div class="collapse" id="Students">
+                <ul>
+                    <li>
+                        <a href="{{ route('students.index') }}">{{ __('Listado') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('students.create') }}">{{ __('Crear') }}</a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <!-- barra de navegacion principal -->
         <div class="nav-principal container d-flex justify-content-end">
