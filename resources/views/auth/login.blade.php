@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container login">
+    <div class="container login gap-5">
         <!-- Imagen del lado izquiedo -->
         <div class="card text-center">
-            <img src="{{ asset('img/img-login.jpg')}}" alt="">
+            <img src="{{ asset('img/img-login.jpg')}}" alt="...">
         </div>
         <!-- Formulario del Lado Derecho -->
         <div class="form-login">

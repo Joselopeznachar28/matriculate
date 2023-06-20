@@ -24,6 +24,7 @@
             <div class="img-logo-nav">
                 <img src="{{ asset('img/logo.png') }}" alt="logo">
             </div>
+            <a href="{{ route('home') }}">Dashboard</a>
             <!-- hace referencia a Materias -->
             <a class="nav-item" data-bs-toggle="collapse" href="#Materias" aria-expanded="false" aria-controls="Materias">
                 {{ __('Materias') }}

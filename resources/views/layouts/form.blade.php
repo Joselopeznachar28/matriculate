@@ -18,59 +18,92 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-    <div>
-        <nav class="bg-black text-white p-3">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown d-flex justify-content-end">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+    <nav class="navbar bg-dark-subtle">
+        <a class="navbar-brand" href="{{ asset('img/logo.png') }}">
+        <img src="{{ asset('img/logo.png') }}" alt="Logo"  height="100" class="d-inline-block align-text-top">
+        </a>
+        <div class="container d-flex justify-content-evenly" id="accordionExample">
+            <div class="accordion-item">
+                <!-- hace referencia a Materias -->
+                <a data-bs-toggle="collapse" href="#Materias" aria-expanded="false" aria-controls="Materias">
+                    {{ __('Materias') }}
+                </a>
+                <!-- esta es la referencia de Materias-->
+                <div class="collapse" id="Materias">
+                    <li>
+                        <a href="{{ route('subjets.index') }}">{{ __('Listado') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('subjets.create') }}">{{ __('Crear') }}</a>
+                    </li>
                 </div>
-                
             </div>
-        </nav>
-        <main class="py-4">
+            <div class="accordion-item">
+                <!-- hace referencia a sections-->
+                <a class="nav-item" data-bs-toggle="collapse" href="#sections" aria-expanded="false" aria-controls="sections">
+                   {{ __('Secciones') }}
+               </a>
+               <!-- esta es la referencia de Teachers-->
+               <div class="collapse" id="sections">
+                    <li>
+                        <a href="{{ route('sections.index') }}">{{ __('Listado') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('sections.create') }}">{{ __('Crear') }}</a>
+                    </li>
+               </div>
+            </div>
+            <div class="accordion-item">
+                <!-- hace referencia a Teachers-->
+                <a class="nav-item" data-bs-toggle="collapse" href="#Teachers" aria-expanded="false" aria-controls="Teachers">
+                    {{ __('Profesores') }}
+                </a>
+                <!-- esta es la referencia de Teachers-->
+                <div class="collapse" id="Teachers">
+                    <li>
+                        <a href="{{ route('teachers.index') }}">{{ __('Listado') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('teachers.create') }}">{{ __('Crear') }}</a>
+                    </li>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <!-- hace referencia a Students-->
+                <a class="nav-item" data-bs-toggle="collapse" href="#Students" aria-expanded="false" aria-controls="Students">
+                    {{ __('Estudiantes') }}
+                </a>
+                <!-- esta es la referencia de Students-->
+                <div class="collapse" id="Students">
+                    <li>
+                        <a href="{{ route('students.index') }}">{{ __('Listado') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('students.create') }}">{{ __('Crear') }}</a>
+                    </li>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <a id="navbarDropdown" class="nav-item" href="#Logout" data-bs-toggle="collapse" aria-controls="Logout" aria-expanded="false" v-pre>
+                    {{ Auth::user()->name }}
+                </a>
+
+                <div class="collapse dropdown-menu-end" aria-labelledby="navbarDropdown" id="Logout">
+                    <a class="nav-item text-dark" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+        <main class="py-4 container">
             @yield('content')
         </main>
     </div>
