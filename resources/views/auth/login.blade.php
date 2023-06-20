@@ -47,9 +47,13 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary w-66">
-                    {{ __('Login') }}
-                </button>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <button type="submit" class="btn btn-primary w-100">
+                            {{ __('Login') }}
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

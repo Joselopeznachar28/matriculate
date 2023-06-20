@@ -17,6 +17,21 @@
     height: 83vh;
 }
 
+@media screen and (max-width: 767px) {
+    .login{
+        display: flex;
+        flex-direction: column;
+        place-content: center;
+        height: 100%;
+    }
+
+    .form-login .row {
+        justify-content: center;
+    }
+
+}
+
+
 .login .card img{
     max-height: 40rem;
     border-radius: 1rem;
