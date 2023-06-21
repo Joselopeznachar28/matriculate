@@ -23,7 +23,7 @@
 
     <div style="text-align: justify; text-indent: 40px;">
 
-        <p>Quien Suscribe: YECENIA J. CALDERON V. Directora (E) de la U.E. "Manuel Placido Maneiro", que funciona en Jusepin Estado Monagas, hace constar por medio de la presente que el Alumnno(a): <span style="text-transform: uppercase;border-bottom: #000 solid 2px;">{{ $student->lastnames . ' ' . $student->names }}</span>, Titular de la Cedula de Identidad N°.: <span style="border-bottom: #000 solid 2px;">V-{{ $student->identification }}</span>, de <span style="border-bottom: #000 solid 2px;">{{ $date }}</span> años de edad, esta inscrito(a) en este Plantel para cursar el año, correspondiente al Periodo Escolar: {{ now()->year}} - {{ (now()->year + 1) }} .</p><br>
+        <p>Quien Suscribe: YECENIA J. CALDERON V. Directora (E) de la U.E. "Manuel Placido Maneiro", que funciona en Jusepin Estado Monagas, hace constar por medio de la presente que el Alumnno(a): <span style="text-transform: uppercase;border-bottom: #000 solid 2px;">{{ $student->lastnames . ' ' . $student->names }}</span>, Titular de la Cedula de Identidad N°.: <span style="border-bottom: #000 solid 2px;">V-{{ $student->identification }}</span>, de <span style="border-bottom: #000 solid 2px;">{{ $date }}</span> años de edad, esta inscrito(a) en este Plantel para cursar el año, correspondiente al Periodo Escolar: {{ $student->year->academic_periods[0]->init}} / {{ $student->year->academic_periods[0]->end }} .</p><br>
 
         <p>Constancia que se expide a peticion de parte interesada, en Jusepin a los {{ now()->day }} dias del mes {{ now()->month }} del año {{ now()->year }}.</p>
 

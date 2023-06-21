@@ -141,7 +141,7 @@ class StudentController extends Controller
     }
 
     public function proof_of_study($id){
-        $student = Student::find($id);
+        $student = Student::find($id)->load('year.academic_periods');
         $date = Carbon::createFromDate($student->birthdate)->age;
         $pdf = PDF::loadView('students.proof_of_study', compact('student','date'))->setOptions(['defaultFont' => 'sans-serif']);
         return $pdf->stream();

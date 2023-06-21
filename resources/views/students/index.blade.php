@@ -7,6 +7,7 @@
                 <thead>
                     <tr>
                       <th>#</th>
+                      <th>N° Inscripcion</th>
                       <th>Nombres</th>
                       <th>Apellidos</th>
                       <th>Estudiante</th>
@@ -16,10 +17,11 @@
                       <th>Representante</th>
                       <th>Opciones / Constancias</th>
                     </tr>
-                  </thead>
-                  <tbody>
+                </thead>
+                <tbody>
                     @foreach ($students as $student)
                         <tr>
+                            <td>{{ $student->id }}</td>
                             <td>{{ $student->inscription_number }}</td>
                             <td>{{ $student->names }}</td>
                             <td>{{ $student->lastnames }}</td>
@@ -49,7 +51,7 @@
                             </td>
                         </tr>
                     @endforeach
-                  </tbody>
+                </tbody>
             </table>
         </div>
     </div>
