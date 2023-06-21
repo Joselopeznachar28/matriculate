@@ -21,7 +21,7 @@ function generateOptions(index){
     let subject = subjects[index].sections;
     subject.forEach(section => {
         const optionSection = document.createElement("OPTION");
-        optionSection.value = section.letter;
+        optionSection.value = section.id;
         optionSection.textContent = section.letter;
         selectSection.appendChild(optionSection);
     });
@@ -51,9 +51,8 @@ function optionSubjects(){
 
 //Repite el formulario;
 function creatingHtml(){
-
     let repeatHtml = '<div><label for="subject_id'+count+'" class="form-label">Asignar Materia</label><select name="subject_id['+count+']" id="subject_id'+count+'" class="form-control" required >';
-    repeatHtml += ''+getValueSelection()+'<option disabled selected>Seleccione una opcion...</option></select></div>';
+    repeatHtml += ''+optionSubjects()+'<option disabled selected>Seleccione una opcion...</option></select></div>';
 
     repeatHtml += '<div><label for="section_id'+count+'" class="form-label">Elegir Seccion</label><select name="section_id['+count+']" id="section_id'+count+'" class="form-control" required></select></div>';
 

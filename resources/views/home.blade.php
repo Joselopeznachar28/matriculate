@@ -25,6 +25,21 @@
                 <img src="{{ asset('img/logo.png') }}" alt="logo">
             </div>
             <a href="{{ route('home') }}">Dashboard</a>
+            <!-- hace referencia a Periodos Academicos -->
+            <a class="nav-item" data-bs-toggle="collapse" href="#AcademicPeriod" aria-expanded="false" aria-controls="AcademicPeriod">
+                {{ __('Periodos Academicos') }}
+            </a>
+            <!-- esta es la referencia de Periodos Academicos-->
+            <div class="collapse" id="AcademicPeriod">
+                <ul>
+                    <li>
+                        <a href="{{ route('academic_period.index') }}">{{ __('Listado') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('academic_period.create') }}">{{ __('Crear') }}</a>
+                    </li>
+                </ul>
+            </div>
             <!-- hace referencia a Materias -->
             <a class="nav-item" data-bs-toggle="collapse" href="#Materias" aria-expanded="false" aria-controls="Materias">
                 {{ __('Materias') }}

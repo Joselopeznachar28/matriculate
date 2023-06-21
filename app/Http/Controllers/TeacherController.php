@@ -19,7 +19,7 @@ class TeacherController extends Controller
     }
 
     public function store(Request $request){
-        dd($request->all());
+        // dd($request->all());
         $teacher = Teacher::create([
             'name' => $request->name,
         ]);
@@ -27,6 +27,11 @@ class TeacherController extends Controller
         foreach ($request->subject_id as $subject) {
             if(!empty($subject)){
                $teacher->subjects()->attach($subject);
+            }
+        }
+        foreach ($request->section_id as $section) {
+            if(!empty($section)){
+               $teacher->sections()->attach($section);
             }
         }
         

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AcademicPeriodController;
+use App\Http\Controllers\LapsoSchoolController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
@@ -45,17 +47,18 @@ Route::post('Profesor', [TeacherController::class, 'store'])->name('teachers.sto
 Route::get('Profesor/{id}/editar', [TeacherController::class, 'edit'])->name('teachers.edit');
 Route::put('Profesor/{id}/update', [TeacherController::class, 'update'])->name('teachers.update');
 Route::delete('Profesor/{id}', [TeacherController::class, 'destroy'])->name('teachers.destroy');
+//Periodo Academico
+Route::get('PeriodoAcademico', [AcademicPeriodController::class, 'index'])->name('academic_period.index');
+Route::get('PeriodoAcademico/create', [AcademicPeriodController::class, 'create'])->name('academic_period.create'); 
+Route::post('PeriodoAcademico', [AcademicPeriodController::class, 'store'])->name('academic_period.store'); 
 //Lapsos (por años)
-Route::get('Lapsos', [TeacherController::class, 'index'])->name('school_lapso.index'); //Realizar
-Route::get('Añadir-Lapso', [TeacherController::class, 'create'])->name('school_lapsos.create'); //Realizar
-Route::post('Añadir-Lapso', [TeacherController::class, 'store'])->name('school_lapsos.store'); //Realizar
+Route::get('Lapsos', [LapsoSchoolController::class, 'index'])->name('lapso_schools.index');
+Route::get('AñadirLapso/create/{id}', [LapsoSchoolController::class, 'create'])->name('lapso_schools.create'); 
+Route::post('AñadirLapso', [LapsoSchoolController::class, 'store'])->name('lapso_schools.store'); 
 //Seccion (por Materia)
 Route::get('Seccion', [SectionController::class, 'index'])->name('sections.index');
 Route::get('Seccion/crear', [SectionController::class, 'create'])->name('sections.create'); 
 Route::post('Seccion', [SectionController::class, 'store'])->name('sections.store'); 
-//Notas (por lapso)
-Route::get('Añadir-Nota', [TeacherController::class, 'create'])->name('notes.create'); //Realizar
-Route::post('Añadir-Nota', [TeacherController::class, 'store'])->name('notes.store'); //Realizar
 
 
 

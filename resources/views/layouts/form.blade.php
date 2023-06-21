@@ -19,10 +19,25 @@
 </head>
 <body>
     <nav class="navbar bg-dark-subtle">
-        <a class="navbar-brand" href="{{ asset('img/logo.png') }}">
-        <img src="{{ asset('img/logo.png') }}" alt="Logo"  height="100" class="d-inline-block align-text-top">
+        <a class="navbar-brand" href="{{ route('home') }}">
+            <img src="{{ asset('img/logo.png') }}" alt="Logo"  height="100" class="d-inline-block align-text-top">
         </a>
         <div class="container d-flex justify-content-evenly" id="accordionExample">
+            <div class="accordion-item">
+                <!-- hace referencia a Periodos Academicos -->
+                <a class="nav-item" data-bs-toggle="collapse" href="#AcademicPeriod" aria-expanded="false" aria-controls="AcademicPeriod">
+                    {{ __('Periodos Academicos') }}
+                </a>
+                <!-- esta es la referencia de Periodos Academicos-->
+                <div class="collapse" id="AcademicPeriod">
+                    <li>
+                        <a href="{{ route('academic_period.index') }}">{{ __('Listado') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('academic_period.create') }}">{{ __('Crear') }}</a>
+                    </li>
+                </div>
+            </div>
             <div class="accordion-item">
                 <!-- hace referencia a Materias -->
                 <a data-bs-toggle="collapse" href="#Materias" aria-expanded="false" aria-controls="Materias">

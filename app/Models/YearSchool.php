@@ -20,4 +20,8 @@ class YearSchool extends Model
     public function students(){
         return $this->hasMany(Student::class);
     }
+
+    public function academic_periods(){
+        return $this->belongsToMany(AcademicPeriod::class, 'period_years','academic_period_id','year_id');
+    }
 }
