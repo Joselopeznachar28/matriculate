@@ -12,6 +12,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
@@ -40,6 +42,10 @@
                     </li>
                 </ul>
             </div>
+            <!-- lapsos -->
+            <a class="nav-item" href="{{ route('lapso_schools.index') }}">
+                {{ __('Lapsos Academicos') }}
+            </a>
             <!-- hace referencia a Materias -->
             <a class="nav-item" data-bs-toggle="collapse" href="#Materias" aria-expanded="false" aria-controls="Materias">
                 {{ __('Materias') }}
@@ -89,7 +95,7 @@
             <a class="nav-item" data-bs-toggle="collapse" href="#Students" aria-expanded="false" aria-controls="Students">
                 {{ __('Estudiantes') }}
             </a>
-            <!-- esta es la referencia de Teachers-->
+            <!-- esta es la referencia de Students-->
             <div class="collapse" id="Students">
                 <ul>
                     <li>
@@ -100,6 +106,14 @@
                     </li>
                 </ul>
             </div>
+            <!-- NOTAS -->
+            <a class="nav-item" href="{{ route('notes.index') }}">
+                {{ __('Notas') }}
+            </a>
+            <!-- inscripciones -->
+            <a class="nav-item" href="{{ route('student_records.index') }}">
+                {{ __('Inscripciones') }}
+            </a>
         </div>
         <!-- barra de navegacion principal -->
         <div class="nav-principal container d-flex justify-content-end">
@@ -108,6 +122,8 @@
     </div>
 
     @yield('content')
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></>
 
 </body>
 </html>

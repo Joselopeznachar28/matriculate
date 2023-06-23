@@ -7,6 +7,8 @@
                 <thead>
                     <tr>
                       <th>#</th>
+                      <th>Codigo</th>
+                      <th>Año</th>
                       <th>Materia</th>
                       <th>Opciones</th>
                     </tr>
@@ -15,6 +17,8 @@
                     @foreach ($subjects as $subject)
                         <tr>
                             <td>{{ $subject->id }}</td>
+                            <td>{{ $subject->code }}</td>
+                            <td>{{ $subject->year_school->name }}</td>
                             <td>{{ $subject->name }}</td>
                             <td class="d-flex justify-content-center column-gap-2">
                                 <div>

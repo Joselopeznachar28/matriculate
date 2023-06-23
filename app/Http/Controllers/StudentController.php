@@ -11,23 +11,19 @@ use PDF;
 class StudentController extends Controller
 {
     public function index(){
-        $students = Student::orderBy('inscription_number','asc')->get();
+        $students = Student::orderBy('id','asc')->get();
         return view('students.index',compact('students'));
     }
 
     public function create(){
-        $years = YearSchool::all();
-        return view('students.create',compact('years'));
+        return view('students.create');
     }
 
     public function store(Request $request){
 
         $student = Student::create([
-            'year_id'               =>  $request->year_id,
             'names'                 =>  $request->names,
             'lastnames'             =>  $request->lastnames,
-            'type_student'          =>  $request->type_student,
-            'inscription_number'    =>  $request->inscription_number,
             'identification'        =>  $request->identification,
             'gender'                =>  $request->gender,
             'birthdate'             =>  $request->birthdate,
@@ -44,29 +40,13 @@ class StudentController extends Controller
             'birth_order'           =>  $request->birth_order,
             'disease'               =>  $request->disease,
             'email'                 =>  $request->email,
-            'repeat_with'           =>  $request->repeat_with,
-            'pending_matter'        =>  $request->pending_matter,
             'school_background'     =>  $request->school_background,
             'state_actual'          =>  $request->state_actual,
             'municipality_actual'   =>  $request->municipality_actual,
             'parish_actual'         =>  $request->parish_actual,
             'sector'                =>  $request->sector,
             'reference_point'       =>  $request->reference_point,
-            'pattern_names'         =>  $request->pattern_names,
-            'pattern_lastnames'     =>  $request->pattern_lastnames,
-            'pattern_identification'=>  $request->pattern_identification,
-            'pattern_state_of_birth'=>  $request->pattern_state_of_birth,
-            'pattern_birthdate'     =>  $request->pattern_birthdate,
-            'pattern_place_of_birth'=>  $request->pattern_place_of_birth,
-            'pattern_gender'        =>  $request->pattern_gender,
-            'pattern_civil_status'  =>  $request->pattern_civil_status,
-            'pattern_affinity'      =>  $request->pattern_affinity,
-            'pattern_profession'    =>  $request->pattern_profession,
-            'pattern_phone'         =>  $request->pattern_phone,
             'student_live_with'     =>  $request->student_live_with,
-            'inscription_date'      =>  $request->inscription_date,
-            'registration_made_by'  =>  $request->registration_made_by,
-            'observation'           =>  $request->observation,
         ]);
 
         return redirect()->route('students.index');
@@ -75,18 +55,14 @@ class StudentController extends Controller
 
     public function edit($id){
         $student = Student::find($id);
-        $years = YearSchool::all();
-        return view('students.edit',compact('student','years'));
+        return view('students.edit',compact('student'));
     }
 
     public function update(Request $request, $id){
 
         $student = Student::where('id', '=', $id)->update([
-            'year_id'               =>  $request->year_id,
             'names'                 =>  $request->names,
             'lastnames'             =>  $request->lastnames,
-            'type_student'          =>  $request->type_student,
-            'inscription_number'    =>  $request->inscription_number,
             'identification'        =>  $request->identification,
             'gender'                =>  $request->gender,
             'birthdate'             =>  $request->birthdate,
@@ -103,29 +79,13 @@ class StudentController extends Controller
             'birth_order'           =>  $request->birth_order,
             'disease'               =>  $request->disease,
             'email'                 =>  $request->email,
-            'repeat_with'           =>  $request->repeat_with,
-            'pending_matter'        =>  $request->pending_matter,
             'school_background'     =>  $request->school_background,
             'state_actual'          =>  $request->state_actual,
             'municipality_actual'   =>  $request->municipality_actual,
             'parish_actual'         =>  $request->parish_actual,
             'sector'                =>  $request->sector,
             'reference_point'       =>  $request->reference_point,
-            'pattern_names'         =>  $request->pattern_names,
-            'pattern_lastnames'     =>  $request->pattern_lastnames,
-            'pattern_identification'=>  $request->pattern_identification,
-            'pattern_state_of_birth'=>  $request->pattern_state_of_birth,
-            'pattern_birthdate'     =>  $request->pattern_birthdate,
-            'pattern_place_of_birth'=>  $request->pattern_place_of_birth,
-            'pattern_gender'        =>  $request->pattern_gender,
-            'pattern_civil_status'  =>  $request->pattern_civil_status,
-            'pattern_affinity'      =>  $request->pattern_affinity,
-            'pattern_profession'    =>  $request->pattern_profession,
-            'pattern_phone'         =>  $request->pattern_phone,
             'student_live_with'     =>  $request->student_live_with,
-            'inscription_date'      =>  $request->inscription_date,
-            'registration_made_by'  =>  $request->registration_made_by,
-            'observation'           =>  $request->observation,
         ]);
 
         return redirect()->route('students.index',compact('student'));
@@ -138,19 +98,6 @@ class StudentController extends Controller
         $student->delete();
 
         return back();
-    }
-
-    public function proof_of_study($id){
-        $student = Student::find($id)->load('year.academic_periods');
-        $date = Carbon::createFromDate($student->birthdate)->age;
-        $pdf = PDF::loadView('students.proof_of_study', compact('student','date'))->setOptions(['defaultFont' => 'sans-serif']);
-        return $pdf->stream();
-    }
-
-    public function proof_of_registration($id){
-        $student = Student::find($id);
-        $pdf = PDF::loadView('students.proof_of_registration', compact('student'))->setOptions(['defaultFont' => 'sans-serif']);
-        return $pdf->stream();
     }
 
 }

@@ -99,6 +99,12 @@
                 </div>
             </div>
             <div class="accordion-item">
+                <a href="{{ route('notes.index') }}">{{ __('Notas') }}</a>
+            </div>
+            <div class="accordion-item">
+                <a href="{{ route('student_records.index') }}">{{ __('Inscripciones') }}</a>
+            </div>
+            <div class="accordion-item">
                 <a id="navbarDropdown" class="nav-item" href="#Logout" data-bs-toggle="collapse" aria-controls="Logout" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }}
                 </a>

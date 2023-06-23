@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('academic_periods', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name')->unique();
             $table->date('init')->unique();
             $table->date('end')->unique();
             $table->timestamps();

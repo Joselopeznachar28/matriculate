@@ -21,6 +21,7 @@ class AcademicPeriodController extends Controller
     public function store(Request $request){
         $academic_period =  new AcademicPeriod();
 
+        $academic_period->name = $request->name;
         $academic_period->init = $request->init;
         $academic_period->end = $request->end;
 

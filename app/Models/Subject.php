@@ -11,18 +11,24 @@ class Subject extends Model
 
     protected $fillable = [
         'name',
+        'code',
+        'year_school_id',
     ];
+
+    public function year_school(){
+        return  $this->belongsTo(YearSchool::class);
+    }
 
     public function teachers(){
         return  $this->belongsToMany(Teacher::class, 'subject_teachers','teacher_id','subject_id');
     }
-
-    public function years(){
-        return  $this->belongsToMany(YearSchool::class, 'subject_years','subject_id','year_id');
+    
+    public function sections(){
+        return  $this->hasMany(Section::class);
     }
 
-    public function sections(){
-        return  $this->belongsToMany(Section::class,'section_subjects','section_id','subject_id');
+    public function notes(){
+        return $this->hasMany(Note::class);
     }
 
 }

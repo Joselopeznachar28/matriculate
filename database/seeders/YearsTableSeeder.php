@@ -14,23 +14,23 @@ class YearsTableSeeder extends Seeder
     public function run(): void
     {
         YearSchool::create([
-            'year' => '1ero',
+            'name' => '1ero',
         ]);
 
         YearSchool::create([
-            'year' => '2do',
+            'name' => '2do',
         ]);
 
         YearSchool::create([
-            'year' => '3ro',
+            'name' => '3ro',
         ]);
 
         YearSchool::create([
-            'year' => '4to',
+            'name' => '4to',
         ]);
 
         YearSchool::create([
-            'year' => '5to',
+            'name' => '5to',
         ]);
     }
 }

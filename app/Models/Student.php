@@ -10,9 +10,7 @@ class Student extends Model
     use HasFactory;
 
     protected $fillable = [
-        'year_id',
-        'inscription_number',
-        'type_student',
+        'status',
         'names',
         'lastnames',
         'identification',
@@ -29,8 +27,6 @@ class Student extends Model
         'height',
         'disease',
         'email',
-        'repeat_with',
-        'pending_matter',
         'school_background',
         'state',
         'state_actual',
@@ -39,24 +35,14 @@ class Student extends Model
         'sector',
         'municipality',
         'reference_point',
-        'pattern_names',
-        'pattern_lastnames',
-        'pattern_birthdate',
-        'pattern_place_of_birth',
-        'pattern_state_of_birth',
-        'pattern_gender',
-        'pattern_civil_status',
-        'pattern_affinity',
-        'pattern_identification',
-        'pattern_profession',
-        'pattern_phone',
         'student_live_with',
-        'inscription_date',
-        'registration_made_by',
-        'observation',
     ];
 
-    public function year(){
-        return $this->belongsTo(YearSchool::class);
+    public function student_records(){
+        return $this->hasMany(StudentRecord::class);
+    }
+
+    public function notes(){
+        return $this->hasMany(Note::class);
     }
 }

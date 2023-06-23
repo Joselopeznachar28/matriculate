@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('letter')->unique();
+
+            $table->foreignId('academic_period_id')->constrained('academic_periods')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('year_school_id')->constrained('year_schools')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('subject_id')->constrained('subjects')->onDelete('cascade')->onUpdate('cascade');
             
             $table->timestamps();
         });

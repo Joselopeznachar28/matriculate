@@ -10,15 +10,19 @@ class YearSchool extends Model
     use HasFactory;
 
     protected $fillable = [
-        'year',
+        'name',
     ];
 
     public function subjects(){
-        return  $this->belongsToMany(Subject::class, 'subject_years','subject_id','year_id');
+        return  $this->hasMany(Subject::class);
     }
 
-    public function students(){
-        return $this->hasMany(Student::class);
+    public function student_records(){
+        return $this->hasMany(StudentRecord::class);
+    }
+
+    public function sections(){
+        return $this->hasMany(Section::class);
     }
 
     public function academic_periods(){

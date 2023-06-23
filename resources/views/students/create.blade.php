@@ -5,20 +5,12 @@
             @csrf
             <!-- Name -->
             <div class="card p-4">
-                <h2 class="text-center text-uppercase">Ficha de inscripcion del estudiante</h2><hr>
-                <!-- nombres, apellidos y tipo de estudiantes-->
+                <h2 class="text-center text-uppercase">registrar estudiante</h2><hr>
+                
                 <div class="card-body text-center">
+                    <!-- nombres, apellidos-->
                     <div class="row">
-                        <div class="col-sm-12">
-                            <label for="year_id" class="form-label">Año a Cursar</label><br>
-                            @foreach ($years as $year)
-                                <span class="text-uppercase">{{ $year->year }}</span>
-                                <input type="radio" name="year_id" id="year_id" class="form-check-input" value={{ $year->id }}>
-                            @endforeach
-                        </div>
-                    </div><br>
-                    <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-6">
                             <label for="lastnames" class="col-form-label">{{ __('Apellidos') }}</label>
                             <input type="text" name="lastnames" id="lastnames" value="{{ old('lastnames') }}" class="form-control" placeholder="{{ __('Apellidos') }}" required autofocus>
         
@@ -27,33 +19,11 @@
                             @enderror
         
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-6">
                             <label for="names" class="col-form-label">{{ __('Nombres') }}</label>
                             <input type="text" name="names" id="names" value="{{ old('names') }}" class="form-control" placeholder="{{ __('Nombres') }}" required autofocus>
         
                             @error('names')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="type_student" class="col-form-label">{{ __('Tipo de Estudiante') }}</label>
-                            <select name="type_student" id="type_student" class="form-control" required aria-valuetext="{{ old('type_student') }}">
-                                <option value="Regular">{{ __('Regular') }}</option>
-                                <option value="Repitiente">{{ __('Repitiente') }}</option>
-                                <option selected disabled>{{ __('Seleccione una opcion...') }}</option>
-                            </select>
-        
-                            @error('type_student')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inscription_number" class="col-form-label">{{ __('Numero de Inscripcion') }}</label>
-                            <input type="number" name="inscription_number" id="inscription_number" value="{{ old('inscription_number') }}" class="form-control" placeholder="{{ __('Numero de Inscripcion') }}" required autofocus>
-        
-                            @error('inscription_number')
                                 <span style="color: red;">{{ $message }} </span><br/>
                             @enderror
         
@@ -219,30 +189,6 @@
         
                         </div>
                     </div><br>
-                    <!-- repite con -->
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <label for="repeat_with" class="col-form-label">{{ __('Repite Con : ') }}</label>
-                            <input type="text" name="repeat_with" id="repeat_with" value="{{ old('repeat_with') }}" class="form-control" placeholder="{{ __('Repite Con :') }}" autofocus>
-        
-                            @error('repeat_with')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div>
-                    </div><br>
-                    <!-- materia pendiente -->
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <label for="pending_matter" class="col-form-label">{{ __('Materia Pendiente') }}</label>
-                            <input type="text" name="pending_matter" id="pending_matter" value="{{ old('pending_matter') }}" class="form-control" placeholder="{{ __('Ingrese las materias pendientes') }}" autofocus>
-        
-                            @error('pending_matter')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div>
-                    </div><br>
                     <!-- procedencia del plantel educativo -->
                     <div class="row">
                         <div class="col-sm-12">
@@ -298,9 +244,9 @@
         
                         </div>
                     </div><br>
-                    <!-- punto de referencia -->
+                    <!-- punto de referencia y vive con -->
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <label for="reference_point" class="col-form-label">{{ __('Punto de Referencia') }}</label>
                             <input type="text" name="reference_point" id="reference_point" value="{{ old('reference_point') }}" class="form-control" placeholder="{{ __('Actual') }}" required autofocus>
         
@@ -309,131 +255,7 @@
                             @enderror
         
                         </div>
-                    </div><br>
-                    <hr><h4 class="text-uppercase">Registro del Representante Legal</h4><hr>
-                    <!-- apellidos y nombres del representante -->
-                    <div class="row">
                         <div class="col-sm-6">
-                            <label for="pattern_lastnames" class="col-form-label">{{ __('Apellidos') }}</label>
-                            <input type="text" name="pattern_lastnames" id="pattern_lastnames" value="{{ old('pattern_lastnames') }}" class="form-control" placeholder="{{ __('Apellidos') }}" required autofocus>
-        
-                            @error('pattern_lastnames')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="pattern_names" class="col-form-label">{{ __('Nombres') }}</label>
-                            <input type="text" name="pattern_names" id="pattern_names" value="{{ old('pattern_names') }}" class="form-control" placeholder="{{ __('Nombres') }}" required autofocus>
-        
-                            @error('pattern_names')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div>
-                    </div><br>
-                    <!-- cedula, lugar, estado y fecha de nacimiento -->
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <label for="pattern_identification" class="col-form-label">{{ __('Identificacion') }}</label>
-                            <input type="number" name="pattern_identification" id="pattern_identification" value="{{ old('pattern_identification') }}" class="form-control" placeholder="{{ __('Identificacion') }}" required autofocus>
-        
-                            @error('pattern_identification')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="pattern_state_of_birth" class="col-form-label">{{ __('Estado de Nacimiento') }}</label>
-                            <input type="text" name="pattern_state_of_birth" id="pattern_state_of_birth" value="{{ old('pattern_state_of_birth') }}" class="form-control" placeholder="{{ __('Estado de Nacimiento') }}" required autofocus>
-        
-                            @error('pattern_state_of_birth')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="pattern_birthdate" class="col-form-label">{{ __('Fecha de Nacimiento') }}</label>
-                            <input type="date" name="pattern_birthdate" id="pattern_birthdate" value="{{ old('pattern_birthdate') }}" class="form-control" placeholder="{{ __('Fecha') }}" required autofocus>
-        
-                            @error('pattern_birthdate')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="pattern_place_of_birth" class="col-form-label">{{ __('Lugar de Nacimiento') }}</label>
-                            <input type="text" name="pattern_place_of_birth" id="pattern_place_of_birth" value="{{ old('pattern_place_of_birth') }}" class="form-control" placeholder="{{ __('Lugar de Nacimiento') }}" required autofocus>
-        
-                            @error('pattern_place_of_birth')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div>
-                    </div><br>
-                    <!-- sexo, estado civil y afinidad -->
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label for="pattern_gender" class="col-form-label">{{ __('Genero') }}</label>
-                            <select name="pattern_gender" id="pattern_gender" class="form-control" required aria-valuetext="{{ old('pattern_gender') }}">
-                                <option value="Femenino">{{ __('Femenino') }}</option>
-                                <option value="Masculino">{{ __('Masculino') }}</option>
-                                <option selected disabled>{{ __('Seleccione una opcion...') }}</option>
-                            </select>
-        
-                            @error('pattern_gender')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div>
-                        <div class="col-sm-4">
-                            <label for="pattern_civil_status" class="col-form-label">{{ __('Estado Civil') }}</label>
-                            <select name="pattern_civil_status" id="pattern_civil_status" class="form-control" required aria-valuetext="{{ old('pattern_civil_status') }}">
-                                <option value="Solter@">{{ __('Solter@') }}</option>
-                                <option value="Casad@">{{ __('Casa@') }}</option>
-                                <option value="Divorciad@">{{ __('Divorciad@') }}</option>
-                                <option selected disabled>{{ __('Seleccione una opcion...') }}</option>
-                            </select>
-        
-                            @error('pattern_civil_status')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div> 
-                        <div class="col-sm-4">
-                            <label for="pattern_affinity" class="col-form-label">{{ __('Afinidad') }}</label>
-                            <input type="text" name="pattern_affinity" id="pattern_affinity" value="{{ old('pattern_affinity') }}" class="form-control" placeholder="{{ __('Afinidad') }}" required autofocus>
-        
-                            @error('pattern_affinity')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div>
-                    </div><br>
-                    <!-- Profesion y telefono -->
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <label for="pattern_profession" class="col-form-label">{{ __('Profesion u Oficio') }}</label>
-                            <input type="text" name="pattern_profession" id="pattern_profession" value="{{ old('pattern_profession') }}" class="form-control" placeholder="{{ __('Descripcion') }}" required autofocus>
-        
-                            @error('pattern_profession')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div>
-                        <div class="col-sm-4">
-                            <label for="pattern_phone" class="col-form-label">{{ __('Telefono de Contacto') }}</label>
-                            <input type="tel" name="pattern_phone" id="pattern_phone" value="{{ old('pattern_phone') }}" class="form-control" placeholder="{{ __('Activo') }}" required autofocus>
-        
-                            @error('pattern_phone')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div>
-                    </div><br>
-                    <!-- Vive con, fecha de inscripcion y registrado por -->
-                    <div class="row">
-                        <div class="col-sm-4">
                             <label for="student_live_with" class="col-form-label">{{ __('El estudiante vive con :') }}</label>
                             <select name="student_live_with" id="student_live_with" class="form-control" required aria-valuetext="{{ old('student_live_with') }}">
                                 <option value="Madre">{{ __('Madre') }}</option>
@@ -448,31 +270,6 @@
                                 <span style="color: red;">{{ $message }} </span><br/>
                             @enderror
         
-                        </div>
-                        <div class="col-sm-4">
-                            <label for="registration_made_by" class="col-form-label">{{ __('Inscripcion realizada por :') }}</label>
-                            <input type="text" name="registration_made_by" id="registration_made_by" value="{{ old('registration_made_by') }}" class="form-control" placeholder="{{ __('Nombre y Apellido') }}" required autofocus>
-        
-                            @error('registration_made_by')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div>
-                        <div class="col-sm-4">
-                            <label for="inscription_date" class="col-form-label">{{ __('Fecha de Inscripcion') }}</label>
-                            <input type="date" name="inscription_date" id="inscription_date" value="{{ old('inscription_date') }}" class="form-control"required autofocus>
-        
-                            @error('inscription_date')
-                                <span style="color: red;">{{ $message }} </span><br/>
-                            @enderror
-        
-                        </div>
-                    </div><br>
-                    <!-- observacion -->
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <label for="observation" class="col-form-label">{{ __('Observaciones') }}</label>
-                            <textarea name="observation" id="observation" cols="30"  class="form-control"></textarea>
                         </div>
                     </div>
                 </div>

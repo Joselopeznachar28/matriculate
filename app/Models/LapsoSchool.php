@@ -14,10 +14,15 @@ class LapsoSchool extends Model
         'init',
         'end',
         'academic_period_id',
+        'upload_note',
     ];
 
     public function academic_periods(){
         return $this->belongsTo(AcademicPeriod::class);
+    }
+
+    public function notes(){
+        return $this->hasMany(Note::class);
     }
 
 }

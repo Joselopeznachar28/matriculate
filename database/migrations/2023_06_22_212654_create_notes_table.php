@@ -11,10 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subject_years', function (Blueprint $table) {
+        Schema::create('notes', function (Blueprint $table) {
             $table->bigIncrements('id');
+
+            $table->integer('note');
+            $table->string('type_note'); //final o reparacion
+
+            $table->foreignId('student_id')->constrained('students')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('subject_id')->constrained('subjects')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('year_id')->constrained('year_schools')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('lapso_id')->constrained('lapso_schools')->onDelete('cascade')->onUpdate('cascade'); 
+            $table->foreignId('section_id')->constrained('sections')->onDelete('cascade')->onUpdate('cascade'); 
+
             $table->timestamps();
         });
     }
@@ -24,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subject_years');
+        Schema::dropIfExists('notes');
     }
 };

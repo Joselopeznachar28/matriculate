@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('student_records', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('lastnames');
             $table->text('names');
+            $table->text('type_student'); //Regular o repitiente
+            $table->integer('inscription_number')->unique();
             $table->integer('identification')->unique();
             $table->string('gender');
             $table->date('birthdate');
@@ -31,14 +33,32 @@ return new class extends Migration
             $table->integer('birth_order');
             $table->string('disease')->nullable();
             $table->string('email')->unique()->nullable();
+            $table->text('repeat_with')->nullable();
+            $table->text('pending_matter')->nullable();
             $table->text('school_background');
             $table->text('state_actual');
             $table->text('municipality_actual');
             $table->text('parish_actual');
             $table->text('sector');
             $table->text('reference_point');
+            $table->text('pattern_names');
+            $table->text('pattern_lastnames');
+            $table->integer('pattern_identification')->unique();
+            $table->text('pattern_state_of_birth');
+            $table->date('pattern_birthdate');
+            $table->text('pattern_place_of_birth');
+            $table->text('pattern_gender');
+            $table->text('pattern_civil_status');
+            $table->text('pattern_affinity');
+            $table->text('pattern_profession');
+            $table->text('pattern_phone');
             $table->text('student_live_with');
-            $table->boolean('status')->default(0);
+            $table->date('inscription_date');
+            $table->text('registration_made_by');
+            $table->text('observation')->nullable();
+
+            $table->foreignId('year_school_id')->constrained('year_schools')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('student_id')->constrained('students')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });
@@ -49,6 +69,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('student_records');
     }
 };

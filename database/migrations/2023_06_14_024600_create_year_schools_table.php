@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('year_schools', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('year');
+            $table->string('name');
             $table->timestamps();
         });
     }

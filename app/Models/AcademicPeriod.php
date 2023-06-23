@@ -10,6 +10,7 @@ class AcademicPeriod extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
         'init',
         'end',
     ];
@@ -20,5 +21,9 @@ class AcademicPeriod extends Model
 
     public function lapsos(){
         return $this->hasMany(LapsoSchool::class);
+    }
+
+    public function sections(){
+        return $this->hasMany(Section::class);
     }
 }

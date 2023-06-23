@@ -11,14 +11,29 @@ class Section extends Model
 
     protected $fillable = [
         'letter',
+        'academic_period_id',
+        'year_school_id',
+        'subject_id',
     ];
 
-    public function subjects(){
-        return  $this->belongsToMany(Subject::class,'section_subjects','section_id','subject_id');
+    public function subject(){
+        return  $this->belongsTo(Subject::class);
     }
 
     public function teachers(){
         return  $this->belongsToMany(Section::class,'section_teachers','teacher_id','section_id');
+    }
+
+    public function notes(){
+        return $this->hasMany(Note::class);
+    }
+
+    public function academic_periods(){
+        return $this->belongsTo(AcademicPeriod::class);
+    }
+
+    public function year_school(){
+        return $this->belongsTo(YearSchool::class);
     }
 
 }

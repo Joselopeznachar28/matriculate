@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\AcademicPeriodController;
 use App\Http\Controllers\LapsoSchoolController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentRecordController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
+use App\Models\StudentRecord;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,10 +39,15 @@ Route::get('Estudiantes/crear', [StudentController::class, 'create'])->name('stu
 Route::post('Estudiantes', [StudentController::class, 'store'])->name('students.store');
 Route::get('Estudiantes/{id}/editar', [StudentController::class, 'edit'])->name('students.edit');
 Route::put('Estudiantes/{id}/update', [StudentController::class, 'update'])->name('students.update');
-Route::delete('Estudiantes/{id}', [StudentController::class, 'destroy'])->name('students.destroy');
+//Student Records
+Route::get('Fichas-de-estudiantes', [StudentRecordController::class, 'index'])->name('student_records.index');
+Route::get('Ficha-de-estudiante/crear/{id}', [StudentRecordController::class, 'create'])->name('student_records.create');
+Route::post('Ficha-de-estudiante', [StudentRecordController::class, 'store'])->name('student_records.store');
+Route::get('Ficha-de-estudiante/{id}/editar', [StudentRecordController::class, 'edit'])->name('student_records.edit');
+Route::put('Ficha-de-estudiante/{id}/update', [StudentRecordController::class, 'update'])->name('student_records.update');
 //pdf para constancias
-Route::get('Constancia-de-estudio/{id}', [StudentController::class, 'proof_of_study'])->name('students.proof_of_study');
-Route::get('Constancia-de-inscripcion/{id}', [StudentController::class, 'proof_of_registration'])->name('students.proof_of_registration');
+Route::get('Constancia-de-estudio/{id}', [StudentRecordController::class, 'proof_of_study'])->name('student_records.proof_of_study');
+Route::get('Constancia-de-inscripcion/{id}', [StudentRecordController::class, 'proof_of_registration'])->name('student_records.proof_of_registration');
 //Teachers
 Route::get('Profesor', [TeacherController::class, 'index'])->name('teachers.index');
 Route::get('Profesor/crear', [TeacherController::class, 'create'])->name('teachers.create');
@@ -57,8 +65,12 @@ Route::get('AñadirLapso/create/{id}', [LapsoSchoolController::class, 'create'])
 Route::post('AñadirLapso', [LapsoSchoolController::class, 'store'])->name('lapso_schools.store'); 
 //Seccion (por Materia)
 Route::get('Seccion', [SectionController::class, 'index'])->name('sections.index');
-Route::get('Seccion/crear', [SectionController::class, 'create'])->name('sections.create'); 
-Route::post('Seccion', [SectionController::class, 'store'])->name('sections.store'); 
+Route::get('Seccion/crear', [SectionController::class, 'create'])->name('sections.create');
+Route::post('Seccion/crear', [SectionController::class, 'store'])->name('sections.store');
+//Notas
+Route::get('Lista-de-Notas', [NoteController::class, 'index'])->name('notes.index'); 
+Route::get('Carga-de-Notas/{id}', [NoteController::class, 'create'])->name('notes.create'); 
+Route::post('Seccion', [NoteController::class, 'store'])->name('notes.store'); 
 
 
 

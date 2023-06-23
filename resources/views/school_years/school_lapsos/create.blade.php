@@ -22,7 +22,7 @@
                 </div><hr>
                 <h2 class="text-center text-uppercase">Fecha de Corte</h2><hr>
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label for="number" class="col-form-label">{{ __('Lapso') }}</label>
                         <select name="number" id="number" class="form-control" required autofocus>
                             <option value=1>Primer Lapso</option>
@@ -36,7 +36,7 @@
                         @enderror
 
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label for="init" class="col-form-label">{{ __('Inicio de Lapso') }}</label>
                         <input type="date" name="init" id="init" value="{{ old('init') }}" class="form-control" required autofocus>
     
@@ -45,7 +45,7 @@
                         @enderror
     
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label for="end" class="col-form-label">{{ __('Fin de Lapso') }}</label>
                         <input type="date" name="end" id="end" value="{{ old('end') }}" class="form-control" required autofocus>
     
@@ -54,6 +54,15 @@
                         @enderror
     
                     </div>
+                    <div class="col-sm-3 form-switch text-center">
+                        <label for="upload_note" class="col-form-label">{{ __('Permitir cargar Notas') }}</label><br>
+                        {{-- <input type="checkbox" name="upload_note" id="upload_note" value="{{ old('upload_note') }}" class="form-check-input" autofocus>
+    
+                        @error('upload_note')
+                            <span style="color: red;">{{ $message }} </span><br/>
+                        @enderror --}}
+    
+                    </div> 
                 </div>
             </div>
             <div class="row justify-content-end p-3">

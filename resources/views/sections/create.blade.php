@@ -8,7 +8,37 @@
             <h2 class="text-center text-uppercase">Crear Seccion</h2><hr>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-sm-4">
+                    <!-- periodo academico -->
+                    <div class="col-sm-3">
+                        <label for="academic_period_id" class="col-form-label">{{ __('Periodo Academico') }}</label>
+                        <input  name="academic_period_id" id="academic_period_id" value="{{ $academic_period->id }}" class="form-control" placeholder="{{ $academic_period->name }}" readonly autofocus>
+    
+                        @error('academic_period_id')
+                            <span style="color: red;">{{ $message }} </span><br/>
+                        @enderror
+    
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="col-form-label">Año Escolar</label>
+                        <select name="year_school_id" id="year_school_id" class="form-control" required>
+                            @foreach ($year_schools as $year_school)
+                                <option value="{{ $year_school->id }}">{{ $year_school->name }}</option>
+                            @endforeach
+                            <option disabled selected>{{ __('Seleccione un año escolar...') }}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="col-form-label">Materias</label>
+                        <select name="subject_id" id="subject_id" class="form-control" required>
+                            @foreach ($year_schools as $year_school)
+                                @foreach ($year_school->subjects as $subject)
+                                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                @endforeach
+                            @endforeach
+                            <option disabled selected>{{ __('Seleccione una materia...') }}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
                         <label for="letter" class="col-form-label">{{ __('Asignar Seccion') }}</label>
                         <input type="text" name="letter" id="letter" value="{{ old('letter') }}" class="form-control" placeholder="{{ __('Ingrese la Letra') }}" required autofocus>
     
@@ -16,15 +46,6 @@
                             <span style="color: red;">{{ $message }} </span><br/>
                         @enderror
     
-                    </div>
-                    <div class="col-sm-8 text-center">
-                        <label class="col-form-label">Elegir Materias</label>
-                        @foreach ($subjects as $subject)
-                            <div class="form-check d-flex justify-content-center gap-4">
-                                <span class="form-label text-uppercase">{{ $subject->name }}</span>
-                                <input type="checkbox" name="subject_id[]" id="subject_id" class="form-check-input" value={{ $subject->id }}>
-                            </div>
-                        @endforeach
                     </div>
                 </div>
             </div><hr>

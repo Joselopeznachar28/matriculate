@@ -8,7 +8,7 @@
             <h1 class="text-center text-uppercase">Crear Materia</h1><hr>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <label for="name" class="col-form-label">{{ __('Materia') }}</label>
                         <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control" placeholder="{{ __('Nombre de Materia') }}" required autofocus>
     
@@ -17,14 +17,14 @@
                         @enderror
     
                     </div>
-                    <div class="col-sm-8 text-center">
-                        <label for="year_id" class="col-form-label">Años a Impartir la materia</label>
-                        @foreach ($years as $year)
-                            <div class="form-check d-flex justify-content-center gap-4">
-                                <span class="form-label text-uppercase">{{ $year->year }}</span>
-                                <input type="checkbox" name="year_id[]" id="year_id" class="form-check-input" value={{ $year->id }}>
-                            </div>
-                        @endforeach
+                    <div class="col-sm-6 ">
+                        <label for="year_school_id" class="col-form-label">Año a Impartir la materia</label>
+                        <select name="year_school_id" id="year_school_id" class="form-control">
+                            @foreach ($year_schools as $year_school)
+                            <option value={{ $year_school->id }}>{{ $year_school->name }}</option>
+                            @endforeach
+                            <option disabled selected>Seleccione un año...</option>
+                        </select>
                     </div>
                 </div>
             </div><hr>
