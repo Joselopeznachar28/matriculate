@@ -17,7 +17,7 @@
                         @foreach ($year_school->academic_periods as $academic_period)
                             @foreach ($academic_period->sections as $section)
                                 <tr>
-                                    <td>{{ $year_school->name }}</td>
+                                    <td>{{ $section->year_school->name }}</td>
                                     <td>{{ $academic_period->name }}</td>
                                     <td>{{ $section->subject->name }}</td>
                                     <td>{{ $section->letter }}</td>

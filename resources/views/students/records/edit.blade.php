@@ -1,7 +1,7 @@
 @extends('layouts.form')
 
 @section('content')
-    <form action="{{ route('students.update', $student_record->id) }}" method="POST">
+    <form action="{{ route('student_records.update', $student_record->id) }}" method="POST">
         @csrf
         @method('PUT')
         <!-- Name -->

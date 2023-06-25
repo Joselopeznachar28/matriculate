@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('name');
+            $table->text('lastname');
+            $table->integer('identification');
+            $table->text('email');
             
             $table->timestamps();
         });

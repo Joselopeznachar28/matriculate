@@ -31,8 +31,11 @@
                         <label class="col-form-label">Materias</label>
                         <select name="subject_id" id="subject_id" class="form-control" required>
                             @foreach ($year_schools as $year_school)
+                                <option disabled class="bg-black text-white text-uppercase">{{ $year_school->name }}</option>
                                 @foreach ($year_school->subjects as $subject)
-                                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                    @if ($year_school->id === $subject->year_school_id)
+                                        <option class="text-uppercase" value="{{ $subject->id }}">{{"( $subject->code )" . ' ' . $subject->name  }} </option>
+                                    @endif
                                 @endforeach
                             @endforeach
                             <option disabled selected>{{ __('Seleccione una materia...') }}</option>

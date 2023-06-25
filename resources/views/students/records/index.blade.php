@@ -27,7 +27,7 @@
                             <td>{{ $student_record->lastnames }}</td>
                             <td>{{ $student_record->identification }}</td>
                             <td>{{ $student_record->gender }}</td>
-                            <td>{{ $student_record->pattern_lastnames . $student_record->pattern_names }}</td>
+                            <td>{{ $student_record->pattern_lastnames . ' ' . $student_record->pattern_names }}</td>
                             <td class="d-md-flex justify-content-center gap-2">
                                 <a href="{{route('student_records.edit',$student_record->id)}}" class="btn btn-warning mr-2">Editar</a>
                                 <a href="{{route('student_records.proof_of_registration', $student_record->student->id)}}" class="btn btn-info mr-2">Inscripcion</a>

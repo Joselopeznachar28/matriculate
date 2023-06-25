@@ -11,6 +11,9 @@ class Teacher extends Model
 
     protected $fillable = [
         'name',
+        'lastname',
+        'identification',
+        'email',
     ];
 
     public function subjects(){

@@ -85,6 +85,8 @@ class StudentRecordController extends Controller
 
     public function update(Request $request, $id){
 
+        $student_record = StudentRecord::find($id);
+
         $student_record = StudentRecord::where('id', '=', $id)->update([
             'year_school_id'        =>  $request->year_school_id,
             'names'                 =>  $request->names,

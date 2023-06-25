@@ -40,15 +40,24 @@
 
 .navbar a,
 .navbar li{
+    text-transform: uppercase;
     text-decoration: none;
-    color: blue;
+    color: #e97732 !important;
     font-weight: 900;
     font-size: 1rem;
     list-style: none;
 }
 
 .navbar a:hover{
-    font-size: 1.3rem;
+    background: #e97732 !important;
+    padding: .5rem;
+    border-radius: .5rem;
+    color: #071680 !important;
+}
+
+.navbar{
+    background: #071680 !important;
+    font-weight: 700 !important;
 }
 
 
@@ -120,11 +129,10 @@ label{
 .nav-lateral ul li:hover{
     transition: .3s ease;
     color: #ffffff !important;
-    background: blue;
+    background: #071680 ;
     border-radius: .5rem;
-    font-size:1.5rem!important ;
     font-weight: bold;
-    padding: .8rem;
+    padding: .5rem;
 }
 
 .nav-lateral a,
@@ -164,4 +172,12 @@ ul{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 2rem;
+}
+
+.btn{
+    background-color:  #e97732  !important;
+    border-color:  #e97732  !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+
 }

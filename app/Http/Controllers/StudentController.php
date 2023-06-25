@@ -59,8 +59,8 @@ class StudentController extends Controller
     }
 
     public function update(Request $request, $id){
-
-        $student = Student::where('id', '=', $id)->update([
+        $student = Student::find($id);
+        Student::where('id', '=', $id)->update([
             'names'                 =>  $request->names,
             'lastnames'             =>  $request->lastnames,
             'identification'        =>  $request->identification,
@@ -87,6 +87,36 @@ class StudentController extends Controller
             'reference_point'       =>  $request->reference_point,
             'student_live_with'     =>  $request->student_live_with,
         ]);
+        
+       foreach ($student->student_records as $student_record) {
+        $student_record->update([
+            'names'                 =>  $student->names,
+            'lastnames'             =>  $student->lastnames,
+            'identification'        =>  $student->identification,
+            'gender'                =>  $student->gender,
+            'birthdate'             =>  $student->birthdate,
+            'place_of_birth'        =>  $student->place_of_birth,
+            'municipality'          =>  $student->municipality,
+            'state'                 =>  $student->state,
+            'laterality'            =>  $student->laterality,
+            'weight'                =>  $student->weight,
+            'height'                =>  $student->height,
+            'footwear'              =>  $student->footwear,
+            'pants'                 =>  $student->pants,
+            'shirt'                 =>  $student->shirt,
+            'brachial_measure'      =>  $student->brachial_measure,
+            'birth_order'           =>  $student->birth_order,
+            'disease'               =>  $student->disease,
+            'email'                 =>  $student->email,
+            'school_background'     =>  $student->school_background,
+            'state_actual'          =>  $student->state_actual,
+            'municipality_actual'   =>  $student->municipality_actual,
+            'parish_actual'         =>  $student->parish_actual,
+            'sector'                =>  $student->sector,
+            'reference_point'       =>  $student->reference_point,
+            'student_live_with'     =>  $student->student_live_with,
+        ]);
+       }
 
         return redirect()->route('students.index',compact('student'));
 

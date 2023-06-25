@@ -18,11 +18,12 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-    <nav class="navbar bg-dark-subtle">
-        <a class="navbar-brand" href="{{ route('home') }}">
+    <nav class="navbar">
             <img src="{{ asset('img/logo.png') }}" alt="Logo"  height="100" class="d-inline-block align-text-top">
-        </a>
         <div class="container d-flex justify-content-evenly" id="accordionExample">
+            <div class="accordion-item">
+                <a href="{{ route('home') }}">{{ __('Dashboard') }}</a>
+            </div>
             <div class="accordion-item">
                 <!-- hace referencia a Periodos Academicos -->
                 <a class="nav-item" data-bs-toggle="collapse" href="#AcademicPeriod" aria-expanded="false" aria-controls="AcademicPeriod">
@@ -80,6 +81,9 @@
                     </li>
                     <li>
                         <a href="{{ route('teachers.create') }}">{{ __('Crear') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('teachers.asigneSubjectToTeacherView') }}">{{ __('Asignacion de Materias') }}</a>
                     </li>
                 </div>
             </div>

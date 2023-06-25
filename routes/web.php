@@ -55,6 +55,10 @@ Route::post('Profesor', [TeacherController::class, 'store'])->name('teachers.sto
 Route::get('Profesor/{id}/editar', [TeacherController::class, 'edit'])->name('teachers.edit');
 Route::put('Profesor/{id}/update', [TeacherController::class, 'update'])->name('teachers.update');
 Route::delete('Profesor/{id}', [TeacherController::class, 'destroy'])->name('teachers.destroy');
+//asignar materias al profesor
+Route::get('Asignacion-de-materias', [TeacherController::class, 'asigneSubjectToTeacherView'])->name('teachers.asigneSubjectToTeacherView');
+Route::get('Materias-por-años/{id}', [TeacherController::class, 'subjectYear'])->name('teachers.subjectYear');
+Route::post('Asignacion-de-materias', [TeacherController::class, 'asigneSubjectToTeacher'])->name('teachers.asigneSubjectToTeacher');
 //Periodo Academico
 Route::get('PeriodoAcademico', [AcademicPeriodController::class, 'index'])->name('academic_period.index');
 Route::get('PeriodoAcademico/create', [AcademicPeriodController::class, 'create'])->name('academic_period.create'); 

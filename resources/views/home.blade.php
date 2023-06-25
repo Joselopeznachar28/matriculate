@@ -89,6 +89,9 @@
                     <li>
                         <a href="{{ route('teachers.create') }}">{{ __('Crear') }}</a>
                     </li>
+                    <li>
+                        <a href="{{ route('teachers.asigneSubjectToTeacherView') }}">{{ __('Asignacion de Materias') }}</a>
+                    </li>
                 </ul>
             </div>
             <!-- hace referencia a Students-->
