@@ -4,12 +4,12 @@
     <form action="{{ route('users.store') }}" method="POST">
         @csrf
         <div class="card p-4 text-center">
-            <h2 class="text-center text-uppercase">Crear Usuario</h2><hr>
+            <h2 class="text-center text-uppercase">Editar Usuario</h2><hr>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
                         <label for="name" class="col-md-4 col-form-label">{{ __('Nombre') }}</label>
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Ingrese Nombre y Apellido">
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$user->name}}" required autocomplete="name" autofocus placeholder="Ingrese Nombre y Apellido">
 
                         @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="email" class="col-md-4 col-form-label">{{ __('Correo Electronico') }}</label>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Ingrese el correo electronico">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email}}" required autocomplete="email" placeholder="Ingrese el correo electronico">
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">

@@ -22,14 +22,14 @@
                         <!-- Materias -->
                         <div class="col-sm-4">
                             <select name="subject_id[]" id="subject_id" class="form-control" required>
-                                <option value="{{ $subject->id }}">{{ "($subject->code)". ' ' . $subject->name }}</option>
+                                <option value={{ $subject->id }}>{{ "($subject->code)". ' ' . $subject->name }}</option>
                             </select>
                         </div>
                         <!-- Profesores -->
                         <div class="col-sm-4">
                             <select name="teacher_id[]" id="teacher_id" class="form-control" required>
                                 @foreach ($teachers as $teacher)
-                                    <option value="{{ $teacher->id }}">{{ $teacher->name . ' ' . $teacher->lastname }}</option>
+                                    <option value={{ $teacher->id }}>{{ $teacher->name . ' ' . $teacher->lastname }}</option>
                                 @endforeach
                                 <option selected disabled>Seleccione un profesor...</option>
                             </select>

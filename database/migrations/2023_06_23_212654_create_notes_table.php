@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('note');
             $table->string('type_note'); //final o reparacion
 
-            $table->foreignId('student_id')->constrained('students')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('student_record_id')->constrained('student_records')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('subject_id')->constrained('subjects')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('lapso_id')->constrained('lapso_schools')->onDelete('cascade')->onUpdate('cascade'); 
             $table->foreignId('section_id')->constrained('sections')->onDelete('cascade')->onUpdate('cascade'); 

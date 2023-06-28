@@ -12,22 +12,22 @@ class Note extends Model
     protected $fillable = [
         'note',
         'type_note',
-        'student_id',
+        'student_record_id',
         'subject_id',
         'lapso_id',
         'section_id',
     ];
 
-    public function student(){
-        return $this->belongsTo(Student::class);
+    public function student_record(){
+        return $this->belongsTo(StudentRecord::class);
     }
     public function subject(){
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(Subject::class);
     }
     public function lapso_school(){
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(LapsoSchool::class);
     }
     public function section(){
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(Section::class);
     }
 }

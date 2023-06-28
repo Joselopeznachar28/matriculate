@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('teachers', function (Blueprint $table) {
+        Schema::create('section_student_records', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('name');
-            $table->text('lastname');
-            $table->string('code')->unique();
-            $table->integer('identification');
-            $table->text('email');
-            
+            $table->foreignId('section_id')->constrained('sections')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('student_record_id')->constrained('student_records')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('teachers');
+        Schema::dropIfExists('section_student_records');
     }
 };

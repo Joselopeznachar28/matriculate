@@ -31,4 +31,18 @@ class SectionController extends Controller
         return redirect()->route('sections.index');
 
     }
+
+    public function asigneSection(){
+        $year_schools = YearSchool::with('sections')->get();
+        return view('sections.asigneSection', compact('year_schools'));
+    }
+
+    public function asigneSectionToStudents($id){
+        $section = Section::find($id);
+        return view('sections.asigneSectionToStudents', compact('section'));
+    }
+
+    public function asignadeSection(Request $request){
+        dd($request->all());
+    }
 }

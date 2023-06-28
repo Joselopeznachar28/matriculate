@@ -64,4 +64,8 @@ class StudentRecord extends Model
     public function student(){
         return $this->belongsTo(Student::class);
     }
+    
+    public function sections(){
+        return  $this->belongsToMany(Section::class,'section_student_records','section_id','student_record_id');
+    }
 }

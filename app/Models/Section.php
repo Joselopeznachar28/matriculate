@@ -35,5 +35,8 @@ class Section extends Model
     public function year_school(){
         return $this->belongsTo(YearSchool::class);
     }
+    // public function student_records(){
+    //     return  $this->belongsToMany(StudentRecord::class,'section_student_records','section_id','student_record_id');
+    // }
 
 }
