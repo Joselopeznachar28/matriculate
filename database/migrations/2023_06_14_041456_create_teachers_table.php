@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->text('name');
             $table->text('lastname');
+            $table->string('code')->unique();
             $table->integer('identification');
             $table->text('email');
             

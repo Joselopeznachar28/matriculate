@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Section;
 use App\Models\Subject;
 use App\Models\Teacher;
+use App\Models\User;
+use Illuminate\Support\Str;
 use App\Models\YearSchool;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class TeacherController extends Controller
 {
@@ -26,20 +29,11 @@ class TeacherController extends Controller
             'name' => $request->name,
             'lastname' => $request->lastname,
             'identification' => $request->identification,
+            'code'=> Str::random(5),
             'email' => $request->email,
         ]);
 
-        // foreach ($request->subject_id as $subject) {
-        //     if(!empty($subject)){
-        //        $teacher->subjects()->attach($subject);
-        //     }
-        // }
-        // foreach ($request->section_id as $section) {
-        //     if(!empty($section)){
-        //        $teacher->sections()->attach($section);
-        //     }
-        // }
-        
+        notify()->success('Los datos se han guardado exitosamente');
         return redirect()->route('teachers.index');
     }
 
@@ -55,7 +49,7 @@ class TeacherController extends Controller
             'identification'=>$request->input('identification'),
             'email'=>$request->input('email'),
         ]);
-
+        notify()->success('Los datos se han editado exitosamente');
         return redirect()->route('teachers.index');
     }
 
@@ -63,7 +57,7 @@ class TeacherController extends Controller
 
         $teacher = Teacher::find($id);
         $teacher->delete();
-
+        notify()->success('Los datos han sido eliminado exitosamente');
         return back();
     }
 
@@ -79,19 +73,31 @@ class TeacherController extends Controller
     }
 
     public function asigneSubjectToTeacher(Request $request){
-        dd($request->all());
-        $teacher = Teacher::find($request->teacher_id);
-        foreach ($request->subject_id as $subject) {
-            if(!empty($subject)){
-               $teacher->subjects()->attach($subject);
+        $subjects = $request->subject_id;
+        $teachers = $request->teacher_id;
+        // dd($subjects);
+        for ($i = 1; $i < count($teachers) ; $i++) {
+            foreach ($teachers as $key => $teacher) {
+                foreach ($subjects as $value => $subject) {
+                    $teachers[$key]->subjects()->attach($subjects[$i]);
+                }
             }
         }
-        foreach ($request->section_id as $section) {
-            if(!empty($section)){
-               $teacher->sections()->attach($section);
-            }
-        }
+
         return redirect()->route('teachers.asigneSubjectToTeacherView');
+    }
+
+    public function generateUserTeacher($id){
+
+        $teacher = Teacher::find($id);
+
+        User::create([
+            'name' => $teacher->name . ' ' . $teacher->lastname,
+            'email' => $teacher->email,
+            'password' => Hash::make($teacher->code . $teacher->identification),
+        ]);
+        notify()->success('El usuario ha sido generado exitosamente');
+        return redirect()->route('teachers.index');
     }
 
 }

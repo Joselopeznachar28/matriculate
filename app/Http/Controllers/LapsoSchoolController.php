@@ -30,4 +30,10 @@ class LapsoSchoolController extends Controller
         return redirect()->route('lapso_schools.index');
 
     }
+    public function changeStatus(Request $request){
+        $lapso = LapsoSchool::find($request->lapso_id);
+        $lapso->upload_note = $request->upload_note;
+        $lapso->save();
+        return response()->json(['Aprobado' => 'Puede subir notas!']);
+    }
 }

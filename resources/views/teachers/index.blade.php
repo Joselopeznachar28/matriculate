@@ -7,6 +7,7 @@
                 <thead>
                     <tr>
                       <th>#</th>
+                      <th>Codigo</th>
                       <th>Apellidos</th>
                       <th>Nombres</th>
                       <th>Identificacion</th>
@@ -18,6 +19,7 @@
                     @foreach ($teachers as $teacher)
                         <tr>
                             <td>{{ $teacher->id }}</td>
+                            <td>{{ $teacher->code }}</td>
                             <td>{{ $teacher->lastname }}</td>
                             <td>{{ $teacher->name }}</td>
                             <td>{{ $teacher->identification }}</td>
@@ -30,7 +32,7 @@
                                     value="Borrar" class="btn btn-danger">
                                 </form>
                                 <a href="{{route('teachers.edit', $teacher->id)}}" class="btn btn-warning mr-2">Editar</a>
-                                <form action="#" method="POST">
+                                <form action="{{ route('teachers.generateUserTeacher', $teacher->id) }}" method="POST">
                                     @csrf
                                     <input type="submit"
                                     value="Generar Usuario" class="btn btn-success">

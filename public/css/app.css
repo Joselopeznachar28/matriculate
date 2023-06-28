@@ -36,6 +36,10 @@
         place-content: center;
     }
 
+    .accordion-item{
+        margin-bottom: 1rem !important;
+    }
+
 }
 
 .navbar a,

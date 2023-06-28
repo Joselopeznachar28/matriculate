@@ -8,6 +8,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentRecordController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\UserController;
 use App\Models\StudentRecord;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,13 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('Usuarios', [UserController::class, 'index'])->name('users.index');
+Route::get('Crear-Usuario', [UserController::class, 'create'])->name('users.create');
+Route::post('Crear-Usuario', [UserController::class, 'store'])->name('users.store');
+Route::get('Editar-Usuario/{id}', [UserController::class, 'edit'])->name('users.edit');
+Route::put('Editar-Usuario/{id}/update', [UserController::class, 'update'])->name('users.update');
+Route::delete('Eliminar-Usuario/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
 //subjects
 Route::get('Materias', [SubjectController::class, 'index'])->name('subjets.index');
@@ -55,6 +63,8 @@ Route::post('Profesor', [TeacherController::class, 'store'])->name('teachers.sto
 Route::get('Profesor/{id}/editar', [TeacherController::class, 'edit'])->name('teachers.edit');
 Route::put('Profesor/{id}/update', [TeacherController::class, 'update'])->name('teachers.update');
 Route::delete('Profesor/{id}', [TeacherController::class, 'destroy'])->name('teachers.destroy');
+//generar usuario
+Route::post('ProfesorUsuario/{id}', [TeacherController::class, 'generateUserTeacher'])->name('teachers.generateUserTeacher');
 //asignar materias al profesor
 Route::get('Asignacion-de-materias', [TeacherController::class, 'asigneSubjectToTeacherView'])->name('teachers.asigneSubjectToTeacherView');
 Route::get('Materias-por-años/{id}', [TeacherController::class, 'subjectYear'])->name('teachers.subjectYear');
@@ -67,6 +77,7 @@ Route::post('PeriodoAcademico', [AcademicPeriodController::class, 'store'])->nam
 Route::get('Lapsos', [LapsoSchoolController::class, 'index'])->name('lapso_schools.index');
 Route::get('AñadirLapso/create/{id}', [LapsoSchoolController::class, 'create'])->name('lapso_schools.create'); 
 Route::post('AñadirLapso', [LapsoSchoolController::class, 'store'])->name('lapso_schools.store'); 
+Route::get('changeStatus', [LapsoSchoolController::class, 'changeStatus'])->name('changeStatus');
 //Seccion (por Materia)
 Route::get('Seccion', [SectionController::class, 'index'])->name('sections.index');
 Route::get('Seccion/crear', [SectionController::class, 'create'])->name('sections.create');

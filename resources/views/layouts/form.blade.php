@@ -12,7 +12,9 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -109,6 +111,10 @@
                 <a href="{{ route('student_records.index') }}">{{ __('Inscripciones') }}</a>
             </div>
             <div class="accordion-item">
+                <a class="nav-item" href="{{ route('users.index') }}">{{ __('Usuarios') }}</a>
+            </div>
+            
+            <div class="accordion-item navbarDiv">
                 <a id="navbarDropdown" class="nav-item" href="#Logout" data-bs-toggle="collapse" aria-controls="Logout" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }}
                 </a>

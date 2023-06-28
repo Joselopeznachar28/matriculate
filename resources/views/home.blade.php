@@ -13,6 +13,7 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
@@ -117,16 +118,55 @@
             <a class="nav-item" href="{{ route('student_records.index') }}">
                 {{ __('Inscripciones') }}
             </a>
+            <!-- hace referencia a Users-->
+            <a class="nav-item" data-bs-toggle="collapse" href="#Users" aria-expanded="false" aria-controls="Users">
+                {{ __('Usuarios') }}
+            </a>
+            <!-- esta es la referencia de Users-->
+            <div class="collapse" id="Users">
+                <ul>
+                    <li>
+                        <a class="nav-item" href="{{ route('users.index') }}">
+                            {{ __('Lista') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="{{ route('users.create') }}">
+                            {{ __('Crear') }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        
         </div>
         <!-- barra de navegacion principal -->
         <div class="nav-principal container d-flex justify-content-end">
-            <p class="text-white">{{ Auth::user()->name }}</p>
+
+            <div class="accordion-item" style="margin-top: 1rem;">
+                
+                <a id="navbarDropdown" style="text-decoration: none; color: #000;" class="nav-item" href="#Logout" data-bs-toggle="collapse" aria-controls="Logout" aria-expanded="false" v-pre>
+                    {{ Auth::user()->name }}
+                </a>
+                
+                <div class="collapse dropdown-menu-end" aria-labelledby="navbarDropdown" id="Logout">
+                    <a href="{{ route('users.edit', Auth::user()->id) }}" style="text-decoration: none; color: #000;">Editar</a><br>
+                    <a class="nav-item text-dark" style="text-decoration: none;" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
     @yield('content')
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
 </body>
 </html>
