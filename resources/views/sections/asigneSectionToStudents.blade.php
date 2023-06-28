@@ -13,7 +13,16 @@
                     <div class="col-sm-3">
                         <label for="section_id" class="form-label">{{ __('Seccion') }}</label>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
+                        <label for="lapso_id" class="form-label">{{ __('Lapsos') }}</label>
+                        <select name="lapso_id" id="lapso_id" class="form-control">
+                            @foreach ($lapsos as $lapso)
+                                <option value={{ $lapso->id }}>{{ $lapso->id }}</option>
+                                @endforeach
+                                <option disabled selected>{{ __('Seleccione una opcion...') }}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
                         <label for="student_record_id" class="form-label">{{ __('Estudiantes') }}</label>
                     </div>
                     <input type="hidden" value="{{ $section->year_school->id }}" name="year_school_id" class="form-control">
@@ -27,7 +36,10 @@
                         <div class="col-sm-3">
                             <label class="form-label">{{ $section->letter }}</label>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-3">
+                            
+                        </div>
+                        <div class="col-sm-3">
                             <label class="form-label">{{ $student_record->names . ' ' . $student_record->lastnames }} <span>{{'C.I: ' . $student_record->identification }}</span></label>
                             <input type="checkbox" name="student_record_id[]" id="student_record_id" value="{{ $student_record->id }}">
                         </div>

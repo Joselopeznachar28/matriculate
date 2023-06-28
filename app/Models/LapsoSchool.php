@@ -24,5 +24,9 @@ class LapsoSchool extends Model
     public function notes(){
         return $this->hasMany(Note::class);
     }
+    
+    public function SectionStudentRecord(){
+        return $this->hasMany(SectionStudentRecord::class);
+    }
 
 }

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('section_student_records', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignId('lapso_id')->constrained('lapso_schools')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('section_id')->constrained('sections')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('student_record_id')->constrained('student_records')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

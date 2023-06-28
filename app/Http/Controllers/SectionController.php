@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AcademicPeriod;
+use App\Models\LapsoSchool;
 use App\Models\Section;
 use App\Models\YearSchool;
 use Illuminate\Http\Request;
@@ -39,7 +40,8 @@ class SectionController extends Controller
 
     public function asigneSectionToStudents($id){
         $section = Section::find($id);
-        return view('sections.asigneSectionToStudents', compact('section'));
+        $lapsos = LapsoSchool::all();
+        return view('sections.asigneSectionToStudents', compact('section','lapsos'));
     }
 
     public function asignadeSection(Request $request){
