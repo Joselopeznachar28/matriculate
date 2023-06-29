@@ -36,4 +36,12 @@ class LapsoSchoolController extends Controller
         $lapso->save();
         return response()->json(['Aprobado' => 'Puede subir notas!']);
     }
+
+    public function uploadNotes($id){
+        $lapso = LapsoSchool::find($id);
+        // dd($lapso);
+        $period_academic = AcademicPeriod::find($lapso->academic_period_id)->load('year_schools.subjects.sections','year_schools.student_records');
+        dd($period_academic);
+        dd($lapso);
+    }
 }

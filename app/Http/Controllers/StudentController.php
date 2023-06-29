@@ -49,7 +49,7 @@ class StudentController extends Controller
             'student_live_with'     =>  $request->student_live_with,
         ]);
 
-        return redirect()->route('students.index');
+        return redirect()->route('students.create');
 
     }
 

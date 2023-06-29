@@ -9,6 +9,7 @@
                       <th>Año Escolar</th>
                       <th>Periodo Academico</th>
                       <th>Materia</th>
+                      <th>Codigo de Materia</th>
                       <th>Seccion</th>
                     </tr>
                   </thead>
@@ -20,6 +21,7 @@
                                     <td>{{ $section->year_school->name }}</td>
                                     <td>{{ $academic_period->name }}</td>
                                     <td>{{ $section->subject->name }}</td>
+                                    <td>{{ $section->subject->code }}</td>
                                     <td>{{ $section->letter }}</td>
                                 </tr>
                             @endforeach

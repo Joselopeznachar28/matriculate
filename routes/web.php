@@ -78,10 +78,14 @@ Route::get('Lapsos', [LapsoSchoolController::class, 'index'])->name('lapso_schoo
 Route::get('AñadirLapso/create/{id}', [LapsoSchoolController::class, 'create'])->name('lapso_schools.create'); 
 Route::post('AñadirLapso', [LapsoSchoolController::class, 'store'])->name('lapso_schools.store'); 
 Route::get('changeStatus', [LapsoSchoolController::class, 'changeStatus'])->name('changeStatus');
+Route::get('Carga-de-notas/{id}', [LapsoSchoolController::class, 'uploadNotes'])->name('lapso_schools.uploadNotes');
 //Seccion (por Materia)
 Route::get('Seccion', [SectionController::class, 'index'])->name('sections.index');
 Route::get('Seccion/crear', [SectionController::class, 'create'])->name('sections.create');
 Route::post('Seccion/crear', [SectionController::class, 'store'])->name('sections.store');
+Route::get('Asignar-seccion', [SectionController::class, 'asigneSection'])->name('sections.asigneSection');
+Route::get('Asignar-seccion/estudiantes{id}', [SectionController::class, 'asigneSectionToStudents'])->name('sections.asigneSectionToStudents');
+Route::post('Asignar-seccion/estudiantes', [SectionController::class, 'asignadeSection'])->name('sections.asignadeSection');
 //Notas
 Route::get('Lista-de-Notas', [NoteController::class, 'index'])->name('notes.index'); 
 Route::get('Carga-de-Notas/{id}', [NoteController::class, 'create'])->name('notes.create'); 

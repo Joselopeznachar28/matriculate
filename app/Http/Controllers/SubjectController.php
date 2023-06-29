@@ -27,7 +27,7 @@ class SubjectController extends Controller
             'year_school_id' => $request->year_school_id,
         ]);
 
-        return redirect()->route('subjets.index');
+        return redirect()->route('subjets.create');
     }
 
     public function edit($id){

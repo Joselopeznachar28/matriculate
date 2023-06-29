@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AcademicPeriod;
+use App\Models\LapsoSchool;
 use App\Models\Section;
 use App\Models\YearSchool;
 use Illuminate\Http\Request;
@@ -28,7 +29,31 @@ class SectionController extends Controller
             'subject_id' => $request->subject_id,
         ]);
 
-        return redirect()->route('sections.index');
+        return redirect()->route('sections.create');
 
+    }
+
+    public function asigneSection(){
+        $year_schools = YearSchool::with('sections')->get();
+        return view('sections.asigneSection', compact('year_schools'));
+    }
+
+    public function asigneSectionToStudents($id){
+        $section = Section::find($id);
+        $lapsos = LapsoSchool::all();
+        return view('sections.asigneSectionToStudents', compact('section','lapsos'));
+    }
+
+    public function asignadeSection(Request $request){
+
+        $student_records = $request->student_record_id;
+        $section = Section::find($request->section_id);
+
+        if (!empty($student_records)) {
+            foreach ($student_records as $key => $student_record) {
+                $section->student_records()->attach($student_record);
+            }
+        }
+        return redirect()->route('sections.asigneSection');
     }
 }

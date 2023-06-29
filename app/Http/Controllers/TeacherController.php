@@ -34,7 +34,7 @@ class TeacherController extends Controller
         ]);
 
         notify()->success('Los datos se han guardado exitosamente');
-        return redirect()->route('teachers.index');
+        return redirect()->route('teachers.create');
     }
 
     public function edit($id){
@@ -76,11 +76,9 @@ class TeacherController extends Controller
         $subjects = $request->subject_id;
         $teachers = $request->teacher_id;
         // dd($subjects);
-        for ($i = 1; $i < count($teachers) ; $i++) {
-            foreach ($teachers as $key => $teacher) {
-                foreach ($subjects as $value => $subject) {
-                    $teachers[$key]->subjects()->attach($subjects[$i]);
-                }
+        foreach ($teachers as $key => $teacher) {
+            foreach ($subjects as $value => $subject) {
+                $teachers[$key]->subjects()->attach($subjects[$value]);
             }
         }
 

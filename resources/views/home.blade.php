@@ -66,7 +66,7 @@
             <a class="nav-item" data-bs-toggle="collapse" href="#sections" aria-expanded="false" aria-controls="sections">
                 {{ __('Secciones') }}
             </a>
-            <!-- esta es la referencia de Teachers-->
+            <!-- esta es la referencia de sections-->
             <div class="collapse" id="sections">
                 <ul>
                     <li>
@@ -74,6 +74,9 @@
                     </li>
                     <li>
                         <a href="{{ route('sections.create') }}">{{ __('Crear') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('sections.asigneSection') }}">{{ __('Asignar Estudiantes') }}</a>
                     </li>
                 </ul>
             </div>
