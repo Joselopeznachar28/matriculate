@@ -24,11 +24,11 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <label for="number" class="col-form-label">{{ __('Lapso') }}</label>
-                        <select name="number" id="number" class="form-control" required autofocus>
+                        <select name="number" id="number" class="form-control" required>
+                            <option value="">Seleccione una opcion...</option>
                             <option value=1>Primer Lapso</option>
                             <option value=2>Segundo Lapso</option>
                             <option value=3>Tercer Lapso</option>
-                            <option selected disabled>Seleccione una opcion...</option>
                         </select>
 
                         @error('number')

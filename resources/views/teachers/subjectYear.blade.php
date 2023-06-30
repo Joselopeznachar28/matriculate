@@ -28,10 +28,10 @@
                         <!-- Profesores -->
                         <div class="col-sm-4">
                             <select name="teacher_id[]" id="teacher_id" class="form-control" required>
+                                <option value="">Seleccione un profesor...</option>
                                 @foreach ($teachers as $teacher)
                                     <option value={{ $teacher->id }}>{{ $teacher->name . ' ' . $teacher->lastname }}</option>
                                 @endforeach
-                                <option selected disabled>Seleccione un profesor...</option>
                             </select>
                         </div>
                     </div><br>

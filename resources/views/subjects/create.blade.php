@@ -19,11 +19,11 @@
                     </div>
                     <div class="col-sm-6 ">
                         <label for="year_school_id" class="col-form-label">Año a Impartir la materia</label>
-                        <select name="year_school_id" id="year_school_id" class="form-control">
+                        <select name="year_school_id" id="year_school_id" class="form-control" required>
+                            <option value="">Seleccione un año escolar...</option>
                             @foreach ($year_schools as $year_school)
                             <option value={{ $year_school->id }}>{{ $year_school->name }}</option>
                             @endforeach
-                            <option disabled selected>Seleccione un año...</option>
                         </select>
                     </div>
                 </div>

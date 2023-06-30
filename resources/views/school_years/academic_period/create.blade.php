@@ -40,7 +40,7 @@
                         @foreach ($year_schools as $year_school)
                             <div class="form-check d-flex justify-content-center gap-4">
                                 <span class="form-label text-uppercase">{{ $year_school->id }}</span>
-                                <input type="checkbox" name="year_id[]" id="year_id" class="form-check-input" value={{ $year_school->id }} checked>
+                                <input type="checkbox" name="year_id[]" id="year_id" class="form-check-input" required value={{ $year_school->id }} checked>
                             </div>
                         @endforeach
     

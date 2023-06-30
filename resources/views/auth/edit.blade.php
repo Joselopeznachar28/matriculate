@@ -1,10 +1,11 @@
 @extends('layouts.form')
 
 @section('content')
-    <form action="{{ route('users.store') }}" method="POST">
+    <form action="{{ route('users.update', $user->id) }}" method="POST">
         @csrf
-        <div class="card p-4 text-center">
-            <h2 class="text-center text-uppercase">Editar Usuario</h2><hr>
+        @method('PUT')
+        <div class="card p-4">
+            <hr><h2 class="text-center text-uppercase">Editar Usuario</h2><hr>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
@@ -44,7 +45,14 @@
                         <label for="password-confirm" class="col-md-4 col-form-label">{{ __('Confirm Password') }}</label>
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Repita la contraseña">
                     </div>
-                </div>
+                </div><br><hr>
+                <h2 class="text-center text-uppercase">Editar Roles de {{ $user->name }}</h2><hr>
+                @foreach ($roles as $role)
+                    <div class="form-check">
+                        <label for="role_id[]">{{ $role->name }}</label>
+                        <input type="checkbox" name="role_id[]" id="role_id[]" class="form-check-input" value="{{ $role->id }}" required>
+                    </div>
+                @endforeach
             </div>
             <div class="d-flex justify-content-end p-3">
                 <input type="submit" class="btn btn-primary btn-submit w-25" value="Guardar">

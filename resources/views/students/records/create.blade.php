@@ -6,16 +6,16 @@
             <div class="card p-4">
                 <input type="hidden" name="student_id" value="{{ $student->id }}">
                 <h2 class="text-center text-uppercase">Ficha de inscripcion del estudiante</h2><hr>
-                <!-- nombres, apellidos y tipo de estudiantes, año, numero de inscripcion-->
                 <div class="card-body text-center">
+                    <!-- nombres, apellidos y tipo de estudiantes, año, numero de inscripcion-->
                     <div class="row">
                         <div class="col-sm-2">
                             <label for="year_school_id" class="form-label">Año a Cursar</label><br>
-                            <select name="year_school_id" id="year_school_id" class="form-control">
+                            <select name="year_school_id" id="year_school_id" class="form-control" required>
+                                <option value="">{{ __('Seleccione una opcion...') }}</option>
                                 @foreach ($year_schools as $year_school)
                                     <option value={{ $year_school->id }}>{{ $year_school->name }}</option>
                                 @endforeach
-                                <option selected disabled>{{ __('Seleccione una opcion...') }}</option>
                             </select>
                         </div>
                         <div class="col-sm-2">
@@ -38,10 +38,10 @@
                         </div>
                         <div class="col-sm-2">
                             <label for="type_student" class="col-form-label">{{ __('Tipo de Estudiante') }}</label>
-                            <select name="type_student" id="type_student" class="form-control" required aria-valuetext="{{ old('type_student') }}">
+                            <select name="type_student" id="type_student" class="form-control" required>
+                                <option value="">{{ __('Seleccione una opcion...') }}</option>
                                 <option value="Regular">{{ __('Regular') }}</option>
                                 <option value="Repitiente">{{ __('Repitiente') }}</option>
-                                <option selected readonly>{{ __('Seleccione una opcion...') }}</option>
                             </select>
         
                             @error('type_student')
@@ -219,7 +219,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <label for="repeat_with" class="col-form-label">{{ __('Repite Con : ') }}</label>
-                            <input type="text" name="repeat_with" id="repeat_with" value="{{ old('repeat_with') }}" class="form-control" placeholder="{{ __('Repite Con :') }}" autofocus>
+                            <input type="text" name="repeat_with" id="repeat_with" value="{{ old('repeat_with') }}" class="form-control" placeholder="{{ __('Repite Con :') }}" required autofocus>
         
                             @error('repeat_with')
                                 <span style="color: red;">{{ $message }} </span><br/>
@@ -231,7 +231,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <label for="pending_matter" class="col-form-label">{{ __('Materia Pendiente') }}</label>
-                            <input type="text" name="pending_matter" id="pending_matter" value="{{ old('pending_matter') }}" class="form-control" placeholder="{{ __('Ingrese las materias pendientes') }}" autofocus>
+                            <input type="text" name="pending_matter" id="pending_matter" value="{{ old('pending_matter') }}" class="form-control" placeholder="{{ __('Ingrese las materias pendientes') }}" required autofocus>
         
                             @error('pending_matter')
                                 <span style="color: red;">{{ $message }} </span><br/>
@@ -371,10 +371,10 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <label for="pattern_gender" class="col-form-label">{{ __('Genero') }}</label>
-                            <select name="pattern_gender" id="pattern_gender" class="form-control" required aria-valuetext="{{ old('pattern_gender') }}">
+                            <select name="pattern_gender" id="pattern_gender" class="form-control" required>
+                                <option value="">{{ __('Seleccione una opcion...') }}</option>
                                 <option value="Femenino">{{ __('Femenino') }}</option>
                                 <option value="Masculino">{{ __('Masculino') }}</option>
-                                <option selected disabled>{{ __('Seleccione una opcion...') }}</option>
                             </select>
         
                             @error('pattern_gender')
@@ -384,11 +384,11 @@
                         </div>
                         <div class="col-sm-4">
                             <label for="pattern_civil_status" class="col-form-label">{{ __('Estado Civil') }}</label>
-                            <select name="pattern_civil_status" id="pattern_civil_status" class="form-control" required aria-valuetext="{{ old('pattern_civil_status') }}">
+                            <select name="pattern_civil_status" id="pattern_civil_status" class="form-control" required>
+                                <option value="">{{ __('Seleccione una opcion...') }}</option>
                                 <option value="Solter@">{{ __('Solter@') }}</option>
                                 <option value="Casad@">{{ __('Casa@') }}</option>
                                 <option value="Divorciad@">{{ __('Divorciad@') }}</option>
-                                <option selected disabled>{{ __('Seleccione una opcion...') }}</option>
                             </select>
         
                             @error('pattern_civil_status')
@@ -431,13 +431,13 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <label for="student_live_with" class="col-form-label">{{ __('El estudiante vive con :') }}</label>
-                            <select name="student_live_with" id="student_live_with" class="form-control" required aria-valuetext="{{ old('student_live_with') }}">
+                            <select name="student_live_with" id="student_live_with" class="form-control" required>
+                                <option value="">{{ __('Seleccione una opcion...') }}</option>
                                 <option value="Madre">{{ __('Madre') }}</option>
                                 <option value="Padre">{{ __('Padre') }}</option>
                                 <option value="Ambos">{{ __('Ambos') }}</option>
                                 <option value="Abuelos">{{ __('Abuelos') }}</option>
                                 <option value="Otros">{{ __('Otros') }}</option>
-                                <option selected disabled>{{ __('Seleccione una opcion...') }}</option>
                             </select>
         
                             @error('student_live_with')
@@ -468,7 +468,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <label for="observation" class="col-form-label">{{ __('Observaciones') }}</label>
-                            <textarea name="observation" id="observation" cols="30"  class="form-control"></textarea>
+                            <textarea name="observation" id="observation" cols="30"  class="form-control" required></textarea>
                         </div>
                     </div>
                 </div>

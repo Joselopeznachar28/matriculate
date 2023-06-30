@@ -6,25 +6,23 @@
             <table class="table table-dark table-hover text-center">
                 <thead>
                     <tr>
-                      <th>#</th>
-                      <th>Nombre</th>
-                      <th>Correo</th>
+                      <th>ID</th>
+                      <th>Role</th>
                       <th>Opciones</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($roles as $role)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
+                            <td>{{ $role->id }}</td>
+                            <td>{{ $role->name }}</td>
                             <td class="d-md-flex justify-content-center gap-2">
-                                <a href="{{ route('users.edit', $user->id) }}" class="btn mr-2">Editar</a>
-                                <a href="{{ route('users.viewAssignRoleToUser', $user->id) }}" class="btn mr-2">Asignar Rol</a>
-                                <form action="{{ route('users.destroy', $user->id) }}" method="post">
+                                <a href="{{ route('roles.edit', $role->id) }}" class="btn">Editar</a>
+                                <a href="{{ route('roles.show', $role->id) }}" class="btn">Detalles</a>
+                                <form action="{{ route('roles.destroy',$role->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn mr-2">Borrar</button>
+                                    <button type="submit" class="btn">Eliminar</button>
                                 </form>
                             </td>
                         </tr>

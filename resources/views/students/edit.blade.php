@@ -42,10 +42,10 @@
                     </div>
                     <div class="col-sm-3">
                         <label for="gender" class="col-form-label">{{ __('Genero') }}</label>
-                        <select name="gender" id="gender" class="form-control" required aria-valuetext="{{ old('gender') }}">
+                        <select name="gender" id="gender" class="form-control" required>
+                            <option value="">{{ __('Seleccione una opcion...') }}</option>
                             <option value="Femenino">{{ __('Femenino') }}</option>
                             <option value="Masculino">{{ __('Masculino') }}</option>
-                            <option selected disabled>{{ __('Seleccione una opcion...') }}</option>
                         </select>
     
                         @error('gender')
@@ -172,7 +172,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <label for="disease" class="col-form-label">{{ __('Padece de alguna enfermedad ?') }}</label>
-                        <input type="text" name="disease" id="disease" value="{{ $student->disease }}" class="form-control" autofocus placeholder="{{ __('Descripcion') }}">
+                        <input type="text" name="disease" id="disease" value="{{ $student->disease }}" class="form-control" required autofocus placeholder="{{ __('Descripcion') }}">
     
                         @error('disease')
                             <span style="color: red;">{{ $message }} </span><br/>
@@ -181,7 +181,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="email" class="col-form-label">{{ __('Correo Electroncio') }}</label>
-                        <input type="email" name="email" id="email" value="{{ $student->email }}" class="form-control" placeholder="{{ __('alumno@correo.com') }}" autofocus>
+                        <input type="email" name="email" id="email" value="{{ $student->email }}" class="form-control" placeholder="{{ __('alumno@correo.com') }}" required autofocus>
     
                         @error('email')
                             <span style="color: red;">{{ $message }} </span><br/>
@@ -258,12 +258,12 @@
                     <div class="col-sm-6">
                         <label for="student_live_with" class="col-form-label">{{ __('El estudiante vive con :') }}</label>
                         <select name="student_live_with" id="student_live_with" class="form-control" required>
+                            <option value="">{{ __('Seleccione una opcion...') }}</option>
                             <option value="Madre">{{ __('Madre') }}</option>
                             <option value="Padre">{{ __('Padre') }}</option>
                             <option value="Ambos">{{ __('Ambos') }}</option>
                             <option value="Abuelos">{{ __('Abuelos') }}</option>
                             <option value="Otros">{{ __('Otros') }}</option>
-                            <option selected disabled>{{ __('Seleccione una opcion...') }}</option>
                         </select>
     
                         @error('student_live_with')

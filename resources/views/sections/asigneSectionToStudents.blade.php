@@ -12,7 +12,7 @@
                 @foreach ($section->year_school->student_records as $student_record)
                     <div class="col-sm-12">
                         <label class="form-label">{{ $student_record->names }} <span>{{'C.I: ' . $student_record->identification }}</span></label>
-                        <input type="checkbox" name="student_record_id[]" id="student_record_id" value="{{ $student_record->id }}">
+                        <input type="checkbox" name="student_record_id[]" id="student_record_id" required value="{{ $student_record->id }}">
                     </div>
                 @endforeach
                 <div class="row justify-content-end p-3">

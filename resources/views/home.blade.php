@@ -140,6 +140,44 @@
                     </li>
                 </ul>
             </div>
+            <!-- hace referencia a permissions-->
+            <a class="nav-item" data-bs-toggle="collapse" href="#permissions" aria-expanded="false" aria-controls="permissions">
+                {{ __('Permisos de Usuarios') }}
+            </a>
+            <!-- esta es la referencia de permissions-->
+            <div class="collapse" id="permissions">
+                <ul>
+                    <li>
+                        <a class="nav-item" href="{{ route('permissions.index') }}">
+                            {{ __('Lista') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="{{ route('permissions.create') }}">
+                            {{ __('Crear') }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- hace referencia a ROLES-->
+            <a class="nav-item" data-bs-toggle="collapse" href="#Roles" aria-expanded="false" aria-controls="Roles">
+                {{ __('Roles de Usuarios') }}
+            </a>
+            <!-- esta es la referencia de ROLES-->
+            <div class="collapse" id="Roles">
+                <ul>
+                    <li>
+                        <a class="nav-item" href="{{ route('roles.index') }}">
+                            {{ __('Lista') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="{{ route('roles.create') }}">
+                            {{ __('Crear') }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
         
         </div>
         <!-- barra de navegacion principal -->

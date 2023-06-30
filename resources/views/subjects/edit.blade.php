@@ -11,7 +11,7 @@
                 <div class="row justify-content-center">
                     <div class="col-sm-6">
                         <label for="name" class="col-form-label">{{ __('Materia') }}</label>
-                        <input type="text" name="name" id="name" value="{{ $subject->name }}" class="form-control">
+                        <input type="text" name="name" id="name" value="{{ $subject->name }}" class="form-control" required>
     
                         @error('name')
                             <span style="color: red;">{{ $message }} </span><br/>

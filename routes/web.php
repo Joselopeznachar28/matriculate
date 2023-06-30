@@ -3,6 +3,8 @@
 use App\Http\Controllers\AcademicPeriodController;
 use App\Http\Controllers\LapsoSchoolController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentRecordController;
@@ -90,6 +92,25 @@ Route::post('Asignar-seccion/estudiantes', [SectionController::class, 'asignadeS
 Route::get('Lista-de-Notas', [NoteController::class, 'index'])->name('notes.index'); 
 Route::get('Carga-de-Notas/{id}', [NoteController::class, 'create'])->name('notes.create'); 
 Route::post('Seccion', [NoteController::class, 'store'])->name('notes.store'); 
+
+//roles
+Route::get('Roles', [RoleController::class,'index'])->name('roles.index');
+Route::get('Roles/Crear', [RoleController::class,'create'])->name('roles.create');
+Route::post('Roles', [RoleController::class,'store'])->name('roles.store');
+Route::get('Roles/Editar/{id}', [RoleController::class,'edit'])->name('roles.edit');
+Route::put('Roles/{id}', [RoleController::class,'update'])->name('roles.update');
+Route::get('Roles/Detalles/{id}', [RoleController::class,'show'])->name('roles.show');
+Route::delete('Roles/{id}', [RoleController::class,'destroy'])->name('roles.destroy');
+Route::get('AsignandoRol/{id}', [UserController::class,'viewAssignRoleToUser'])->name('users.viewAssignRoleToUser');
+Route::post('AsignandoRol/{id}', [UserController::class,'assignRoleToUser'])->name('users.assignRoleToUser');
+//permissions
+Route::get('Permisos', [PermissionController::class,'index'])->name('permissions.index');
+Route::get('Permisos/Crear', [PermissionController::class,'create'])->name('permissions.create');
+Route::post('Permisos', [PermissionController::class,'store'])->name('permissions.store');
+Route::get('Permisos/Editar/{id}', [PermissionController::class,'edit'])->name('permissions.edit');
+Route::put('Permisos/{id}', [PermissionController::class,'update'])->name('permissions.update');
+Route::get('Permisos/Detalles/{id}', [PermissionController::class,'show'])->name('permissions.show');
+Route::delete('Permisos/{id}', [PermissionController::class,'destroy'])->name('permissions.destroy');
 
 
 

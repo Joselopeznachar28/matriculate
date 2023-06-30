@@ -21,15 +21,16 @@
                     <div class="col-sm-3">
                         <label class="col-form-label">Año Escolar</label>
                         <select name="year_school_id" id="year_school_id" class="form-control" required>
+                            <option value="">{{ __('Seleccione un año escolar...') }}</option>
                             @foreach ($year_schools as $year_school)
                                 <option value="{{ $year_school->id }}">{{ $year_school->name }}</option>
                             @endforeach
-                            <option disabled selected>{{ __('Seleccione un año escolar...') }}</option>
                         </select>
                     </div>
                     <div class="col-sm-3">
                         <label class="col-form-label">Materias</label>
                         <select name="subject_id" id="subject_id" class="form-control" required>
+                            <option value="">{{ __('Seleccione una materia...') }}</option>
                             @foreach ($year_schools as $year_school)
                                 <option disabled class="bg-black text-white text-uppercase">{{ $year_school->name }}</option>
                                 @foreach ($year_school->subjects as $subject)
@@ -38,7 +39,6 @@
                                     @endif
                                 @endforeach
                             @endforeach
-                            <option disabled selected>{{ __('Seleccione una materia...') }}</option>
                         </select>
                     </div>
                     <div class="col-sm-3">
