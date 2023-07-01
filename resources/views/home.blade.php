@@ -140,7 +140,7 @@
                     </li>
                 </ul>
             </div>
-            <!-- hace referencia a permissions-->
+            {{-- <!-- hace referencia a permissions-->
             <a class="nav-item" data-bs-toggle="collapse" href="#permissions" aria-expanded="false" aria-controls="permissions">
                 {{ __('Permisos de Usuarios') }}
             </a>
@@ -177,7 +177,7 @@
                         </a>
                     </li>
                 </ul>
-            </div>
+            </div> --}}
         
         </div>
         <!-- barra de navegacion principal -->
