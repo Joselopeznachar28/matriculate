@@ -59,6 +59,7 @@ return new class extends Migration
 
             $table->foreignId('year_school_id')->constrained('year_schools')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('student_id')->constrained('students')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('section_id')->constrained('sections')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });

@@ -28,11 +28,11 @@
                 </div><br>
             <h2 class="text-center text-uppercase">Roles</h2><hr>
             @foreach ($roles as $role)
-                    <div class="form-check">
-                        <label for="role_id[]">{{ $role->name }}</label>
-                        <input type="checkbox" name="role_id[]" id="role_id[]" class="form-check-input" value="{{ $role->id }}" required>
-                    </div>
-                @endforeach
+                <div class="form-check">
+                    <label for="role_id[]">{{ $role->name }}</label>
+                    <input type="checkbox" name="role_id[]" id="role_id[]" class="form-check-input" value="{{ $role->id }}">
+                </div>
+            @endforeach
             </div>
             <div class="d-flex justify-content-end p-3">
                 <input type="submit" class="btn btn-primary btn-submit w-25" value="Guardar">

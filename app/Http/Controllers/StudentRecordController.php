@@ -20,7 +20,7 @@ class StudentRecordController extends Controller
 
     public function create($id){
         $student = Student::find($id);
-        $year_schools = YearSchool::all();
+        $year_schools = YearSchool::with('sections')->get();
         return view('students.records.create',compact('year_schools','student'));
     }
 
@@ -28,6 +28,7 @@ class StudentRecordController extends Controller
         $student_record = StudentRecord::create([
             'year_school_id'        =>  $request->year_school_id,
             'student_id'            =>  $request->student_id,
+            'section_id'            =>  $request->section_id,
             'names'                 =>  $request->names,
             'lastnames'             =>  $request->lastnames,
             'type_student'          =>  $request->type_student,
@@ -79,7 +80,7 @@ class StudentRecordController extends Controller
 
     public function edit($id){
         $student_record = StudentRecord::find($id);
-        $year_schools = YearSchool::all();
+        $year_schools = YearSchool::with('sections')->get();
         return view('students.records.edit',compact('student_record','year_schools'));
     }
 
@@ -89,6 +90,7 @@ class StudentRecordController extends Controller
 
         $student_record = StudentRecord::where('id', '=', $id)->update([
             'year_school_id'        =>  $request->year_school_id,
+            'section_id'            =>  $request->section_id,
             'names'                 =>  $request->names,
             'lastnames'             =>  $request->lastnames,
             'type_student'          =>  $request->type_student,

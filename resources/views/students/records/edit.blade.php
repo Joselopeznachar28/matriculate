@@ -20,6 +20,17 @@
                         </select>
                     </div>
                     <div class="col-sm-2">
+                        <label for="section_id" class="form-label">Seccion</label><br>
+                        <select name="section_id" id="section_id" class="form-control" required>
+                            <option value="">{{ __('Seleccione una opcion...') }}</option>
+                            @foreach ($year_schools as $year_school)
+                                @foreach ($year_school->sections as $section)
+                                    <option value={{ $section->id }}>{{ $section->letter }}</option>
+                                @endforeach
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
                         <label for="lastnames" class="col-form-label">{{ __('Apellidos') }}</label>
                         <input type="text" name="lastnames" id="lastnames" value="{{ $student_record->lastnames }}" class="form-control" readonly autofocus>
     
@@ -220,7 +231,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <label for="repeat_with" class="col-form-label">{{ __('Repite Con : ') }}</label>
-                        <input type="text" name="repeat_with" id="repeat_with" value="{{ $student_record->repeat_with }}" class="form-control" placeholder="{{ __('Repite Con :') }}" required autofocus>
+                        <input type="text" name="repeat_with" id="repeat_with" value="{{ $student_record->repeat_with }}" class="form-control" placeholder="{{ __('Repite Con :') }}" autofocus>
     
                         @error('repeat_with')
                             <span style="color: red;">{{ $message }} </span><br/>
@@ -232,7 +243,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <label for="pending_matter" class="col-form-label">{{ __('Materia Pendiente') }}</label>
-                        <input type="text" name="pending_matter" id="pending_matter" value="{{ $student_record->pending_matter }}" class="form-control" placeholder="{{ __('Ingrese las materias pendientes') }}" required autofocus>
+                        <input type="text" name="pending_matter" id="pending_matter" value="{{ $student_record->pending_matter }}" class="form-control" placeholder="{{ __('Ingrese las materias pendientes') }}" autofocus>
     
                         @error('pending_matter')
                             <span style="color: red;">{{ $message }} </span><br/>
@@ -469,7 +480,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <label for="observation" class="col-form-label">{{ __('Observaciones') }}</label>
-                        <textarea name="observation" id="observation" cols="30"  class="form-control" required>{{ $student_record->observation }}</textarea>
+                        <textarea name="observation" id="observation" cols="30"  class="form-control">{{ $student_record->observation }}</textarea>
                     </div>
                 </div>
             </div>

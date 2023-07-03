@@ -73,13 +73,13 @@ class TeacherController extends Controller
     }
 
     public function asigneSubjectToTeacher(Request $request){
+
         $subjects = $request->subject_id;
         $teachers = $request->teacher_id;
-        // dd($subjects);
+
         foreach ($teachers as $key => $teacher) {
-            foreach ($subjects as $value => $subject) {
-                $teachers[$key]->subjects()->attach($subjects[$value]);
-            }
+                $t = Teacher::find($teacher);
+                $t->subjects()->attach($subjects[$key]);
         }
 
         return redirect()->route('teachers.asigneSubjectToTeacherView');
@@ -89,11 +89,14 @@ class TeacherController extends Controller
 
         $teacher = Teacher::find($id);
 
-        User::create([
+        $user = User::create([
             'name' => $teacher->name . ' ' . $teacher->lastname,
             'email' => $teacher->email,
             'password' => Hash::make($teacher->code . $teacher->identification),
         ]);
+
+        $user->teacher()->attach($teacher->id);
+
         notify()->success('El usuario ha sido generado exitosamente');
         return redirect()->route('teachers.index');
     }

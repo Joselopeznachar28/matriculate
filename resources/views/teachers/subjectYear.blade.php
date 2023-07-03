@@ -3,8 +3,9 @@
 @section('content')
     <div class="card p-4 text-center">
         <div class="row justify-content-between text-uppercase">
-            <div class="col-sm-6"><h2>Asignacion de materias</h2></div>
-            <div class="col-sm-6"><h2>Seccion : {{ $section->letter }}</h2></div>
+            <div class="col-sm-4"><h2>Asignacion de materias</h2></div>
+            <div class="col-sm-4"><h2>Año : {{ $section->year_school->name }}</h2></div>
+            <div class="col-sm-4"><h2>Seccion : {{ $section->letter }}</h2></div>
         </div><hr>
         <div class="card-body">
             <form action="{{ route('teachers.asigneSubjectToTeacher') }}" method="POST">
@@ -30,7 +31,10 @@
                             <select name="teacher_id[]" id="teacher_id" class="form-control" required>
                                 <option value="">Seleccione un profesor...</option>
                                 @foreach ($teachers as $teacher)
-                                    <option value={{ $teacher->id }}>{{ $teacher->name . ' ' . $teacher->lastname }}</option>
+                                <option 
+                                    value={{ $teacher->id }}>
+                                    {{ $teacher->name . ' ' . $teacher->lastname . ' - CI: ' . $teacher->identification}} 
+                                </option>
                                 @endforeach
                             </select>
                         </div>

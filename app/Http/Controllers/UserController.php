@@ -70,7 +70,7 @@ class UserController extends Controller
 
         foreach ($roles as $key => $role) {
             if (!empty($roles)) {
-                $user->roles()->attach($role);
+                $user->roles()->sync($role);
             }
         }
 

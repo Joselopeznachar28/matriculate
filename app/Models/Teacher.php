@@ -25,4 +25,8 @@ class Teacher extends Model
         return  $this->belongsToMany(Section::class,'section_teachers','teacher_id','section_id');
     }
 
+    public function user(){
+        return  $this->belongsToMany(User::class,'teacher_users','user_id','teacher_id');
+    }
+
 }

@@ -172,7 +172,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <label for="disease" class="col-form-label">{{ __('Padece de alguna enfermedad ?') }}</label>
-                        <input type="text" name="disease" id="disease" value="{{ $student->disease }}" class="form-control" required autofocus placeholder="{{ __('Descripcion') }}">
+                        <input type="text" name="disease" id="disease" value="{{ $student->disease }}" class="form-control" autofocus placeholder="{{ __('Descripcion') }}">
     
                         @error('disease')
                             <span style="color: red;">{{ $message }} </span><br/>
@@ -181,7 +181,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="email" class="col-form-label">{{ __('Correo Electroncio') }}</label>
-                        <input type="email" name="email" id="email" value="{{ $student->email }}" class="form-control" placeholder="{{ __('alumno@correo.com') }}" required autofocus>
+                        <input type="email" name="email" id="email" value="{{ $student->email }}" class="form-control" placeholder="{{ __('alumno@correo.com') }}" autofocus>
     
                         @error('email')
                             <span style="color: red;">{{ $message }} </span><br/>

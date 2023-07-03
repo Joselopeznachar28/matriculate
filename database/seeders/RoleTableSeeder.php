@@ -23,32 +23,32 @@ class RoleTableSeeder extends Seeder
 
             //USUARIOS
             $usersIndex = Permission::create([
-                'name' => 'socios.index',
+                'name' => 'users.index',
                 'description' => 'Listado de Usuario'
             ])->syncRoles([$systemAdmin]);
 
             $usersCreate = Permission::create([
-                'name' => 'socios.create',
+                'name' => 'users.create',
                 'description' => 'Crear Usuario',
             ])->syncRoles([$systemAdmin]);
 
-            $usersShow = Permission::create([
-                'name' => 'socios.show',
-                'description' => 'Detalles Usuario',
-            ])->syncRoles([$systemAdmin]);
+            // $usersShow = Permission::create([
+            //     'name' => 'users.show',
+            //     'description' => 'Detalles Usuario',
+            // ])->syncRoles([$systemAdmin]);
 
             $usersEdit = Permission::create([
-                'name' => 'socios.edit',
+                'name' => 'users.edit',
                 'description' => 'Editar Usuario',
             ])->syncRoles([$systemAdmin]);
 
             $usersDestroy = Permission::create([
-                'name' => 'socios.destroy',
+                'name' => 'users.destroy',
                 'description' => 'Eliminar Usuario',
             ])->syncRoles([$systemAdmin]);
 
             $generateUser = Permission::create([
-                'name' => 'generateUserTeacher',
+                'name' => 'teachers.generateUserTeacher',
                 'description' => 'Generar Usuario',
             ])->syncRoles([$systemAdmin]);
 
@@ -71,16 +71,6 @@ class RoleTableSeeder extends Seeder
             $subjectsDestroy = Permission::create([
                 'name' => 'subjects.destroy',
                 'description' => 'Eliminar Materia',
-            ])->syncRoles([$systemAdmin]);
-
-            $asigneSubjectToTeacherView = Permission::create([
-                'name' => 'teachers.asigneSubjectToTeacherView',
-                'description' => 'Asignar Materia',
-            ])->syncRoles([$systemAdmin]);
-
-            $subjectYear = Permission::create([
-                'name' => 'teachers.subjectYear',
-                'description' => 'Asignar Materia',
             ])->syncRoles([$systemAdmin]);
 
             //ESTUDIANTES
@@ -126,29 +116,19 @@ class RoleTableSeeder extends Seeder
             ])->syncRoles([$systemAdmin]);
 
             //PROFESORES
-            $lapsosIndex = Permission::create([
-                'name' => 'lapsos.index',
+            $teachersIndex = Permission::create([
+                'name' => 'teachers.index',
                 'description' => 'Listar Profesores',
-            ])->syncRoles([$systemAdmin]);
+            ])->syncRoles([$systemAdmin,$teacher]);
 
-            $lapsosCreate = Permission::create([
-                'name' => 'lapsos.create',
+            $teachersCreate = Permission::create([
+                'name' => 'teachers.create',
                 'description' => 'Crear Profesores',
-            ])->syncRoles([$systemAdmin]);
+            ])->syncRoles([$systemAdmin,$teacher]);
 
-            $lapsosEdit = Permission::create([
-                'name' => 'lapsos.edit',
+            $teachersEdit = Permission::create([
+                'name' => 'teachers.edit',
                 'description' => 'Editar Profesores',
-            ])->syncRoles([$systemAdmin]);
-
-            $lapsosChangeStatus = Permission::create([
-                'name' => 'changeStatus',
-                'description' => 'Cambiar Status para cargar Notas',
-            ])->syncRoles([$systemAdmin]);
-
-            $uploadNotes = Permission::create([
-                'name' => 'lapso_schools.uploadNotes',
-                'description' => 'Cargar Notas',
             ])->syncRoles([$systemAdmin,$teacher]);
 
             //Seccion
@@ -162,19 +142,47 @@ class RoleTableSeeder extends Seeder
                 'description' => 'Crear Seccion',
             ])->syncRoles([$systemAdmin]);
 
-            $sectionsEdit = Permission::create([
-                'name' => 'sections.edit',
-                'description' => 'Editar Seccion',
+            // $sectionsEdit = Permission::create([
+            //     'name' => 'sections.edit',
+            //     'description' => 'Editar Seccion',
+            // ])->syncRoles([$systemAdmin]);
+
+            //Periodos Academicos
+            $academicPeriodsIndex = Permission::create([
+                'name' => 'academic_period.index',
+                'description' => 'Listar Periodos Academicos',
             ])->syncRoles([$systemAdmin]);
 
-            $asigneSections = Permission::create([
-                'name' => 'sections.asigneSection',
-                'description' => 'Asignar Secciones',
+            $academicPeriodsCreate = Permission::create([
+                'name' => 'academic_period.create',
+                'description' => 'Crear Periodo Academico',
             ])->syncRoles([$systemAdmin]);
 
-            $asignarSeccionStudents = Permission::create([
-                'name' => 'sections.asigneSectionToStudents',
-                'description' => 'Cargar Notas',
+            //Lapsos
+            $academicPeriodsIndex = Permission::create([
+                'name' => 'lapso_schools.index',
+                'description' => 'Listar Lapsos',
+            ])->syncRoles([$systemAdmin]);
+
+            $academicPeriodsCreate = Permission::create([
+                'name' => 'lapso_schools.create',
+                'description' => 'Crear Lapsos',
+            ])->syncRoles([$systemAdmin]);
+
+            $changeStatus = Permission::create([
+                'name' => 'changeStatus',
+                'description' => 'Cambiar Status para cargar Notas',
+            ])->syncRoles([$systemAdmin]);
+
+            //Asignar Materias al Profesor
+            $asigneSubjectToTeacherView = Permission::create([
+                'name' => 'teachers.asigneSubjectToTeacherView',
+                'description' => 'Vista para asignar materias a los profesores',
+            ])->syncRoles([$systemAdmin]);
+
+            $subjectYear = Permission::create([
+                'name' => 'teachers.subjectYear',
+                'description' => 'Asignar materias por año',
             ])->syncRoles([$systemAdmin]);
     }
 }

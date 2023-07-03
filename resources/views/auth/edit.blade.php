@@ -50,7 +50,7 @@
                 @foreach ($roles as $role)
                     <div class="form-check">
                         <label for="role_id[]">{{ $role->name }}</label>
-                        <input type="checkbox" name="role_id[]" id="role_id[]" class="form-check-input" value="{{ $role->id }}" required>
+                        <input type="checkbox" name="role_id[]" id="role_id[]" class="form-check-input" value="{{ $role->id }}">
                     </div>
                 @endforeach
             </div>

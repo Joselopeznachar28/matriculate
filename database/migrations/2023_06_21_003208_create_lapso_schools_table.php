@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('init')->unique();
             $table->date('end')->unique();
             $table->boolean('upload_note')->default(0);
+            $table->boolean('active')->default(0);
             
             $table->foreignId('academic_period_id')->constrained('academic_periods')->onDelete('cascade')->onUpdate('cascade');
             

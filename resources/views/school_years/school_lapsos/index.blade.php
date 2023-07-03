@@ -12,8 +12,8 @@
                       <th>Lapso</th>
                       <th>Inicio</th>
                       <th>Fin</th>
-                      <th>Permiso para:</th>
-                      <th>Cargar Nota</th>
+                      <th>Permiso - Cargar Notas</th>
+                      <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -31,15 +31,9 @@
                                         <input type="checkbox" data-id="{{$lapso->id}} "class="toggle-class form-check-input" data-toggle="toggle" data-on="Enviado" data-off="Enviar" data-style="slow" {{$lapso->upload_note == True ? 'checked' : ''}}>
                                     </div>
                                 </td>
-                                @if ($lapso->upload_note == True)
                                     <td>
-                                        <a class="btn mr-2" href="{{ route('lapso_schools.uploadNotes', $lapso->id) }}">Subir Nota</a>
+                                        <span>{{ $lapso->upload_note == True ? 'Disponible' : 'No Disponible' }}</span>
                                     </td>
-                                @else
-                                    <td>
-                                        No disponible
-                                    </td>
-                                @endif
                             </tr>
                         @endforeach
                     @endforeach

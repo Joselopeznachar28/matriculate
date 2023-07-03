@@ -7,7 +7,7 @@
                 <input type="hidden" name="student_id" value="{{ $student->id }}">
                 <h2 class="text-center text-uppercase">Ficha de inscripcion del estudiante</h2><hr>
                 <div class="card-body text-center">
-                    <!-- nombres, apellidos y tipo de estudiantes, año, numero de inscripcion-->
+                    <!-- nombres, apellidos y tipo de estudiantes, año, seccion, numero de inscripcion-->
                     <div class="row">
                         <div class="col-sm-2">
                             <label for="year_school_id" class="form-label">Año a Cursar</label><br>
@@ -15,6 +15,17 @@
                                 <option value="">{{ __('Seleccione una opcion...') }}</option>
                                 @foreach ($year_schools as $year_school)
                                     <option value={{ $year_school->id }}>{{ $year_school->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="section_id" class="form-label">Seccion</label><br>
+                            <select name="section_id" id="section_id" class="form-control" required>
+                                <option value="">{{ __('Seleccione una opcion...') }}</option>
+                                @foreach ($year_schools as $year_school)
+                                    @foreach ($year_school->sections as $section)
+                                        <option value={{ $section->id }}>{{ $section->letter }}</option>
+                                    @endforeach
                                 @endforeach
                             </select>
                         </div>
@@ -219,7 +230,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <label for="repeat_with" class="col-form-label">{{ __('Repite Con : ') }}</label>
-                            <input type="text" name="repeat_with" id="repeat_with" value="{{ old('repeat_with') }}" class="form-control" placeholder="{{ __('Repite Con :') }}" required autofocus>
+                            <input type="text" name="repeat_with" id="repeat_with" value="{{ old('repeat_with') }}" class="form-control" placeholder="{{ __('Repite Con :') }}" autofocus>
         
                             @error('repeat_with')
                                 <span style="color: red;">{{ $message }} </span><br/>
@@ -231,7 +242,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <label for="pending_matter" class="col-form-label">{{ __('Materia Pendiente') }}</label>
-                            <input type="text" name="pending_matter" id="pending_matter" value="{{ old('pending_matter') }}" class="form-control" placeholder="{{ __('Ingrese las materias pendientes') }}" required autofocus>
+                            <input type="text" name="pending_matter" id="pending_matter" value="{{ old('pending_matter') }}" class="form-control" placeholder="{{ __('Ingrese las materias pendientes') }}" autofocus>
         
                             @error('pending_matter')
                                 <span style="color: red;">{{ $message }} </span><br/>

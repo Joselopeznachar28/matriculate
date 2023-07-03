@@ -15,6 +15,7 @@ class LapsoSchool extends Model
         'end',
         'academic_period_id',
         'upload_note',
+        'active',
     ];
 
     public function academic_periods(){

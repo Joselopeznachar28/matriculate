@@ -12,6 +12,7 @@ class StudentRecord extends Model
     protected $fillable = [
         'year_school_id',
         'student_id',
+        'section_id',
         'inscription_number',
         'type_student',
         'names',
@@ -66,6 +67,6 @@ class StudentRecord extends Model
     }
     
     public function sections(){
-        return  $this->belongsToMany(Section::class,'section_student_records','section_id','student_record_id');
+        return  $this->belongsTo(Section::class);
     }
 }
