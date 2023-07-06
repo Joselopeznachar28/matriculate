@@ -8,7 +8,7 @@
             <div class="col-sm-4"><h2>Seccion : {{ $section->letter }}</h2></div>
         </div><hr>
         <div class="card-body">
-            <form action="{{ route('teachers.asigneSubjectToTeacher') }}" method="POST">
+            <form action="{{ route('teachers.asigneSubjectToTeacher', $id) }}" method="POST">
                 @csrf
                 <div class="row justify-content-around">
                     <div class="col-sm-4">
@@ -23,7 +23,7 @@
                         <!-- Materias -->
                         <div class="col-sm-4">
                             <select name="subject_id[]" id="subject_id" class="form-control" required>
-                                <option value={{ $subject->id }}>{{ "($subject->code)". ' ' . $subject->name }}</option>
+                                <option value={{ $subject->id }}>{{ $subject->name }}</option>
                             </select>
                         </div>
                         <!-- Profesores -->

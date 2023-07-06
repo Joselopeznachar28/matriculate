@@ -25,6 +25,10 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function teacher(){
+        return  $this->belongsToMany(Teacher::class,'teacher_users','user_id','teacher_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -45,7 +49,4 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function teacher(){
-        return  $this->belongsToMany(Teacher::class,'teacher_users','user_id','teacher_id');
-    }
 }

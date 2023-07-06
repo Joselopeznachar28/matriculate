@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Section;
+use App\Models\StudentRecord;
 use App\Models\Subject;
+use App\Models\SubjectTeacher;
 use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Support\Str;
 use App\Models\YearSchool;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use PhpParser\Node\Expr\Cast\Object_;
 
 class TeacherController extends Controller
 {
@@ -19,7 +23,7 @@ class TeacherController extends Controller
     }
 
     public function create(){
-        $subjects = Subject::with('sections')->get();
+        $subjects = Subject::all();
         return view('teachers.create',compact('subjects'));
     }
 
@@ -63,23 +67,32 @@ class TeacherController extends Controller
 
     public function asigneSubjectToTeacherView(){
         $sections = Section::with('year_school')->get();
+        // dd($sections);
         return view('teachers.asigneSubjectToTeacherView',compact('sections'));
     }
     
     public function subjectYear($id){
         $teachers = Teacher::all();
         $section = Section::find($id)->load('year_school.subjects');
-        return view('teachers.subjectYear',compact('teachers','section'));
+        return view('teachers.subjectYear',compact('teachers','section','id'));
     }
 
-    public function asigneSubjectToTeacher(Request $request){
+    public function asigneSubjectToTeacher(Request $request,$id){
+
+        $section = Section::find($id);
+        $section_id = $section->id;
 
         $subjects = $request->subject_id;
         $teachers = $request->teacher_id;
 
         foreach ($teachers as $key => $teacher) {
-                $t = Teacher::find($teacher);
-                $t->subjects()->attach($subjects[$key]);
+            $subjectTeacher = new SubjectTeacher();
+            // $t = Teacher::find($teacher);
+            // $t->subjects()->attach($subjects[$key]);
+            $subjectTeacher->teacher_id = $teacher;
+            $subjectTeacher->subject_id = $subjects[$key];
+            $subjectTeacher->section_id = $section_id;
+            $subjectTeacher->save();
         }
 
         return redirect()->route('teachers.asigneSubjectToTeacherView');
@@ -99,6 +112,36 @@ class TeacherController extends Controller
 
         notify()->success('El usuario ha sido generado exitosamente');
         return redirect()->route('teachers.index');
+    }
+
+    public function academic_charge(){
+
+        $user_active_id = Auth::user()->id;
+        $user = User::find($user_active_id);
+
+        $array = [];
+
+        foreach ($user->teacher as $t) {
+            foreach ($t->subjects as $subject) {
+                $section_name = Section::find($subject->pivot->section_id);
+                $object = [
+                    'subject' => $subject,
+                    'year_school'    => $subject->year_school,
+                    'section' => $section_name,
+                ];
+                array_push( $array, $object );
+            }
+        }
+
+        return view('teachers.academic_charge',compact('user','array'));
+
+    }
+
+    public function notes_charge($year_school_id, $subject_id, $section_id){
+        // dd($section_id);
+        $record_students = StudentRecord::where('year_school_id', '=', $year_school_id)->where('section_id', '=', $section_id)->get();
+        // dd($record_students);
+        return view('teachers.notes_charge',compact('year_school_id','subject_id','section_id','record_students'));
     }
 
 }

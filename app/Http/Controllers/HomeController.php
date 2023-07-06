@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Section;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +26,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
+    {  
         $user = User::find(Auth::user()->id);
         return view('home',compact('user'));
     }

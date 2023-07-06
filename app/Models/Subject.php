@@ -18,13 +18,11 @@ class Subject extends Model
     public function year_school(){
         return  $this->belongsTo(YearSchool::class);
     }
-
+    // public function sections(){
+    //     return $this->belongsToMany(Section::class,'subject_teachers','teacher_id','subject_id','section_id');
+    // }
     public function teachers(){
-        return  $this->belongsToMany(Teacher::class, 'subject_teachers','teacher_id','subject_id');
-    }
-    
-    public function sections(){
-        return  $this->hasMany(Section::class);
+        return  $this->belongsToMany(Teacher::class, 'subject_teachers','teacher_id','subject_id')->withPivot('section_id');
     }
 
     public function notes(){

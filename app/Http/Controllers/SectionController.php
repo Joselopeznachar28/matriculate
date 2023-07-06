@@ -26,7 +26,6 @@ class SectionController extends Controller
             'letter' => $request->letter,
             'academic_period_id' => $request->academic_period_id,
             'year_school_id' => $request->year_school_id,
-            'subject_id' => $request->subject_id,
         ]);
 
         return redirect()->route('sections.create');

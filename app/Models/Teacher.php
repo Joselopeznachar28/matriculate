@@ -18,15 +18,12 @@ class Teacher extends Model
     ];
 
     public function subjects(){
-        return  $this->belongsToMany(Subject::class,'subject_teachers','teacher_id','subject_id');
-    }
-
-    public function sections(){
-        return  $this->belongsToMany(Section::class,'section_teachers','teacher_id','section_id');
+        return  $this->belongsToMany(Subject::class,'subject_teachers','teacher_id','subject_id')->withPivot('section_id');
     }
 
     public function user(){
         return  $this->belongsToMany(User::class,'teacher_users','user_id','teacher_id');
     }
+
 
 }

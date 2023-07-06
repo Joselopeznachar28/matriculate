@@ -70,7 +70,7 @@ Route::post('ProfesorUsuario/{id}', [TeacherController::class, 'generateUserTeac
 //asignar materias al profesor
 Route::get('Asignacion-de-materias', [TeacherController::class, 'asigneSubjectToTeacherView'])->name('teachers.asigneSubjectToTeacherView');
 Route::get('Materias-por-años/{id}', [TeacherController::class, 'subjectYear'])->name('teachers.subjectYear');
-Route::post('Asignacion-de-materias', [TeacherController::class, 'asigneSubjectToTeacher'])->name('teachers.asigneSubjectToTeacher');
+Route::post('Asignacion-de-materias/{id}', [TeacherController::class, 'asigneSubjectToTeacher'])->name('teachers.asigneSubjectToTeacher');
 //Periodo Academico
 Route::get('PeriodoAcademico', [AcademicPeriodController::class, 'index'])->name('academic_period.index');
 Route::get('PeriodoAcademico/create', [AcademicPeriodController::class, 'create'])->name('academic_period.create'); 
@@ -84,11 +84,10 @@ Route::get('changeStatus', [LapsoSchoolController::class, 'changeStatus'])->name
 Route::get('Seccion', [SectionController::class, 'index'])->name('sections.index');
 Route::get('Seccion/crear', [SectionController::class, 'create'])->name('sections.create');
 Route::post('Seccion', [SectionController::class, 'store'])->name('sections.store');
-//Notas
-Route::get('Lista-de-Notas', [NoteController::class, 'index'])->name('notes.index'); 
-Route::get('Carga-de-Notas/{id}', [NoteController::class, 'create'])->name('notes.create'); 
-Route::post('Seccion', [NoteController::class, 'store'])->name('notes.store'); 
-
+//Carga Academica
+Route::get('Carga-Academica', [TeacherController::class, 'academic_charge'])->name('academic_charge.index'); 
+Route::get('Carga-de-Notas/{year_school_id}/{subject_id}/{section_id}', [TeacherController::class, 'notes_charge'])->name('notes_charge'); 
+// Route::post('Seccion', [NoteController::class, 'store'])->name('notes.store'); 
 //roles
 Route::get('Roles', [RoleController::class,'index'])->name('roles.index');
 Route::get('Roles/Crear', [RoleController::class,'create'])->name('roles.create');

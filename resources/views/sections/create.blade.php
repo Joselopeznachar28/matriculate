@@ -9,7 +9,7 @@
             <div class="card-body">
                 <div class="row">
                     <!-- periodo academico -->
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <label for="academic_period_id" class="col-form-label">{{ __('Periodo Academico') }}</label>
                         <input  name="academic_period_id" id="academic_period_id" value="{{ $academic_period->id }}" class="form-control" placeholder="{{ $academic_period->name }}" readonly autofocus>
     
@@ -18,7 +18,7 @@
                         @enderror
     
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <label class="col-form-label">Año Escolar</label>
                         <select name="year_school_id" id="year_school_id" class="form-control" required>
                             <option value="">{{ __('Seleccione un año escolar...') }}</option>
@@ -27,21 +27,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-sm-3">
-                        <label class="col-form-label">Materias</label>
-                        <select name="subject_id" id="subject_id" class="form-control" required>
-                            <option value="">{{ __('Seleccione una materia...') }}</option>
-                            @foreach ($year_schools as $year_school)
-                                <option disabled class="bg-black text-white text-uppercase">{{ $year_school->name }}</option>
-                                @foreach ($year_school->subjects as $subject)
-                                    @if ($year_school->id === $subject->year_school_id)
-                                        <option class="text-uppercase" value="{{ $subject->id }}">{{"( $subject->code )" . ' ' . $subject->name  }} </option>
-                                    @endif
-                                @endforeach
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <label for="letter" class="col-form-label">{{ __('Asignar Seccion') }}</label>
                         <input type="text" name="letter" id="letter" value="{{ old('letter') }}" class="form-control" placeholder="{{ __('Ingrese la Letra') }}" required autofocus>
     
