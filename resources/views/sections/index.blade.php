@@ -15,15 +15,17 @@
                   </thead>
                   <tbody>
                     @foreach ($year_schools as $year_school)
-                        @foreach ($year_school->academic_periods as $academic_period)
-                            @foreach ($academic_period->sections as $section)
-                                <tr>
-                                    <td>{{ $section->year_school->name }}</td>
-                                    <td>{{ $academic_period->name }}</td>
-                                    <td>{{ $section->subject->name }}</td>
-                                    <td>{{ $section->subject->code }}</td>
-                                    <td>{{ $section->letter }}</td>
-                                </tr>
+                        @foreach ($year_school->subjects as $subject)
+                            @foreach ($year_school->academic_periods as $academic_period)
+                                @foreach ($academic_period->sections as $section)
+                                    <tr>
+                                        <td>{{ $section->year_school->name }}</td>
+                                        <td>{{ $academic_period->name }}</td>
+                                        <td>{{ $subject->name }}</td>
+                                        <td>{{ $subject->code }}</td>
+                                        <td>{{ $section->letter }}</td>
+                                    </tr>
+                                @endforeach
                             @endforeach
                         @endforeach
                     @endforeach

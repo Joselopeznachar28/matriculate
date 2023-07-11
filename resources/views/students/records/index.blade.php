@@ -32,6 +32,7 @@
                                 <a href="{{route('student_records.edit',$student_record->id)}}" class="btn btn-warning mr-2">Editar</a>
                                 <a href="{{route('student_records.proof_of_registration', $student_record->id)}}" class="btn btn-info mr-2">Inscripcion</a>
                                 <a href="{{route('student_records.proof_of_study',$student_record->student->id)}}" class="btn btn-info mr-2">Estudio</a>
+                                <a href="{{route('student_records.bulletin',$student_record)}}" class="btn btn-info mr-2">Boletin</a>
                             </td>
                         </tr>
                     @endforeach

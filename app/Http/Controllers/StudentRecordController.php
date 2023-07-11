@@ -163,12 +163,17 @@ class StudentRecordController extends Controller
     public function proof_of_registration($id){
 
         $student_record = StudentRecord::find($id);
-
-        // $student = Student::find($id)->load('student_records.year_school');
-        // dd($student_record);
         $pdf = PDF::loadView('students.records.proof_of_registration', compact('student_record'))->setOptions(['defaultFont' => 'sans-serif']);
 
         return $pdf->stream();
 
+    }
+
+    public function bulletin($id){
+
+        $student_record = StudentRecord::find($id);
+        $pdf = PDF::loadView('students.records.bulletin', compact('student_record'))->setOptions(['defaultFont' => 'sans-serif']);
+
+        return $pdf->stream();
     }
 }

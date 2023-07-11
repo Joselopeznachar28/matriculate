@@ -16,6 +16,9 @@ class YearSchool extends Model
     public function subjects(){
         return  $this->hasMany(Subject::class);
     }
+    public function notes(){
+        return  $this->hasMany(Note::class);
+    }
 
     public function student_records(){
         return $this->hasMany(StudentRecord::class);

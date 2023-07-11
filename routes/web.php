@@ -58,6 +58,7 @@ Route::put('Ficha-de-estudiante/{id}/update', [StudentRecordController::class, '
 //pdf para constancias
 Route::get('Constancia-de-estudio/{id}', [StudentRecordController::class, 'proof_of_study'])->name('student_records.proof_of_study');
 Route::get('Constancia-de-inscripcion/{id}', [StudentRecordController::class, 'proof_of_registration'])->name('student_records.proof_of_registration');
+Route::get('Boletin-de-estudio/{id}', [StudentRecordController::class, 'bulletin'])->name('student_records.bulletin');
 //Teachers
 Route::get('Profesor', [TeacherController::class, 'index'])->name('teachers.index');
 Route::get('Profesor/crear', [TeacherController::class, 'create'])->name('teachers.create');
@@ -84,10 +85,10 @@ Route::get('changeStatus', [LapsoSchoolController::class, 'changeStatus'])->name
 Route::get('Seccion', [SectionController::class, 'index'])->name('sections.index');
 Route::get('Seccion/crear', [SectionController::class, 'create'])->name('sections.create');
 Route::post('Seccion', [SectionController::class, 'store'])->name('sections.store');
-//Carga Academica
+//Carga Academica y de notas
 Route::get('Carga-Academica', [TeacherController::class, 'academic_charge'])->name('academic_charge.index'); 
 Route::get('Carga-de-Notas/{year_school_id}/{subject_id}/{section_id}', [TeacherController::class, 'notes_charge'])->name('notes_charge'); 
-// Route::post('Seccion', [NoteController::class, 'store'])->name('notes.store'); 
+Route::post('Carga-de-Notas', [TeacherController::class, 'notes_charge_store'])->name('notes_charge.store'); 
 //roles
 Route::get('Roles', [RoleController::class,'index'])->name('roles.index');
 Route::get('Roles/Crear', [RoleController::class,'create'])->name('roles.create');

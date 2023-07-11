@@ -15,10 +15,11 @@ return new class extends Migration
             $table->bigIncrements('id');
 
             $table->integer('note');
-            $table->string('type_note'); //final o reparacion
+            // $table->string('type_note'); //final o reparacion
 
             $table->foreignId('student_record_id')->constrained('student_records')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('subject_id')->constrained('subjects')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('year_school_id')->constrained('year_schools')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('lapso_id')->constrained('lapso_schools')->onDelete('cascade')->onUpdate('cascade'); 
             $table->foreignId('section_id')->constrained('sections')->onDelete('cascade')->onUpdate('cascade'); 
 

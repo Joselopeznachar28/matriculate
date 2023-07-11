@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LapsoSchool;
+use App\Models\Note;
 use App\Models\Section;
 use App\Models\StudentRecord;
 use App\Models\Subject;
 use App\Models\SubjectTeacher;
 use App\Models\Teacher;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Models\YearSchool;
 use Illuminate\Http\Request;
@@ -67,7 +70,6 @@ class TeacherController extends Controller
 
     public function asigneSubjectToTeacherView(){
         $sections = Section::with('year_school')->get();
-        // dd($sections);
         return view('teachers.asigneSubjectToTeacherView',compact('sections'));
     }
     
@@ -87,8 +89,7 @@ class TeacherController extends Controller
 
         foreach ($teachers as $key => $teacher) {
             $subjectTeacher = new SubjectTeacher();
-            // $t = Teacher::find($teacher);
-            // $t->subjects()->attach($subjects[$key]);
+
             $subjectTeacher->teacher_id = $teacher;
             $subjectTeacher->subject_id = $subjects[$key];
             $subjectTeacher->section_id = $section_id;
@@ -138,10 +139,48 @@ class TeacherController extends Controller
     }
 
     public function notes_charge($year_school_id, $subject_id, $section_id){
-        // dd($section_id);
+
+        //comparacion entre fechas para saber cual es el lapso que esta activo.
+        $now = new Carbon;
+        $activeLapso = $now->toDateString();
+        $lapsos = LapsoSchool::where('init', '<=', $activeLapso)->where('end', '>=', $activeLapso)->get();
+        foreach ($lapsos as $key => $lapso) {
+            $lapso_id = $lapso->id;
+        }
+
+        //actualizando el status del lapso que esta activo
+        $activarLapso = LapsoSchool::findOrFail($lapso_id)->update([
+            'active' => 1,
+        ]);
+
+        $lapso = LapsoSchool::find($lapso_id);
+
+        $year_school = YearSchool::find($year_school_id);
+        $subject = Subject::find($subject_id);
+        $section = Section::find($section_id);
         $record_students = StudentRecord::where('year_school_id', '=', $year_school_id)->where('section_id', '=', $section_id)->get();
-        // dd($record_students);
-        return view('teachers.notes_charge',compact('year_school_id','subject_id','section_id','record_students'));
+        return view('teachers.notes_charge',compact('year_school','subject','section','record_students','lapso'));
+    }
+
+    public function notes_charge_store(Request $request){
+        $students = $request->student_record_id;
+        $notes = $request->note;
+
+        foreach ($students as $key => $student_record_id) {
+
+            $note = new Note();
+
+            $note->note = $notes[$key];
+            $note->year_school_id = $request->year_school_id;
+            $note->subject_id = $request->subject_id;
+            $note->section_id = $request->section_id;
+            $note->lapso_id = $request->lapso_id;
+            $note->student_record_id = $student_record_id;
+
+            $note->save();
+        }
+
+       return redirect()->route('academic_charge.index'); 
     }
 
 }

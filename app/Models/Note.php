@@ -11,10 +11,11 @@ class Note extends Model
 
     protected $fillable = [
         'note',
-        'type_note',
+        // 'type_note',
         'student_record_id',
         'subject_id',
         'lapso_id',
+        'year_school_id',
         'section_id',
     ];
 
@@ -29,5 +30,8 @@ class Note extends Model
     }
     public function section(){
         return $this->belongsTo(Section::class);
+    }
+    public function year_school(){
+        return $this->belongsTo(YearSchool::class);
     }
 }

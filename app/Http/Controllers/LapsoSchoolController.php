@@ -20,10 +20,6 @@ class LapsoSchoolController extends Controller
 
     public function store(Request $request){
         
-        $request->validate([
-            'number' => 'required'
-        ]);
-        
         $lapso_schools = LapsoSchool::create([
             'academic_period_id' => $request->academic_period_id,
             'number' => $request->number,
@@ -41,10 +37,10 @@ class LapsoSchoolController extends Controller
         return response()->json(['Aprobado' => 'Puede subir notas!']);
     }
 
-    public function uploadNotes($id){
-        $lapso = LapsoSchool::find($id);
-        $period_academic = AcademicPeriod::find($lapso->academic_period_id)->load('year_schools.subjects.sections.student_records','year_schools.student_records');
-        dd($period_academic);
-        dd($lapso);
-    }
+    // public function uploadNotes($id){
+    //     $lapso = LapsoSchool::find($id);
+    //     $period_academic = AcademicPeriod::find($lapso->academic_period_id)->load('year_schools.subjects.sections.student_records','year_schools.student_records');
+    //     dd($period_academic);
+    //     dd($lapso);
+    // }
 }
