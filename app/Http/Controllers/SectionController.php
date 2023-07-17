@@ -28,6 +28,7 @@ class SectionController extends Controller
             'year_school_id' => $request->year_school_id,
         ]);
 
+        notify()->success('Ha sido creada la seccion ' . "'$section->letter'", 'Creada');
         return redirect()->route('sections.create');
 
     }

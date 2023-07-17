@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TeacherRequest;
 use App\Models\LapsoSchool;
 use App\Models\Note;
 use App\Models\Section;
@@ -16,7 +17,6 @@ use App\Models\YearSchool;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use PhpParser\Node\Expr\Cast\Object_;
 
 class TeacherController extends Controller
 {
@@ -30,7 +30,7 @@ class TeacherController extends Controller
         return view('teachers.create',compact('subjects'));
     }
 
-    public function store(Request $request){
+    public function store(TeacherRequest $request){
         // dd($request->all());
         $teacher = Teacher::create([
             'name' => $request->name,
@@ -40,7 +40,7 @@ class TeacherController extends Controller
             'email' => $request->email,
         ]);
 
-        notify()->success('Los datos se han guardado exitosamente');
+        notify()->success('Ha sido cread@ el/la Profesor/a ' . "'$teacher->name $teacher->lastname'", 'Guardad@');
         return redirect()->route('teachers.create');
     }
 
@@ -56,16 +56,19 @@ class TeacherController extends Controller
             'identification'=>$request->input('identification'),
             'email'=>$request->input('email'),
         ]);
-        notify()->success('Los datos se han editado exitosamente');
+        notify()->success('Ha sido actualizad@ el/la Profesor/a ' . "'$teacher->name $teacher->lastname'", 'Actualizad@');
         return redirect()->route('teachers.index');
     }
 
     public function destroy($id){
 
         $teacher = Teacher::find($id);
+        $user = User::where('email',$teacher->email)->get();
+        $u = User::find($user[0]->id);
+        $u->delete();
         $teacher->delete();
-        notify()->success('Los datos han sido eliminado exitosamente');
-        return back();
+        notify()->success('Ha sido eliminad@ el/la Profesor/a ' . "'$teacher->name $teacher->lastname'", 'Eliminad@');
+        return redirect()->route('teachers.index');
     }
 
     public function asigneSubjectToTeacherView(){
@@ -88,6 +91,7 @@ class TeacherController extends Controller
         $teachers = $request->teacher_id;
 
         foreach ($teachers as $key => $teacher) {
+        
             $subjectTeacher = new SubjectTeacher();
 
             $subjectTeacher->teacher_id = $teacher;
@@ -95,7 +99,7 @@ class TeacherController extends Controller
             $subjectTeacher->section_id = $section_id;
             $subjectTeacher->save();
         }
-
+        notify()->success('Las Materias fueron asignadas correctamente!', 'Exitoso');
         return redirect()->route('teachers.asigneSubjectToTeacherView');
     }
 
@@ -111,7 +115,7 @@ class TeacherController extends Controller
 
         $user->teacher()->attach($teacher->id);
 
-        notify()->success('El usuario ha sido generado exitosamente');
+        notify()->success('Ha sido generado el usuario' . "'$user->name'", 'Generado');
         return redirect()->route('teachers.index');
     }
 
@@ -179,7 +183,7 @@ class TeacherController extends Controller
 
             $note->save();
         }
-
+        notify()->success('Las notas han sido cargada exitosamente!', 'Exitoso');
        return redirect()->route('academic_charge.index'); 
     }
 

@@ -27,7 +27,7 @@
             <div class="img-logo-nav">
                 <img src="{{ asset('img/logo.png') }}" alt="logo">
             </div>
-            <a href="{{ route('home') }}">Dashboard</a>
+            <a href="{{ route('dashboard') }}">Dashboard</a>
             @foreach (Auth::user()->roles as $role)
                 @if ($role->name == 'Teacher')
                     <!-- hace referencia a Periodos Academicos -->
@@ -185,7 +185,6 @@
         </div>
         <!-- barra de navegacion principal -->
         <div class="nav-principal container d-flex justify-content-end">
-
             <div class="accordion-item" style="margin-top: 1rem;">
                 
                 <a id="navbarDropdown" style="text-decoration: none; color: #000;" class="nav-item" href="#Logout" data-bs-toggle="collapse" aria-controls="Logout" aria-expanded="false" v-pre>
@@ -207,7 +206,6 @@
             </div>
         </div>
     </div>
-
     @yield('content')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

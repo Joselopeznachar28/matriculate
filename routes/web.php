@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('Dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
 
 Route::get('Usuarios', [UserController::class, 'index'])->name('users.index');
 Route::get('Crear-Usuario', [UserController::class, 'create'])->name('users.create');
@@ -46,12 +47,14 @@ Route::delete('Materias/{id}', [SubjectController::class, 'destroy'])->name('sub
 //Students
 Route::get('Estudiantes', [StudentController::class, 'index'])->name('students.index');
 Route::get('Estudiantes/crear', [StudentController::class, 'create'])->name('students.create');
+Route::get('Estudiantes/Detalles/{id}', [StudentController::class, 'show'])->name('students.show');
 Route::post('Estudiantes', [StudentController::class, 'store'])->name('students.store');
 Route::get('Estudiantes/{id}/editar', [StudentController::class, 'edit'])->name('students.edit');
 Route::put('Estudiantes/{id}/update', [StudentController::class, 'update'])->name('students.update');
 //Student Records
 Route::get('Fichas-de-estudiantes', [StudentRecordController::class, 'index'])->name('student_records.index');
 Route::get('Ficha-de-estudiante/crear/{id}', [StudentRecordController::class, 'create'])->name('student_records.create');
+Route::get('Ficha-de-estudiante/detalles/{id}', [StudentRecordController::class, 'show'])->name('student_records.show');
 Route::post('Ficha-de-estudiante', [StudentRecordController::class, 'store'])->name('student_records.store');
 Route::get('Ficha-de-estudiante/{id}/editar', [StudentRecordController::class, 'edit'])->name('student_records.edit');
 Route::put('Ficha-de-estudiante/{id}/update', [StudentRecordController::class, 'update'])->name('student_records.update');
@@ -76,6 +79,8 @@ Route::post('Asignacion-de-materias/{id}', [TeacherController::class, 'asigneSub
 Route::get('PeriodoAcademico', [AcademicPeriodController::class, 'index'])->name('academic_period.index');
 Route::get('PeriodoAcademico/create', [AcademicPeriodController::class, 'create'])->name('academic_period.create'); 
 Route::post('PeriodoAcademico', [AcademicPeriodController::class, 'store'])->name('academic_period.store'); 
+Route::get('PeriodoAcademico/Editar/{id}', [AcademicPeriodController::class, 'edit'])->name('academic_period.edit'); 
+Route::put('PeriodoAcademico/{id}', [AcademicPeriodController::class, 'update'])->name('academic_period.update'); 
 //Lapsos (por años)
 Route::get('Lapsos', [LapsoSchoolController::class, 'index'])->name('lapso_schools.index');
 Route::get('AñadirLapso/create/{id}', [LapsoSchoolController::class, 'create'])->name('lapso_schools.create'); 

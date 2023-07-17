@@ -20,13 +20,12 @@ class SubjectController extends Controller
     }
 
     public function store(Request $request){
-        // dd($request->all());
         $subject = Subject::create([
             'name' => $request->name,
             'code' => strtoupper( Str::random(5)),
             'year_school_id' => $request->year_school_id,
         ]);
-
+        notify()->success('La materia ' . $subject->name . ' se ha creado con exito','Creado');
         return redirect()->route('subjets.create');
     }
 
@@ -42,13 +41,14 @@ class SubjectController extends Controller
         $subject = Subject::where('id','=',$id)->update([
             "name" => $request->name,
         ]);
-
+        notify()->success('La materia ' . $subject->name . ' se ha editado con exito','Actualizado');
         return redirect()->route('subjets.index');
     }
 
     public function destroy($id){
         $subject = Subject::find($id);
         $subject->delete();
+        notify()->success('La materia ' . $subject->name . ' se ha eliminado con exito','Eliminado');
         return back();
     }
 }

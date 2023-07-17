@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -18,10 +18,11 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @notifyCss
 </head>
 <body>
     <nav class="navbar">
-            <img src="{{ asset('img/logo.png') }}" alt="Logo"  height="100" class="d-inline-block align-text-top">
+        <img src="{{ asset('img/logo.png') }}" alt="Logo" style="height: 100px;" class="d-inline-block align-text-top">
         <div class="container d-flex justify-content-evenly" id="accordionExample">
             <div class="accordion-item">
                 <a href="{{ route('home') }}">{{ __('Dashboard') }}</a>
@@ -117,6 +118,7 @@
                 </a>
 
                 <div class="collapse dropdown-menu-end" aria-labelledby="navbarDropdown" id="Logout">
+                    <a href="{{ route('users.edit', Auth::user()->id) }}" style="text-decoration: none; color: #000;">Editar</a><br>
                     <a class="nav-item text-dark" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
@@ -135,5 +137,7 @@
             @yield('content')
         </main>
     </div>
+    <x-notify::notify />
+    @notifyJs
 </body>
 </html>

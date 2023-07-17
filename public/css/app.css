@@ -1,3 +1,12 @@
+h1,
+h2,
+h3,
+h4{
+    font-size: 2rem !important;
+    margin-bottom: .5rem !important;
+    margin-top: .5rem !important;
+}
+
 #img-body{
     height:  100%;
     width: 100%;
@@ -184,4 +193,17 @@ ul{
     color: #ffffff !important;
     font-weight: 700 !important;
 
+}
+
+.cards-dashboard{
+    max-width: 50%;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.cards-dashboard .card{
+    background-color: #e97732;
+    color: #ffffff;
 }

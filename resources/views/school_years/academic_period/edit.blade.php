@@ -1,16 +1,17 @@
 @extends('layouts.form')
 
 @section('content')
-    <form action="{{ route('academic_period.store') }}" method="POST">
+    <form action="{{ route('academic_period.update',$period->id) }}" method="POST">
         @csrf
+        @method('PUT')
         <!-- Name -->
         <div class="card p-4 border border-4">
-            <h1 class="text-center text-uppercase">Agregar periodo academico</h1><hr>
+            <h1 class="text-center text-uppercase">Editar Periodo academico</h1><hr>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-3">
                         <label for="name" class="col-form-label">{{ __('Nombre') }}</label>
-                        <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control" required autofocus>
+                        <input type="text" name="name" id="name" value="{{ $period->name }}" class="form-control" required autofocus>
     
                         @error('name')
                             <span style="color: red;">{{ $message }} </span><br/>
@@ -19,7 +20,7 @@
                     </div>
                     <div class="col-sm-3">
                         <label for="init" class="col-form-label">{{ __('Inicio de Periodo Academico') }}</label>
-                        <input type="date" name="init" id="init" value="{{ old('init') }}" class="form-control" required autofocus>
+                        <input type="date" name="init" id="init" value="{{ $period->init }}" class="form-control" required autofocus>
     
                         @error('init')
                             <span style="color: red;">{{ $message }} </span><br/>
@@ -28,7 +29,7 @@
                     </div>
                     <div class="col-sm-3">
                         <label for="end" class="col-form-label">{{ __('Fin del Periodo Academico') }}</label>
-                        <input type="date" name="end" id="end" value="{{ old('end') }}" class="form-control" required autofocus>
+                        <input type="date" name="end" id="end" value="{{ $period->end }}" class="form-control" required autofocus>
     
                         @error('end')
                             <span style="color: red;">{{ $message }} </span><br/>

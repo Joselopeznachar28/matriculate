@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsersRequest;
 use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,13 +21,13 @@ class UserController extends Controller
         return view('auth.register');
     }
 
-    public function store(Request $request){
+    public function store(UsersRequest $request){
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
+        notify()->success('El usuario ' . "'$user->name'" . ' ha sido creado exitosamente!', 'Creado');
         return redirect()->route('users.index');
     }
 
@@ -48,13 +49,14 @@ class UserController extends Controller
         $roles = $request->role_id;
 
         $user->roles()->sync($roles);
-
+        notify()->success('El usuario ' . "'$user->name'" . ' ha sido editado exitosamente!', 'Editado');
         return redirect()->route('users.index');
     }
 
     public function destroy($id){
         $user = User::find($id);
         $user->delete();
+        notify()->success('El usuario ' . "'$user->name'" . ' ha sido eliminado exitosamente!', 'Eliminado');
         return back();
     }
 
@@ -74,6 +76,7 @@ class UserController extends Controller
             }
         }
 
+        notify()->success('Los roles del usuario ' . "'$user->name'" . ' han sido asignados exitosamente!', 'Exitoso');
         return redirect()->route('users.index');
     }
 }

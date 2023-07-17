@@ -43,7 +43,7 @@ return new class extends Migration
             $table->text('reference_point');
             $table->text('pattern_names');
             $table->text('pattern_lastnames');
-            $table->integer('pattern_identification')->unique();
+            $table->integer('pattern_identification');
             $table->text('pattern_state_of_birth');
             $table->date('pattern_birthdate');
             $table->text('pattern_place_of_birth');

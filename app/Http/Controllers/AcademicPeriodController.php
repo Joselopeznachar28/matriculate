@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AcademicPeriodRequest;
 use App\Models\AcademicPeriod;
 use App\Models\YearSchool;
 use Illuminate\Http\Request;
@@ -18,22 +19,40 @@ class AcademicPeriodController extends Controller
         return view('school_years.academic_period.create',compact('year_schools'));
     }
 
-    public function store(Request $request){
-        $academic_period =  new AcademicPeriod();
+    public function store(AcademicPeriodRequest $request){
 
-        $academic_period->name = $request->name;
-        $academic_period->init = $request->init;
-        $academic_period->end = $request->end;
+        $academic_period = AcademicPeriod::create([
+            'name' => request('name'),
+            'init' => request('init'),
+            'end' => request('end'),
 
-        $academic_period->save();
-
+        ]);
+        
         foreach ($request->year_id as $year_school) {
             if(!empty($year_school)){
-               $academic_period->year_schools()->attach($year_school);
+                $academic_period->year_schools()->attach($year_school);
             }
         }
-
+        
+        notify()->success('El periodo academico ' . "'$academic_period->name'"  .' se ha creado con exito', 'Creado');
         return redirect()->route('academic_period.index');
 
+    }
+
+    public function edit($id){
+        $year_schools = YearSchool::all();
+        $period = AcademicPeriod::find($id);
+        return view('school_years.academic_period.edit',compact('period','year_schools'));
+    }
+
+    public function update(Request $request, $id){
+
+        $academic_period = AcademicPeriod::findOrFail($id)->update([
+            'name' => request('name'),
+            'init' => request('init'),
+            'end'  => request('end')
+        ]);
+        notify()->success('El periodo academico ' . "'$academic_period->name'"  .' se ha actualizado con exito', 'Actualizado');
+        return redirect()->route('academic_period.index');
     }
 }

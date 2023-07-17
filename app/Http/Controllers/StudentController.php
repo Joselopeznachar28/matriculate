@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentsRequest;
 use App\Models\Student;
 use App\Models\YearSchool;
 use Carbon\Carbon;
@@ -19,7 +20,7 @@ class StudentController extends Controller
         return view('students.create');
     }
 
-    public function store(Request $request){
+    public function store(StudentsRequest $request){
 
         $student = Student::create([
             'names'                 =>  $request->names,
@@ -48,7 +49,7 @@ class StudentController extends Controller
             'reference_point'       =>  $request->reference_point,
             'student_live_with'     =>  $request->student_live_with,
         ]);
-
+        notify()->success('Ha sido añadido el/la estudiante ' . "'$student->names $student->lastnames'", 'Cread@');
         return redirect()->route('students.create');
 
     }
@@ -117,16 +118,20 @@ class StudentController extends Controller
             'student_live_with'     =>  $student->student_live_with,
         ]);
        }
-
+       notify()->success('Ha sido actualizad@ el/la estudiante ' . "'$student->names $student->lastnames'", 'Actualizad@');
         return redirect()->route('students.index',compact('student'));
 
     }
 
+    public function show($id){
+        $student = Student::find($id);
+        return view('students.show',compact('student'));
+    }
     public function destroy($id){
 
         $student = Student::find($id);
         $student->delete();
-
+        notify()->success('Ha sido eliminad@ el/la estudiante ' . "'$student->names $student->lastnames'", 'Eliminad@');
         return back();
     }
 

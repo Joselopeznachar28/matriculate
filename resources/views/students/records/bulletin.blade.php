@@ -7,7 +7,7 @@
     <title>Boletin</title>
 </head>
 <body>
-
+    <div>
         <div style="width: 50%;">
             <!-- primer momento pedagogico -->
             <span>I MOMENTO PEDAGOGICO</span><br>
@@ -39,12 +39,69 @@
         <div style="width: 50%; float: right;">
             
         </div>
-    {{-- @foreach ($student_record->year_school->subjects as $k => $subject)
-            <div class="row">
-                <div class="col-sm-12">
-                    <span>{{ $subject->name }}</span>
-                </div>
-            </div>
-    @endforeach --}}
+    </div>
+    <div style="page-break-before: always;">
+        <table>
+            <thead style="text-transform: uppercase;">
+                <tr>
+                    <th style="border: #000000 solid 1px;">Areas de Formacion</th>
+                    <th style="border: #000000 solid 1px;">1er Lapso</th>
+                    <th style="border: #000000 solid 1px;">2do Lapso</th>
+                    <th style="border: #000000 solid 1px;">3er Lapso</th>
+                    <th style="border: #000000 solid 1px;">Definitiva</th>
+                    <th style="border: #000000 solid 1px;">Calif. Revision</th>
+                    <th style="border: #000000 solid 1px;">Fecha de Revision</th>
+                    <th style="border: #000000 solid 1px;">Firma del coord. de eval.</th>
+                </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: #000000 solid 1px;">
+                        @foreach ($student_record[0]->year_school->subjects as $k => $subject)
+                            {{ $subject->name }}
+                        @endforeach 
+                    </td>
+                    <td style="border: #000000 solid 1px;">
+                        @foreach ($student_record[0]->year_school->subjects as $k => $subject)
+                            @foreach ($subject->notes as $note)
+                                {{ $note->note }}
+                            @endforeach
+                        @endforeach 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead style="text-transform: uppercase;">
+                <tr>
+                    <th style="padding: .2rem; border: #000000 solid 1px;">Materia Pendiente</th>
+                    <th style="padding: .2rem; border: #000000 solid 1px;">1er momento fecha</th>
+                    <th style="padding: .2rem; border: #000000 solid 1px;">2do momento fecha</th>
+                    <th style="padding: .2rem; border: #000000 solid 1px;">3er momento fecha</th>
+                    <th style="padding: .2rem; border: #000000 solid 1px;">4to momento fecha</th>
+                    <th style="padding: .2rem; border: #000000 solid 1px;">firma del coord. de eval.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: #000000 solid 1px; height: 25px;"></td>
+                    <td style="border: #000000 solid 1px; height: 25px;"></td>
+                    <td style="border: #000000 solid 1px; height: 25px;"></td>
+                    <td style="border: #000000 solid 1px; height: 25px;"></td>
+                    <td style="border: #000000 solid 1px; height: 25px;"></td>
+                    <td style="border: #000000 solid 1px; height: 25px;"></td>
+                </tr>
+                <tr>
+                    <td style="border: #000000 solid 1px; height: 25px;"></td>
+                    <td style="border: #000000 solid 1px; height: 25px;"></td>
+                    <td style="border: #000000 solid 1px; height: 25px;"></td>
+                    <td style="border: #000000 solid 1px; height: 25px;"></td>
+                    <td style="border: #000000 solid 1px; height: 25px;"></td>
+                    <td style="border: #000000 solid 1px; height: 25px;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </body>
 </html>

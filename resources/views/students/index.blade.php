@@ -25,6 +25,7 @@
                             <td>{{ $student->identification }}</td>
                             <td>{{ $student->email }}</td>
                             <td class="d-md-flex justify-content-center gap-2">
+                                <a href="{{route('students.show',$student->id)}}" class="btn btn-warning mr-2">Detalles</a>
                                 <a href="{{route('students.edit',$student->id)}}" class="btn btn-warning mr-2">Editar</a>
                                 <a href="{{route('student_records.create',$student->id)}}" class="btn btn-warning mr-2">Inscribir</a>
                             </td>

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentRecordsRequest;
 use App\Models\AcademicPeriod;
+use App\Models\Note;
+use App\Models\Section;
 use App\Models\Student;
 use App\Models\StudentRecord;
 use App\Models\YearSchool;
@@ -24,7 +27,7 @@ class StudentRecordController extends Controller
         return view('students.records.create',compact('year_schools','student'));
     }
 
-    public function store(Request $request){
+    public function store(StudentRecordsRequest $request){
         $student_record = StudentRecord::create([
             'year_school_id'        =>  $request->year_school_id,
             'student_id'            =>  $request->student_id,
@@ -73,7 +76,7 @@ class StudentRecordController extends Controller
             'registration_made_by'  =>  $request->registration_made_by,
             'observation'           =>  $request->observation,
         ]);
-
+        notify()->success('Ha sido guardada la ficha del estudiante ' . "'$student_record->names $student_record->lastnames'", 'Guardada');
         return redirect()->route('student_records.index');
 
     }
@@ -136,10 +139,17 @@ class StudentRecordController extends Controller
             'observation'           =>  $request->observation,
         ]);
 
+        notify()->success('Ha sido actualizada la ficha del estudiante ' . "'$student_record->names $student_record->lastnames'", 'Actualizada');
         return redirect()->route('student_records.index');
 
     }
 
+    public function show($id){
+        $student_record = StudentRecord::find($id);
+        $section = Section::find($student_record->section_id);
+        return view('students.records.show',compact('student_record','section'));
+    }
+    
     public function destroy($id){
 
         $student_record = StudentRecord::find($id);
@@ -170,8 +180,8 @@ class StudentRecordController extends Controller
     }
 
     public function bulletin($id){
-
-        $student_record = StudentRecord::find($id);
+        $student_record = StudentRecord::find($id)->with('year_school.subjects.notes')->get();
+        // dd($student_record);
         $pdf = PDF::loadView('students.records.bulletin', compact('student_record'))->setOptions(['defaultFont' => 'sans-serif']);
 
         return $pdf->stream();
