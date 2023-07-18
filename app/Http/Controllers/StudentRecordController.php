@@ -8,6 +8,7 @@ use App\Models\Note;
 use App\Models\Section;
 use App\Models\Student;
 use App\Models\StudentRecord;
+use App\Models\Subject;
 use App\Models\YearSchool;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -180,9 +181,20 @@ class StudentRecordController extends Controller
     }
 
     public function bulletin($id){
-        $student_record = StudentRecord::find($id)->with('year_school.subjects.notes')->get();
-        // dd($student_record);
-        $pdf = PDF::loadView('students.records.bulletin', compact('student_record'))->setOptions(['defaultFont' => 'sans-serif']);
+        // $array = [];
+        $student_record = StudentRecord::find($id);
+        $section = Section::find($student_record->section_id);
+        $year_school = YearSchool::find($student_record->year_school_id);
+        $date = Carbon::createFromDate($student_record->birthdate)->age;
+        // $arrayPush = [
+        //     'student' => $student_record->names,
+        //     'year_school' => $year_school->name,
+        // ];
+        $subjects = Subject::where('year_school_id', '=', $year_school->id)->get();
+        foreach ($subjects as $key => $subject) {
+            $notes = Note::where('student_record_id', '=', $student_record->id)->get();
+        };
+        $pdf = PDF::loadView('students.records.bulletin', compact('student_record','year_school','subjects','notes','date','section'))->setOptions(['defaultFont' => 'sans-serif']);
 
         return $pdf->stream();
     }
