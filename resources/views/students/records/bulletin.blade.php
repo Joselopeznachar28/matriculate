@@ -91,7 +91,7 @@
                     <td style="border: #000000 solid 1px;">
                         @foreach ($notes as $note)
                                 <p>{{ $note->note }}</p>
-                        @endforeach 
+                        @endforeach
                     </td>
                 </tr>
             </tbody>

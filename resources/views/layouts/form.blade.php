@@ -25,7 +25,7 @@
         <img src="{{ asset('img/logo.png') }}" alt="Logo" style="height: 100px;" class="d-inline-block align-text-top">
         <div class="container d-flex justify-content-evenly" id="accordionExample">
             <div class="accordion-item">
-                <a href="{{ route('home') }}">{{ __('Dashboard') }}</a>
+                <a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
             </div>
             <div class="accordion-item">
                 <!-- hace referencia a Periodos Academicos -->
@@ -106,7 +106,7 @@
                 </div>
             </div>
             <div class="accordion-item">
-                <a href="{{ route('student_records.index') }}">{{ __('Inscripciones') }}</a>
+                <a href="{{ route('student_records.index') }}">{{ __('Inscritos') }}</a>
             </div>
             <div class="accordion-item">
                 <a class="nav-item" href="{{ route('users.index') }}">{{ __('Usuarios') }}</a>

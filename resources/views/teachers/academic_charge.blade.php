@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="form">
-            <table class="table table-dark table-hover text-center">
+            <table class="table table-hover text-center">
                 <thead>
                     <tr>
                       <th>Año Escolar</th>
@@ -21,7 +21,7 @@
                                     'year_school_id' => $arr['year_school']->id,
                                     'subject_id' => $arr['subject']->id,
                                     'section_id' => $arr['section']->id
-                                ])}}" style="text-decoration: none; color:#ffffff;">
+                                ])}}" style="text-decoration: none; color:#000;">
                                     {{ $arr['section']->letter }}
                                 </a>
                             </td>

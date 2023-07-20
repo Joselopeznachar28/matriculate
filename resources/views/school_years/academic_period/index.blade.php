@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="form">
-            <table class="table table-dark table-hover text-center">
+            <table class="table table-hover text-center">
                 <thead>
                     <tr>
                       <th>#</th>

@@ -20,9 +20,21 @@ use Illuminate\Support\Facades\Hash;
 
 class TeacherController extends Controller
 {
-    public function index(){
-        $teachers = Teacher::orderBy('id','desc')->get();
-        return view('teachers.index',compact('teachers'));
+    public function index(Request $request){
+
+        $search = $request->input('search');
+
+        $teachers = Teacher::when($search, function ($query, $search) {
+            $query->orWhere('name', 'LIKE', '%'.$search.'%')
+            ->orWhere('lastname', 'LIKE', '%'.$search.'%')
+            ->orWhere('identification', 'LIKE', '%'.$search.'%')
+            ->orWhere('email', 'LIKE', '%'.$search.'%')
+            ->orWhere('code', 'LIKE', '%'.$search.'%');
+        })
+        ->orderBy('id','desc')
+        ->simplePaginate(5);
+
+        return view('teachers.index',compact('teachers','search'));
     }
 
     public function create(){

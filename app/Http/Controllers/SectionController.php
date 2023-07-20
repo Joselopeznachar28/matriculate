@@ -10,9 +10,17 @@ use Illuminate\Http\Request;
 
 class SectionController extends Controller
 {
-    public function index(){
-        $year_schools = YearSchool::with('sections')->get();
-        return view('sections.index',compact('year_schools'));
+    public function index(Request $request){
+
+        $search = $request->input('search');
+
+        $sections = Section::when($search, function ($query, $search) {
+            $query->orWhere('letter', 'LIKE', '%'.$search.'%');
+        })
+        ->orderBy('id','desc')
+        ->simplePaginate(10);
+
+        return view('sections.index',compact('sections','search'));
     }
 
     public function create(){

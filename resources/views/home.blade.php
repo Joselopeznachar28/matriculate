@@ -122,7 +122,7 @@
             </a> --}}
             <!-- inscripciones -->
             <a class="nav-item" href="{{ route('student_records.index') }}">
-                {{ __('Inscripciones') }}
+                {{ __('Inscritos') }}
             </a>
             <!-- hace referencia a Users-->
             <a class="nav-item" data-bs-toggle="collapse" href="#Users" aria-expanded="false" aria-controls="Users">
@@ -184,16 +184,22 @@
         
         </div>
         <!-- barra de navegacion principal -->
-        <div class="nav-principal container d-flex justify-content-end">
+        <div class="nav-principal d-flex justify-content-between bg-blue">
+            <form action="@yield('search-route')" method="get">
+                <div class="d-flex m-3">
+                    <input type="text" name="search" class="form-control" placeholder="Filtrar">
+                    <button type="submit" class="btn search ml-1">Buscar</button>
+                </div>
+            </form>
             <div class="accordion-item" style="margin-top: 1rem;">
                 
-                <a id="navbarDropdown" style="text-decoration: none; color: #000;" class="nav-item" href="#Logout" data-bs-toggle="collapse" aria-controls="Logout" aria-expanded="false" v-pre>
+                <a id="navbarDropdown" style="text-decoration: none; color: #ffffff; margin-right: 5rem;" class="nav-item" href="#Logout" data-bs-toggle="collapse" aria-controls="Logout" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }}
                 </a>
                 
                 <div class="collapse dropdown-menu-end" aria-labelledby="navbarDropdown" id="Logout">
-                    <a href="{{ route('users.edit', Auth::user()->id) }}" style="text-decoration: none; color: #000;">Editar</a><br>
-                    <a class="nav-item text-dark" style="text-decoration: none;" href="{{ route('logout') }}"
+                    <a href="{{ route('users.edit', Auth::user()->id) }}" style="text-decoration: none; color: #ffffff;">Editar</a><br>
+                    <a class="nav-item text-dark" style="color: #ffffff !important; text-decoration: none;" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}

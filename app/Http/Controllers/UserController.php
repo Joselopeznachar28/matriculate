@@ -11,9 +11,18 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    public function index(){
-        $users = User::all();
-        return view('auth.index', compact('users'));
+    public function index(Request $request){
+
+        $search = $request->input('search');
+
+        $users = User::when($search, function ($query, $search) {
+            $query->orWhere('name', 'LIKE', '%'.$search.'%')
+            ->orWhere('email', 'LIKE', '%'.$search.'%');
+        })
+        ->orderBy('id','desc')
+        ->simplePaginate(5);
+
+        return view('auth.index', compact('users','search'));
     }
 
     public function create()

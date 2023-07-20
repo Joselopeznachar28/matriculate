@@ -17,9 +17,25 @@ use PDF;
 class StudentRecordController extends Controller
 {
 
-    public function index(){
-        $student_records = StudentRecord::orderBy('inscription_number','asc')->get();
-        return view('students.records.index',compact('student_records'));
+    public function index(Request $request){
+
+        $search = $request->input('search');
+
+        $student_records = StudentRecord::when($search, function ($query, $search) {
+            $query->orWhere('names', 'LIKE', '%'.$search.'%')
+            ->orWhere('lastnames', 'LIKE', '%'.$search.'%')
+            ->orWhere('identification', 'LIKE', '%'.$search.'%')
+            ->orWhere('email', 'LIKE', '%'.$search.'%')
+            ->orWhere('inscription_number', 'LIKE', '%'.$search.'%')
+            ->orWhere('pattern_names', 'LIKE', '%'.$search.'%')
+            ->orWhere('pattern_lastnames', 'LIKE', '%'.$search.'%')
+            ->orWhere('pattern_identification', 'LIKE', '%'.$search.'%')
+            ->orWhere('gender', 'LIKE', '%'.$search.'%');
+        })
+        ->orderBy('id','desc')
+        ->simplePaginate(5);
+
+        return view('students.records.index',compact('student_records','search'));
     }
 
     public function create($id){

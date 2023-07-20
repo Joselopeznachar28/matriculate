@@ -1,9 +1,12 @@
 @extends('home')
 
 @section('content')
+    @section('search-route')
+        {{route('subjets.index')}}
+    @endsection
     <div class="container">
-        <div class="form">
-            <table class="table table-dark table-hover text-center">
+        <div class="form-students" style="left: 50%; ">
+            <table class="table table-hover text-center">
                 <thead>
                     <tr>
                       <th>#</th>
@@ -37,6 +40,7 @@
                     @endforeach
                   </tbody>
             </table>
+            <div class="d-flex justify-content-between"><b>{{$subjects->links()}}</b></div>
         </div>
     </div>
 @endsection

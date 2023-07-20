@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('names');
             $table->text('type_student'); //Regular o repitiente
             $table->integer('inscription_number')->unique();
-            $table->integer('identification')->unique();
+            $table->integer('identification');
             $table->string('gender');
             $table->date('birthdate');
             $table->text('place_of_birth');

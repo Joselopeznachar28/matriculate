@@ -11,9 +11,20 @@ use PDF;
 
 class StudentController extends Controller
 {
-    public function index(){
-        $students = Student::orderBy('id','asc')->get();
-        return view('students.index',compact('students'));
+    public function index(Request $request){
+
+        $search = $request->input('search');
+
+        $students = Student::when($search, function ($query, $search) {
+            $query->orWhere('names', 'LIKE', '%'.$search.'%')
+            ->orWhere('lastnames', 'LIKE', '%'.$search.'%')
+            ->orWhere('identification', 'LIKE', '%'.$search.'%')
+            ->orWhere('email', 'LIKE', '%'.$search.'%')
+            ->orWhere('gender', 'LIKE', '%'.$search.'%');
+        })
+        ->orderBy('id','desc')
+        ->simplePaginate(5);
+        return view('students.index',compact('students','search'));
     }
 
     public function create(){

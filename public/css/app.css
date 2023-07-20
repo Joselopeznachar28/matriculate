@@ -207,3 +207,7 @@ ul{
     background-color: #e97732;
     color: #ffffff;
 }
+.bg-blue{
+    background-color: #071680 !important;
+    min-height: 100vh;
+}

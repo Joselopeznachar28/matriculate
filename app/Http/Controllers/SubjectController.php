@@ -9,9 +9,18 @@ use Illuminate\Support\Str;
 
 class SubjectController extends Controller
 {
-    public function index() {
-        $subjects = Subject::orderBy('id','desc')->get();
-        return view('subjects.index',compact('subjects'));
+    public function index(Request $request) {
+
+        $search = $request->input('search');
+
+        $subjects = Subject::when($search, function ($query, $search) {
+            $query->orWhere('name', 'LIKE', '%'.$search.'%')
+            ->orWhere('code', 'LIKE', '%'.$search.'%');
+        })
+        ->orderBy('id','desc')
+        ->simplePaginate(5);
+
+        return view('subjects.index',compact('subjects','search'));
     }
 
     public function create(){

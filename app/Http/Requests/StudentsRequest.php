@@ -22,7 +22,7 @@ class StudentsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'identification' => 'unique:students,identification',
+            'identification' => 'min:8|max:8|unique:students,identification',
             'email' => 'unique:students|email',
         ];
     }

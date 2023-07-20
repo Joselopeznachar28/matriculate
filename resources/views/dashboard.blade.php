@@ -2,7 +2,7 @@
 
     @section('content')
 
-    <div class="cards-dashboard" style="margin-top: -30%;">
+    <div class="cards-dashboard" style="margin-top: -30%; margin-left: 35%;">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title text-uppercase">Profesores</h5>

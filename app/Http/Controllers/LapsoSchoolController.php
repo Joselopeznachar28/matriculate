@@ -9,9 +9,18 @@ use Illuminate\Http\Request;
 
 class LapsoSchoolController extends Controller
 {
-    public function index(){
-        $academic_periods = AcademicPeriod::with('lapsos')->get();
-        return view('school_years.school_lapsos.index',compact('academic_periods'));
+    public function index(Request $request){
+
+        $search = $request->input('search');
+
+        $academic_periods = AcademicPeriod::with('lapsos')->when($search, function ($query, $search) {
+            $query->orWhere('init', 'LIKE', '%'.$search.'%')
+            ->orWhere('end', 'LIKE', '%'.$search.'%');
+        })
+        ->orderBy('id','desc')
+        ->simplePaginate(5);
+
+        return view('school_years.school_lapsos.index',compact('academic_periods','search'));
     }
 
     public function create($id){
