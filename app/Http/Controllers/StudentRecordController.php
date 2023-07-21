@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRecordsRequest;
 use App\Models\AcademicPeriod;
+use App\Models\LapsoSchool;
 use App\Models\Note;
 use App\Models\Section;
 use App\Models\Student;
@@ -156,7 +157,7 @@ class StudentRecordController extends Controller
             'observation'           =>  $request->observation,
         ]);
 
-        notify()->success('Ha sido actualizada la ficha del estudiante ' . "'$student_record->names $student_record->lastnames'", 'Actualizada');
+        notify()->success('Ha sido actualizada la ficha del estudiante ', 'Actualizada');
         return redirect()->route('student_records.index');
 
     }
@@ -197,20 +198,43 @@ class StudentRecordController extends Controller
     }
 
     public function bulletin($id){
-        // $array = [];
+
+        $array = [];
+        //get studend record
         $student_record = StudentRecord::find($id);
+        //get section of the student record 
         $section = Section::find($student_record->section_id);
+        //get year school of the student record
         $year_school = YearSchool::find($student_record->year_school_id);
+        $academic_period = AcademicPeriod::find($year_school->id)->load('lapsos');
+        $lapse = $academic_period->lapsos;
+        $lapseActive = LapsoSchool::where('active',1)->get();
+        //get age of the student with carbon
         $date = Carbon::createFromDate($student_record->birthdate)->age;
-        // $arrayPush = [
-        //     'student' => $student_record->names,
-        //     'year_school' => $year_school->name,
-        // ];
+        //get subjects of that school year
         $subjects = Subject::where('year_school_id', '=', $year_school->id)->get();
+
         foreach ($subjects as $key => $subject) {
-            $notes = Note::where('student_record_id', '=', $student_record->id)->get();
+
+            $notes = Note::where('student_record_id', $student_record->id)->where('subject_id',$subject->id)->where('lapso_id',$lapseActive[0]->id)->get();
+
+            $noteFinal = 0;
+
+            foreach ($notes as $key => $note) {
+
+                $noteFinal += $note->note;
+
+                $object = [
+                    'subject' => $subject->name,
+                    'note' => $note->note,
+                    'noteFinal' => $noteFinal/3,
+                ];
+
+                array_push($array, $object);
+            }
         };
-        $pdf = PDF::loadView('students.records.bulletin', compact('student_record','year_school','subjects','notes','date','section'))->setOptions(['defaultFont' => 'sans-serif']);
+
+        $pdf = PDF::loadView('students.records.bulletin', compact('student_record','year_school','notes','date','section','array','academic_period'))->setOptions(['defaultFont' => 'sans-serif']);
 
         return $pdf->stream();
     }

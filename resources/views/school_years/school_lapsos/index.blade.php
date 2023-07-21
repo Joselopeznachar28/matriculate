@@ -26,7 +26,7 @@
                                 <td>{{ $lapso->id }}</td>
                                 <td>{{ $academic_period->init }}</td>
                                 <td>{{ $academic_period->end }}</td>
-                                <td>{{ $lapso->number }}</td>
+                                <td>{{ $lapso->name }}</td>
                                 <td>{{ $lapso->init }}</td>
                                 <td>{{ $lapso->end }}</td>
                                 <td>

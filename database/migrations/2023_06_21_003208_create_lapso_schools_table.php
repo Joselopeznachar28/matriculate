@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('lapso_schools', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('number');
+            $table->string('name');
             $table->date('init')->unique();
             $table->date('end')->unique();
             $table->boolean('upload_note')->default(0);

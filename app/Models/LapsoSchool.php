@@ -10,7 +10,7 @@ class LapsoSchool extends Model
     use HasFactory;
 
     protected $fillable = [
-        'number',
+        'name',
         'init',
         'end',
         'academic_period_id',

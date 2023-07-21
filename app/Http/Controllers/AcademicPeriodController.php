@@ -22,10 +22,9 @@ class AcademicPeriodController extends Controller
     public function store(AcademicPeriodRequest $request){
 
         $academic_period = AcademicPeriod::create([
-            'name' => request('name'),
-            'init' => request('init'),
-            'end' => request('end'),
-
+            'name' => $request->name,
+            'init' => $request->init,
+            'end' => $request->end,
         ]);
         
         foreach ($request->year_id as $year_school) {
@@ -48,11 +47,11 @@ class AcademicPeriodController extends Controller
     public function update(Request $request, $id){
 
         $academic_period = AcademicPeriod::findOrFail($id)->update([
-            'name' => request('name'),
-            'init' => request('init'),
-            'end'  => request('end')
+            'name' => $request->name,
+            'init' => $request->init,
+            'end' => $request->end,
         ]);
-        notify()->success('El periodo academico ' . "'$academic_period->name'"  .' se ha actualizado con exito', 'Actualizado');
+        notify()->success('El periodo academico se ha actualizado con exito', 'Actualizado');
         return redirect()->route('academic_period.index');
     }
 }

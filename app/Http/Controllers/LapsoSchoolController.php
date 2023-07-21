@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LapsosSchoolRequest;
 use App\Models\AcademicPeriod;
 use App\Models\LapsoSchool;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LapsoSchoolController extends Controller
@@ -32,12 +33,24 @@ class LapsoSchoolController extends Controller
         
         $lapso_school = LapsoSchool::create([
             'academic_period_id' => $request->academic_period_id,
-            'number' => $request->number,
+            'name' => $request->name,
             'init' => $request->init,
-            'end' => $request->end,
+            'end'  => $request->end,
         ]);
 
-        notify()->success('El lapso ' . "'$lapso_school->number'"  .' se ha creado con exito', 'Creado');
+        $now = new Carbon();
+        $activeLapso = $now->toDateString();
+        $lapsos = LapsoSchool::where('init', '<=', $activeLapso)->where('end', '>=', $activeLapso)->get();
+        foreach ($lapsos as $key => $lapso) {
+            $lapso_id = $lapso->id;
+        }
+
+        //actualizando el status del lapso que esta activo
+        $activarLapso = LapsoSchool::findOrFail($lapso_id)->update([
+            'active' => 1,
+        ]);
+
+        notify()->success('El lapso se ha creado con exito', 'Creado');
         return redirect()->route('lapso_schools.index');
 
     }

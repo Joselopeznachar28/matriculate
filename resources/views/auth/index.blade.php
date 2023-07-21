@@ -5,7 +5,7 @@
         {{route('users.index')}}
     @endsection
     <div class="container">
-        <div class="form-students">
+        <div class="form-students" style="left: 40%;">
             <table class="table table-hover text-center">
                 <thead>
                     <tr>

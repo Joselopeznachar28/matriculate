@@ -24,125 +24,150 @@
     <div class="grid-inicio">
         <!-- barra de navegacion lateral -->
         <div class="nav-lateral d-grid">
-            <div class="img-logo-nav">
-                <img src="{{ asset('img/logo.png') }}" alt="logo">
-            </div>
-            <a href="{{ route('dashboard') }}">Dashboard</a>
             @foreach (Auth::user()->roles as $role)
-                @if ($role->name == 'Teacher')
-                    <!-- hace referencia a Periodos Academicos -->
-                    <a href="{{ route('academic_charge.index') }}" class="nav-item">Carga Academica</a>
+                @if ($role->name == 'Teacher')   
+                    <img src="{{ asset('img/logo.png') }}" alt="logo" width="300px" height="300px">
+                @else
+                    <div class="img-logo-nav">
+                        <img src="{{ asset('img/logo.png') }}" alt="logo">
+                    </div>
                 @endif
             @endforeach 
-            <!-- hace referencia a Periodos Academicos -->
-            <a class="nav-item" data-bs-toggle="collapse" href="#AcademicPeriod" aria-expanded="false" aria-controls="AcademicPeriod">
-                {{ __('Periodos Academicos') }}
-            </a>
-            <!-- esta es la referencia de Periodos Academicos-->
-            <div class="collapse" id="AcademicPeriod">
-                <ul>
-                    <li>
-                        <a href="{{ route('academic_period.index') }}">{{ __('Listado') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('academic_period.create') }}">{{ __('Crear') }}</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- lapsos -->
-            <a class="nav-item" href="{{ route('lapso_schools.index') }}">
-                {{ __('Lapsos Academicos') }}
-            </a>
-            <!-- hace referencia a Materias -->
-            <a class="nav-item" data-bs-toggle="collapse" href="#Materias" aria-expanded="false" aria-controls="Materias">
-                {{ __('Materias') }}
-            </a>
-            <!-- esta es la referencia de Materias-->
-            <div class="collapse" id="Materias">
-                <ul>
-                    <li>
-                        <a href="{{ route('subjets.index') }}">{{ __('Listado') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('subjets.create') }}">{{ __('Crear') }}</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- hace referencia a sections-->
-            <a class="nav-item" data-bs-toggle="collapse" href="#sections" aria-expanded="false" aria-controls="sections">
-                {{ __('Secciones') }}
-            </a>
-            <!-- esta es la referencia de sections-->
-            <div class="collapse" id="sections">
-                <ul>
-                    <li>
-                        <a href="{{ route('sections.index') }}">{{ __('Listado') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('sections.create') }}">{{ __('Crear') }}</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- hace referencia a Teachers-->
-            <a class="nav-item" data-bs-toggle="collapse" href="#Teachers" aria-expanded="false" aria-controls="Teachers">
-                {{ __('Profesores') }}
-            </a>
-            <!-- esta es la referencia de Teachers-->
-            <div class="collapse" id="Teachers">
-                <ul>
-                    <li>
-                        <a href="{{ route('teachers.index') }}">{{ __('Listado') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('teachers.create') }}">{{ __('Crear') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('teachers.asigneSubjectToTeacherView') }}">{{ __('Asignacion de Materias') }}</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- hace referencia a Students-->
-            <a class="nav-item" data-bs-toggle="collapse" href="#Students" aria-expanded="false" aria-controls="Students">
-                {{ __('Estudiantes') }}
-            </a>
-            <!-- esta es la referencia de Students-->
-            <div class="collapse" id="Students">
-                <ul>
-                    <li>
-                        <a href="{{ route('students.index') }}">{{ __('Listado') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('students.create') }}">{{ __('Crear') }}</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- NOTAS -->
-            {{-- <a class="nav-item" href="{{ route('notes.index') }}">
-                {{ __('Notas') }}
-            </a> --}}
-            <!-- inscripciones -->
-            <a class="nav-item" href="{{ route('student_records.index') }}">
-                {{ __('Inscritos') }}
-            </a>
-            <!-- hace referencia a Users-->
-            <a class="nav-item" data-bs-toggle="collapse" href="#Users" aria-expanded="false" aria-controls="Users">
-                {{ __('Usuarios') }}
-            </a>
-            <!-- esta es la referencia de Users-->
-            <div class="collapse" id="Users">
-                <ul>
-                    <li>
-                        <a class="nav-item" href="{{ route('users.index') }}">
-                            {{ __('Lista') }}
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-item" href="{{ route('users.create') }}">
-                            {{ __('Crear') }}
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            @can('users.index')
+                <a href="{{ route('dashboard') }}">Dashboard</a>
+            @endcan
+            @can('charge_academic')    
+                @foreach (Auth::user()->roles as $role)
+                    @if ($role->name == 'Teacher')
+                        <div style="height: 50px;">
+                            <a href="{{ route('academic_charge.index') }}" class="nav-item">Carga Academica</a>
+                        </div>
+                    @else
+                        <a href="{{ route('academic_charge.index') }}" class="nav-item">Carga Academica</a>
+                    @endif
+                @endforeach 
+            @endcan
+            @can('academic_period.index')
+                <!-- hace referencia a Periodos Academicos -->
+                <a class="nav-item" data-bs-toggle="collapse" href="#AcademicPeriod" aria-expanded="false" aria-controls="AcademicPeriod">
+                    {{ __('Periodos Academicos') }}
+                </a>
+                <!-- esta es la referencia de Periodos Academicos-->
+                <div class="collapse" id="AcademicPeriod">
+                    <ul>
+                        <li>
+                            <a href="{{ route('academic_period.index') }}">{{ __('Listado') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('academic_period.create') }}">{{ __('Crear') }}</a>
+                        </li>
+                    </ul>
+                </div>
+            @endcan
+            @can('lapso_schools.index')
+                <!-- lapsos -->
+                <a class="nav-item" href="{{ route('lapso_schools.index') }}">
+                    {{ __('Lapsos Academicos') }}
+                </a>
+                <!-- hace referencia a Materias -->
+                <a class="nav-item" data-bs-toggle="collapse" href="#Materias" aria-expanded="false" aria-controls="Materias">
+                    {{ __('Materias') }}
+                </a>
+            @endcan
+            @can('subjects.index')
+                <!-- esta es la referencia de Materias-->
+                <div class="collapse" id="Materias">
+                    <ul>
+                        <li>
+                            <a href="{{ route('subjets.index') }}">{{ __('Listado') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('subjets.create') }}">{{ __('Crear') }}</a>
+                        </li>
+                    </ul>
+                </div>
+            @endcan
+            @can('sections.index')
+                <!-- hace referencia a sections-->
+                <a class="nav-item" data-bs-toggle="collapse" href="#sections" aria-expanded="false" aria-controls="sections">
+                    {{ __('Secciones') }}
+                </a>
+                <!-- esta es la referencia de sections-->
+                <div class="collapse" id="sections">
+                    <ul>
+                        <li>
+                            <a href="{{ route('sections.index') }}">{{ __('Listado') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('sections.create') }}">{{ __('Crear') }}</a>
+                        </li>
+                    </ul>
+                </div>
+            @endcan
+            @can('users.index')
+                <!-- hace referencia a Teachers-->
+                <a class="nav-item" data-bs-toggle="collapse" href="#Teachers" aria-expanded="false" aria-controls="Teachers">
+                    {{ __('Profesores') }}
+                </a>
+                <!-- esta es la referencia de Teachers-->
+                <div class="collapse" id="Teachers">
+                    <ul>
+                        <li>
+                            <a href="{{ route('teachers.index') }}">{{ __('Listado') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('teachers.create') }}">{{ __('Crear') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('teachers.asigneSubjectToTeacherView') }}">{{ __('Asignacion de Materias') }}</a>
+                        </li>
+                    </ul>
+                </div>
+            @endcan
+            @can('students.index')
+                <!-- hace referencia a Students-->
+                <a class="nav-item" data-bs-toggle="collapse" href="#Students" aria-expanded="false" aria-controls="Students">
+                    {{ __('Estudiantes') }}
+                </a>
+                <!-- esta es la referencia de Students-->
+                <div class="collapse" id="Students">
+                    <ul>
+                        <li>
+                            <a href="{{ route('students.index') }}">{{ __('Listado') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('students.create') }}">{{ __('Crear') }}</a>
+                        </li>
+                    </ul>
+                </div>
+            @endcan
+            @can('student_records.index')
+                <!-- inscripciones -->
+                <a class="nav-item" href="{{ route('student_records.index') }}">
+                    {{ __('Inscritos') }}
+                </a>
+            @endcan
+            @can('users.index')
+                <!-- hace referencia a Users-->
+                <a class="nav-item" data-bs-toggle="collapse" href="#Users" aria-expanded="false" aria-controls="Users">
+                    {{ __('Usuarios') }}
+                </a>
+                <!-- esta es la referencia de Users-->
+                <div class="collapse" id="Users">
+                    <ul>
+                        <li>
+                            <a class="nav-item" href="{{ route('users.index') }}">
+                                {{ __('Lista') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-item" href="{{ route('users.create') }}">
+                                {{ __('Crear') }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            @endcan
             {{-- <!-- hace referencia a permissions-->
             <a class="nav-item" data-bs-toggle="collapse" href="#permissions" aria-expanded="false" aria-controls="permissions">
                 {{ __('Permisos de Usuarios') }}

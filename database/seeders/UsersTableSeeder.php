@@ -24,8 +24,8 @@ class UsersTableSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
+        $user->update(['password' => '12345678']);
         $user->assignRole(['SystemAdmin']);
         
-        $user->update(['password' => '12345678']);
     }
 }

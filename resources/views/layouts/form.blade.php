@@ -24,94 +24,96 @@
     <nav class="navbar">
         <img src="{{ asset('img/logo.png') }}" alt="Logo" style="height: 100px;" class="d-inline-block align-text-top">
         <div class="container d-flex justify-content-evenly" id="accordionExample">
-            <div class="accordion-item">
-                <a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
-            </div>
-            <div class="accordion-item">
-                <!-- hace referencia a Periodos Academicos -->
-                <a class="nav-item" data-bs-toggle="collapse" href="#AcademicPeriod" aria-expanded="false" aria-controls="AcademicPeriod">
-                    {{ __('Periodos Academicos') }}
-                </a>
-                <!-- esta es la referencia de Periodos Academicos-->
-                <div class="collapse" id="AcademicPeriod">
-                    <li>
-                        <a href="{{ route('academic_period.index') }}">{{ __('Listado') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('academic_period.create') }}">{{ __('Crear') }}</a>
-                    </li>
+            @can('users.index')
+                <div class="accordion-item">
+                    <a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
                 </div>
-            </div>
-            <div class="accordion-item">
-                <!-- hace referencia a Materias -->
-                <a data-bs-toggle="collapse" href="#Materias" aria-expanded="false" aria-controls="Materias">
-                    {{ __('Materias') }}
-                </a>
-                <!-- esta es la referencia de Materias-->
-                <div class="collapse" id="Materias">
-                    <li>
-                        <a href="{{ route('subjets.index') }}">{{ __('Listado') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('subjets.create') }}">{{ __('Crear') }}</a>
-                    </li>
+                <div class="accordion-item">
+                    <!-- hace referencia a Periodos Academicos -->
+                    <a class="nav-item" data-bs-toggle="collapse" href="#AcademicPeriod" aria-expanded="false" aria-controls="AcademicPeriod">
+                        {{ __('Periodos Academicos') }}
+                    </a>
+                    <!-- esta es la referencia de Periodos Academicos-->
+                    <div class="collapse" id="AcademicPeriod">
+                        <li>
+                            <a href="{{ route('academic_period.index') }}">{{ __('Listado') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('academic_period.create') }}">{{ __('Crear') }}</a>
+                        </li>
+                    </div>
                 </div>
-            </div>
-            <div class="accordion-item">
-                <!-- hace referencia a sections-->
-                <a class="nav-item" data-bs-toggle="collapse" href="#sections" aria-expanded="false" aria-controls="sections">
-                   {{ __('Secciones') }}
-               </a>
-               <!-- esta es la referencia de Teachers-->
-               <div class="collapse" id="sections">
-                    <li>
-                        <a href="{{ route('sections.index') }}">{{ __('Listado') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('sections.create') }}">{{ __('Crear') }}</a>
-                    </li>
-               </div>
-            </div>
-            <div class="accordion-item">
-                <!-- hace referencia a Teachers-->
-                <a class="nav-item" data-bs-toggle="collapse" href="#Teachers" aria-expanded="false" aria-controls="Teachers">
-                    {{ __('Profesores') }}
+                <div class="accordion-item">
+                    <!-- hace referencia a Materias -->
+                    <a data-bs-toggle="collapse" href="#Materias" aria-expanded="false" aria-controls="Materias">
+                        {{ __('Materias') }}
+                    </a>
+                    <!-- esta es la referencia de Materias-->
+                    <div class="collapse" id="Materias">
+                        <li>
+                            <a href="{{ route('subjets.index') }}">{{ __('Listado') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('subjets.create') }}">{{ __('Crear') }}</a>
+                        </li>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <!-- hace referencia a sections-->
+                    <a class="nav-item" data-bs-toggle="collapse" href="#sections" aria-expanded="false" aria-controls="sections">
+                    {{ __('Secciones') }}
                 </a>
                 <!-- esta es la referencia de Teachers-->
-                <div class="collapse" id="Teachers">
-                    <li>
-                        <a href="{{ route('teachers.index') }}">{{ __('Listado') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('teachers.create') }}">{{ __('Crear') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('teachers.asigneSubjectToTeacherView') }}">{{ __('Asignacion de Materias') }}</a>
-                    </li>
+                <div class="collapse" id="sections">
+                        <li>
+                            <a href="{{ route('sections.index') }}">{{ __('Listado') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('sections.create') }}">{{ __('Crear') }}</a>
+                        </li>
                 </div>
-            </div>
-            <div class="accordion-item">
-                <!-- hace referencia a Students-->
-                <a class="nav-item" data-bs-toggle="collapse" href="#Students" aria-expanded="false" aria-controls="Students">
-                    {{ __('Estudiantes') }}
-                </a>
-                <!-- esta es la referencia de Students-->
-                <div class="collapse" id="Students">
-                    <li>
-                        <a href="{{ route('students.index') }}">{{ __('Listado') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('students.create') }}">{{ __('Crear') }}</a>
-                    </li>
                 </div>
-            </div>
-            <div class="accordion-item">
-                <a href="{{ route('student_records.index') }}">{{ __('Inscritos') }}</a>
-            </div>
-            <div class="accordion-item">
-                <a class="nav-item" href="{{ route('users.index') }}">{{ __('Usuarios') }}</a>
-            </div>
-            
+                <div class="accordion-item">
+                    <!-- hace referencia a Teachers-->
+                    <a class="nav-item" data-bs-toggle="collapse" href="#Teachers" aria-expanded="false" aria-controls="Teachers">
+                        {{ __('Profesores') }}
+                    </a>
+                    <!-- esta es la referencia de Teachers-->
+                    <div class="collapse" id="Teachers">
+                        <li>
+                            <a href="{{ route('teachers.index') }}">{{ __('Listado') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('teachers.create') }}">{{ __('Crear') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('teachers.asigneSubjectToTeacherView') }}">{{ __('Asignacion de Materias') }}</a>
+                        </li>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <!-- hace referencia a Students-->
+                    <a class="nav-item" data-bs-toggle="collapse" href="#Students" aria-expanded="false" aria-controls="Students">
+                        {{ __('Estudiantes') }}
+                    </a>
+                    <!-- esta es la referencia de Students-->
+                    <div class="collapse" id="Students">
+                        <li>
+                            <a href="{{ route('students.index') }}">{{ __('Listado') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('students.create') }}">{{ __('Crear') }}</a>
+                        </li>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <a href="{{ route('student_records.index') }}">{{ __('Inscritos') }}</a>
+                </div>
+                <div class="accordion-item">
+                    <a class="nav-item" href="{{ route('users.index') }}">{{ __('Usuarios') }}</a>
+                </div>
+                
+            @endcan
             <div class="accordion-item navbarDiv">
                 <a id="navbarDropdown" class="nav-item" href="#Logout" data-bs-toggle="collapse" aria-controls="Logout" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }}

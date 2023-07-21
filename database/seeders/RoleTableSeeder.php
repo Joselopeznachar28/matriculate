@@ -184,5 +184,11 @@ class RoleTableSeeder extends Seeder
                 'name' => 'teachers.subjectYear',
                 'description' => 'Asignar materias por año',
             ])->syncRoles([$systemAdmin]);
+
+            //Subir notas
+            $charge_academic = Permission::create([
+                'name' => 'charge_academic',
+                'description' => 'Cargar Notas',
+            ])->syncRoles([$teacher]);
     }
 }

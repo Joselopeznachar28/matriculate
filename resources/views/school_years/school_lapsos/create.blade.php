@@ -23,12 +23,12 @@
                 <h2 class="text-center text-uppercase">Fecha de Corte</h2><hr>
                 <div class="row">
                     <div class="col-sm-4">
-                        <label for="number" class="col-form-label">{{ __('Lapso') }}</label>
-                        <select name="number" id="number" class="form-control" required>
+                        <label for="name" class="col-form-label">{{ __('Lapso') }}</label>
+                        <select name="name" id="name" class="form-control" required>
                             <option value="">Seleccione una opcion...</option>
-                            <option value=1>Primer Lapso</option>
-                            <option value=2>Segundo Lapso</option>
-                            <option value=3>Tercer Lapso</option>
+                            <option value='1ER LAPSO'>Primer Lapso</option>
+                            <option value='2DO LAPSO'>Segundo Lapso</option>
+                            <option value='3ER LAPSO'>Tercer Lapso</option>
                         </select>
 
                         @error('number')

@@ -72,9 +72,9 @@
             <thead style="text-transform: uppercase;">
                 <tr>
                     <th style="border: #000000 solid 1px;">Areas de Formacion</th>
-                    <th style="border: #000000 solid 1px;">1er Lapso</th>
-                    <th style="border: #000000 solid 1px;">2do Lapso</th>
-                    <th style="border: #000000 solid 1px;">3er Lapso</th>
+                    @foreach ($academic_period->lapsos as $k => $lapso)
+                        <th style="border: #000000 solid 1px;">{{ $lapso->name }}</th>
+                    @endforeach
                     <th style="border: #000000 solid 1px;">Definitiva</th>
                     <th style="border: #000000 solid 1px;">Calif. Revision</th>
                     <th style="border: #000000 solid 1px;">Fecha de Revision</th>
@@ -84,14 +84,29 @@
             <tbody>
                 <tr>
                     <td style="border: #000000 solid 1px;">
-                        @foreach ($subjects as $subject)
-                           <p>{{ $subject->name }}</p> 
+                        @foreach ($array as $a)
+                           <p>{{ $a['subject'] }}</p> 
                         @endforeach 
                     </td>
                     <td style="border: #000000 solid 1px;">
-                        @foreach ($notes as $note)
-                                <p>{{ $note->note }}</p>
+                        @foreach ($array as $a)
+                                <p>{{ $a['note'] }}</p>
                         @endforeach
+                    </td>
+                    <td style="border: #000000 solid 1px;">
+                    </td>
+                    <td style="border: #000000 solid 1px;">
+                    </td>
+                    <td style="border: #000000 solid 1px;">
+                        @foreach ($array as $a)
+                                <p>{{ $a['noteFinal'] }}</p>
+                        @endforeach
+                    </td>
+                    <td style="border: #000000 solid 1px;">
+                    </td>
+                    <td style="border: #000000 solid 1px;">
+                    </td>
+                    <td style="border: #000000 solid 1px;">
                     </td>
                 </tr>
             </tbody>

@@ -39,6 +39,7 @@ class HomeController extends Controller
         $users = User::all();
         $year_schools = YearSchool::with('student_records')->get();
         $lapso_active = LapsoSchool::where('active', 1)->get();
+        
         return view('dashboard',compact('teachers','users','year_schools','lapso_active'));
     }
 }

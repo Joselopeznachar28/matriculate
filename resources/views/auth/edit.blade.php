@@ -54,8 +54,9 @@
                     </div>
                 @endforeach
             </div>
-            <div class="d-flex justify-content-end p-3">
-                <input type="submit" class="btn btn-primary btn-submit w-25" value="Guardar">
+            <div class="d-flex justify-content-around p-3">
+                <a href="{{ route('users.index') }}" class="btn w-25">Regresar</a>
+                <input type="submit" class="btn w-25" value="Guardar">
             </div>
         </div>
     </form>
