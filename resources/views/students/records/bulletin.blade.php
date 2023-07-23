@@ -72,8 +72,10 @@
             <thead style="text-transform: uppercase;">
                 <tr>
                     <th style="border: #000000 solid 1px;">Areas de Formacion</th>
-                    @foreach ($academic_period->lapsos as $k => $lapso)
-                        <th style="border: #000000 solid 1px;">{{ $lapso->name }}</th>
+                    @foreach ($academic_period as $ap)
+                        @foreach ($ap->lapsos as $k => $lapso)
+                            <th style="border: #000000 solid 1px;">{{ $lapso->name }}</th>
+                        @endforeach
                     @endforeach
                     <th style="border: #000000 solid 1px;">Definitiva</th>
                     <th style="border: #000000 solid 1px;">Calif. Revision</th>
@@ -90,12 +92,18 @@
                     </td>
                     <td style="border: #000000 solid 1px;">
                         @foreach ($array as $a)
-                                <p>{{ $a['note'] }}</p>
+                            <p>{{ $a['notes'][0]->note }}</p>
                         @endforeach
                     </td>
                     <td style="border: #000000 solid 1px;">
+                        @foreach ($array as $a)
+                            <p>{{ $a['notes'][1]->note }}</p>
+                        @endforeach
                     </td>
                     <td style="border: #000000 solid 1px;">
+                        @foreach ($array as $a)
+                            <p>{{ $a['notes'][2]->note }}</p>
+                        @endforeach
                     </td>
                     <td style="border: #000000 solid 1px;">
                         @foreach ($array as $a)
@@ -103,6 +111,9 @@
                         @endforeach
                     </td>
                     <td style="border: #000000 solid 1px;">
+                        @foreach ($array as $a)
+                                <p>{{ $a['aproved'] }}</p>
+                        @endforeach
                     </td>
                     <td style="border: #000000 solid 1px;">
                     </td>

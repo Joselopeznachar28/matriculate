@@ -6,6 +6,7 @@ use App\Http\Requests\StudentRecordsRequest;
 use App\Models\AcademicPeriod;
 use App\Models\LapsoSchool;
 use App\Models\Note;
+use App\Models\PeriodYear;
 use App\Models\Section;
 use App\Models\Student;
 use App\Models\StudentRecord;
@@ -206,33 +207,42 @@ class StudentRecordController extends Controller
         $section = Section::find($student_record->section_id);
         //get year school of the student record
         $year_school = YearSchool::find($student_record->year_school_id);
-        $academic_period = AcademicPeriod::find($year_school->id)->load('lapsos');
-        $lapse = $academic_period->lapsos;
-        $lapseActive = LapsoSchool::where('active',1)->get();
+        $periodYear = PeriodYear::where('year_id', $year_school->id)->get();
+        $academic_period = AcademicPeriod::where('id',$periodYear[0]->academic_period_id)->with('lapsos')->get();
+        // dd($academic_period);
         //get age of the student with carbon
         $date = Carbon::createFromDate($student_record->birthdate)->age;
         //get subjects of that school year
         $subjects = Subject::where('year_school_id', '=', $year_school->id)->get();
 
-        foreach ($subjects as $key => $subject) {
-
-            $notes = Note::where('student_record_id', $student_record->id)->where('subject_id',$subject->id)->where('lapso_id',$lapseActive[0]->id)->get();
+        foreach ($subjects as $subject) {
 
             $noteFinal = 0;
+            $notes = Note::where('student_record_id', $student_record->id)->where('subject_id',$subject->id)->get();
 
             foreach ($notes as $key => $note) {
-
                 $noteFinal += $note->note;
-
                 $object = [
+                    'student_record_id' => $student_record->id,
                     'subject' => $subject->name,
-                    'note' => $note->note,
-                    'noteFinal' => $noteFinal/3,
+                    'noteFinal' => round($noteFinal/3),
+                    'notes' => $notes,
+                    
                 ];
 
-                array_push($array, $object);
             }
+            //Saber si aprobo o reprobo la materia
+            $object['noteFinal'] > 10 ? $aproved = 'Aprobada' : $aproved = 'Reprobada'; 
+            array_push($object, $object['aproved'] = $aproved );
+            
+            //Saber si llevara materia pendiente
+            //$object['noteFinal'] < 10 ? array_push($object, $object['subjectPending'] = [$object['subject']]) : array_push($object, $object['subjectPending'] = 'Sin Materias Pendientes');
+            
+            array_push($array, $object);
+
         };
+
+        // dd($array);
 
         $pdf = PDF::loadView('students.records.bulletin', compact('student_record','year_school','notes','date','section','array','academic_period'))->setOptions(['defaultFont' => 'sans-serif']);
 
