@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class AcademicPeriodController extends Controller
 {
     public function index(){
-        $academic_periods = AcademicPeriod::all() ;
+        $academic_periods = AcademicPeriod::with('lapsos')->get();
         return view('school_years.academic_period.index',compact('academic_periods'));
     }
 

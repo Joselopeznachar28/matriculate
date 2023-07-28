@@ -23,6 +23,7 @@
                             <select name="section_id" id="section_id" class="form-control" required>
                                 <option value="">{{ __('Seleccione una opcion...') }}</option>
                                 @foreach ($year_schools as $year_school)
+                                    <option disabled class="text-white bg-black text-uppercase">{{ $year_school->name }}</option>
                                     @foreach ($year_school->sections as $section)
                                         <option value={{ $section->id }}>{{ $section->letter }}</option>
                                     @endforeach

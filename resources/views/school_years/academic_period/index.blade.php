@@ -20,7 +20,11 @@
                             <td>{{ $period->end }}</td>
                             <td class="d-flex justify-content-center column-gap-2">
                                 <a href="{{ route('academic_period.edit', $period->id) }}" class="btn btn-success">Editar</a>
-                                <a href="{{ route('lapso_schools.create', $period->id) }}" class="btn btn-success">Añadir Lapso</a>
+                                @if ($period->lapsos->count() >= 3)
+                                    <a href="{{ route('lapso_schools.index') }}" class="btn btn-success">Ver Lapsos</a>
+                                @else
+                                    <a href="{{ route('lapso_schools.create', $period->id) }}" class="btn btn-success">Añadir Lapso</a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

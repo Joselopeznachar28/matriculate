@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AcademicPeriodController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LapsoSchoolController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PermissionController;
@@ -113,5 +114,7 @@ Route::put('Permisos/{id}', [PermissionController::class,'update'])->name('permi
 Route::get('Permisos/Detalles/{id}', [PermissionController::class,'show'])->name('permissions.show');
 Route::delete('Permisos/{id}', [PermissionController::class,'destroy'])->name('permissions.destroy');
 
+//Reporte de aprobados y reprobados
+Route::get('ReportePDF', [HomeController::class,'report'])->name('report');
 
 

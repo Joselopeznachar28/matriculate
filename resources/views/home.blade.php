@@ -218,7 +218,7 @@
             </form>
             <div class="accordion-item" style="margin-top: 1rem;">
                 
-                <a id="navbarDropdown" style="text-decoration: none; color: #ffffff; margin-right: 5rem;" class="nav-item" href="#Logout" data-bs-toggle="collapse" aria-controls="Logout" aria-expanded="false" v-pre>
+                <a id="navbarDropdown" style="text-decoration: none; color: #ffffff; margin-right: 5rem;" class="nav-item btn" href="#Logout" data-bs-toggle="collapse" aria-controls="Logout" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }}
                 </a>
                 
