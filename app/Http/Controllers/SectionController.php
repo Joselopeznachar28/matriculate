@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\AcademicPeriod;
-use App\Models\LapsoSchool;
 use App\Models\Section;
 use App\Models\YearSchool;
 use Illuminate\Http\Request;
@@ -18,7 +17,7 @@ class SectionController extends Controller
             $query->orWhere('letter', 'LIKE', '%'.$search.'%');
         })
         ->orderBy('id','desc')
-        ->simplePaginate(10);
+        ->simplePaginate(20);
 
         return view('sections.index',compact('sections','search'));
     }

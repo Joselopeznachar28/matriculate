@@ -11,7 +11,11 @@
                     <!-- periodo academico -->
                     <div class="col-sm-4">
                         <label for="academic_period_id" class="col-form-label">{{ __('Periodo Academico') }}</label>
-                        <input  name="academic_period_id" id="academic_period_id" value="{{ $academic_period->id }}" class="form-control" placeholder="{{ $academic_period->name }}" readonly autofocus>
+                        @if (!empty($academic_period))
+                            <input  name="academic_period_id" id="academic_period_id" value="{{ $academic_period->id }}" class="form-control" placeholder=" {{ $academic_period->name }}" readonly autofocus>
+                        @else
+                            <h6>Se requiere un periodo academico para gestionar las secciones</h6>
+                        @endif
     
                         @error('academic_period_id')
                             <span style="color: red;">{{ $message }} </span><br/>
@@ -39,7 +43,9 @@
                 </div>
             </div><hr>
             <div class="row justify-content-end p-3">
-                <input type="submit" class="btn btn-primary btn-submit w-25" value="Guardar">
+                @if (!empty($academic_period))
+                    <input type="submit" class="btn btn-primary btn-submit w-25" value="Guardar">
+                @endif
             </div>
         </div>
     </form>

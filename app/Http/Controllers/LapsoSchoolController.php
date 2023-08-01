@@ -41,14 +41,14 @@ class LapsoSchoolController extends Controller
         $now = new Carbon();
         $activeLapso = $now->toDateString();
         $lapsos = LapsoSchool::where('init', '<=', $activeLapso)->where('end', '>=', $activeLapso)->get();
-        foreach ($lapsos as $key => $lapso) {
-            $lapso_id = $lapso->id;
-        }
 
-        //actualizando el status del lapso que esta activo
-        $activarLapso = LapsoSchool::findOrFail($lapso_id)->update([
-            'active' => 1,
-        ]);
+        foreach ($lapsos as $lapso) {
+            $lapso_id = $lapso->id;
+            //actualizando el status del lapso que esta activo
+            $activarLapso = LapsoSchool::findOrFail($lapso_id)->update([
+                'active' => 1,
+            ]);
+        }
 
         notify()->success('El lapso se ha creado con exito', 'Creado');
         return redirect()->route('lapso_schools.index');

@@ -44,7 +44,7 @@ class HomeController extends Controller
         $year_schools = YearSchool::with('student_records')->get();
 
         $lapso_active = LapsoSchool::where('active',1)->get();
-        
+
         //Inicio para obtener los datos 
         $student_records = StudentRecord::all();
         $array = [];
@@ -76,9 +76,8 @@ class HomeController extends Controller
 
                 //obtengo las notas por alumno y materia
                 $notes = Note::where('student_record_id', $student_record->id)->where('subject_id',$subject->id)->get();
-                foreach ($notes as $key => $note) {
-                    $noteSubject = ($notes->sum('note')/3);
-                }
+                //sumo todas las notas de ese alumno y esa materia
+                $noteSubject = ($notes->sum('note')/3);
 
                 //subir al arreglo informacion
                 array_push($array[$student_record->id]['subject'], $subject->name);
@@ -96,7 +95,7 @@ class HomeController extends Controller
         }
         
         //Fin
-    
+        
         return view('dashboard',compact('teachers','users','year_schools','lapso_active','aproved','reproved','array'));
     }
 
