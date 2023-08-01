@@ -132,9 +132,7 @@ class HomeController extends Controller
 
                 //obtengo las notas por alumno y materia
                 $notes = Note::where('student_record_id', $student_record->id)->where('subject_id',$subject->id)->get();
-                foreach ($notes as $key => $note) {
-                    $noteSubject = ($notes->sum('note')/3);
-                }
+                $noteSubject = ($notes->sum('note')/3);
 
                 //subir al arreglo informacion
                 array_push($array[$student_record->id]['subject'], $subject->name);
