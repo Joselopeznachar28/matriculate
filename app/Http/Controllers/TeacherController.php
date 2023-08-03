@@ -128,7 +128,8 @@ class TeacherController extends Controller
         $user->teacher()->attach($teacher->id);
 
         notify()->success('Ha sido generado el usuario' . "'$user->name'", 'Generado');
-        return redirect()->route('teachers.index');
+
+        return redirect()->route('users.index');
     }
 
     public function academic_charge(){

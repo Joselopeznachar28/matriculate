@@ -230,15 +230,15 @@ class StudentRecordController extends Controller
                     
                 ];
 
+                //Saber si aprobo o reprobo la materia
+                $object['noteFinal'] > 10 ? $aproved = 'Aprobada' : $aproved = 'Reprobada'; 
+                array_push($object, $object['aproved'] = $aproved );
+                array_push($array, $object);
             }
-            //Saber si aprobo o reprobo la materia
-            $object['noteFinal'] > 10 ? $aproved = 'Aprobada' : $aproved = 'Reprobada'; 
-            array_push($object, $object['aproved'] = $aproved );
             
             //Saber si llevara materia pendiente
             //$object['noteFinal'] < 10 ? array_push($object, $object['subjectPending'] = [$object['subject']]) : array_push($object, $object['subjectPending'] = 'Sin Materias Pendientes');
             
-            array_push($array, $object);
 
         };
 

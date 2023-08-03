@@ -65,9 +65,9 @@
                 </a>
                 <!-- esta es la referencia de Teachers-->
                 <div class="collapse" id="sections">
-                        <li>
+                        {{-- <li>
                             <a href="{{ route('sections.index') }}">{{ __('Listado') }}</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{ route('sections.create') }}">{{ __('Crear') }}</a>
                         </li>

@@ -95,9 +95,9 @@
                 <!-- esta es la referencia de sections-->
                 <div class="collapse" id="sections">
                     <ul>
-                        <li>
+                        {{-- <li>
                             <a href="{{ route('sections.index') }}">{{ __('Listado') }}</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{ route('sections.create') }}">{{ __('Crear') }}</a>
                         </li>

@@ -1,9 +1,9 @@
 @extends('home')
 
     @section('content')
-        <a href="{{ route('report') }}" class="btn" style="margin-top: -98.9%; margin-left: 35%;">Generar Reporte</a>
+        <a href="{{ route('report') }}" class="btn positionBtnGenerate">Generar Reporte</a>
 
-        <div style="margin-top: -45%; margin-left: 25%;">
+        <div class="positionGraphic">
             <div style="height: 400px !important; margin-left: 30%;">
                 <canvas id="myChart"></canvas>
             </div><br>

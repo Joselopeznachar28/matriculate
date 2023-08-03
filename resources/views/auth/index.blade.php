@@ -27,7 +27,8 @@
                                 <form action="{{ route('users.destroy', $user->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn mr-2">Borrar</button>
+                                    <button type="submit" class="btn mr-2" onclick="return confirm('¿Esta seguro de eliminar?')"
+                                    value="Borrar">Borrar</button>
                                 </form>
                             </td>
                         </tr>

@@ -92,17 +92,29 @@
                     </td>
                     <td style="border: #000000 solid 1px;">
                         @foreach ($array as $a)
-                            <p>{{ $a['notes'][0]->note }}</p>
+                            @if (!empty($a['notes'][0]->note))
+                                <p>{{ $a['notes'][0]->note }}</p>
+                            @else
+                                <p>Lapso sin Nota!</p>
+                            @endif
                         @endforeach
                     </td>
                     <td style="border: #000000 solid 1px;">
                         @foreach ($array as $a)
-                            <p>{{ $a['notes'][1]->note }}</p>
+                            @if (!empty($a['notes'][1]->note))
+                                <p>{{ $a['notes'][1]->note }}</p>
+                            @else
+                                <p>Lapso sin Nota!</p>
+                            @endif
                         @endforeach
                     </td>
                     <td style="border: #000000 solid 1px;">
                         @foreach ($array as $a)
-                            <p>{{ $a['notes'][2]->note }}</p>
+                            @if (!empty($a['notes'][2]->note))
+                                <p>{{ $a['notes'][2]->note }}</p>
+                            @else
+                                <p>Lapso sin Nota!</p>
+                            @endif
                         @endforeach
                     </td>
                     <td style="border: #000000 solid 1px;">
